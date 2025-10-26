@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import About from './components/About'
 import Skills from './components/Skills'
 import Experience from './components/Experience'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import ServicesPage from './pages/ServicesPage'
 import ProjectsPage from './pages/ProjectsPage'
+import AboutPage from './pages/AboutPage'
 
 function App() {
   const [scrollProgress, setScrollProgress] = useState(0)
@@ -39,6 +39,10 @@ function App() {
     return <ProjectsPage />
   }
 
+  if (path === '/about') {
+    return <AboutPage />
+  }
+
   return (
     <>
       {/* Scroll progress indicator */}
@@ -48,7 +52,6 @@ function App() {
       <Navbar />
       <main className="relative">
         <Hero />
-        <About />
         <Skills />
         <Experience />
         <Contact />

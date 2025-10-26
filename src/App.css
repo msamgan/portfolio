@@ -209,6 +209,18 @@ html {
     animation: float 3s ease-in-out infinite;
   }
 
+  /* Slide in from left animation for mobile menu */
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
   /* Glow effect */
   .glow {
     box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
