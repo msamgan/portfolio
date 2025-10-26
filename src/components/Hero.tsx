@@ -15,6 +15,125 @@ export default function Hero() {
       <div className="absolute top-20 right-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-20 left-10 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
 
+      {/* Abstract geometric figures */}
+      <div className="absolute inset-0 pointer-events-none opacity-30">
+        {/* Floating hexagon - top right */}
+        <svg className="absolute top-10 right-1/4 w-32 h-32 animate-float" style={{ animationDuration: '6s' }} viewBox="0 0 100 100">
+          <path d="M50 5 L90 27.5 L90 72.5 L50 95 L10 72.5 L10 27.5 Z"
+                fill="none"
+                stroke="url(#gradient1)"
+                strokeWidth="1.5"
+                className="animate-pulse" />
+          <defs>
+            <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#22d3ee" />
+              <stop offset="100%" stopColor="#a78bfa" />
+            </linearGradient>
+          </defs>
+        </svg>
+
+        {/* Triangle outline - left side */}
+        <svg className="absolute top-1/4 left-16 w-24 h-24 animate-float" style={{ animationDuration: '8s', animationDelay: '1s' }} viewBox="0 0 100 100">
+          <path d="M50 10 L90 85 L10 85 Z"
+                fill="none"
+                stroke="url(#gradient2)"
+                strokeWidth="2"
+                className="animate-pulse" style={{ animationDelay: '0.5s' }} />
+          <defs>
+            <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#a78bfa" />
+              <stop offset="100%" stopColor="#34d399" />
+            </linearGradient>
+          </defs>
+        </svg>
+
+        {/* Circle with rings - bottom right */}
+        <svg className="absolute bottom-32 right-12 w-28 h-28 animate-float" style={{ animationDuration: '7s', animationDelay: '0.5s' }} viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="20" fill="none" stroke="#22d3ee" strokeWidth="1.5" opacity="0.6" />
+          <circle cx="50" cy="50" r="30" fill="none" stroke="#a78bfa" strokeWidth="1" opacity="0.4" className="animate-pulse" />
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#34d399" strokeWidth="0.5" opacity="0.3" className="animate-pulse" style={{ animationDelay: '1s' }} />
+        </svg>
+
+        {/* Diamond shape - top left */}
+        <svg className="absolute top-32 left-1/3 w-20 h-20 animate-float" style={{ animationDuration: '9s', animationDelay: '1.5s' }} viewBox="0 0 100 100">
+          <path d="M50 5 L95 50 L50 95 L5 50 Z"
+                fill="none"
+                stroke="url(#gradient3)"
+                strokeWidth="1.5"
+                className="animate-pulse" style={{ animationDelay: '2s' }} />
+          <defs>
+            <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#34d399" />
+              <stop offset="100%" stopColor="#22d3ee" />
+            </linearGradient>
+          </defs>
+        </svg>
+
+        {/* Pentagon - middle right */}
+        <svg className="absolute top-1/2 right-1/3 w-24 h-24 animate-float" style={{ animationDuration: '10s', animationDelay: '2s' }} viewBox="0 0 100 100">
+          <path d="M50 5 L95 35 L77 85 L23 85 L5 35 Z"
+                fill="none"
+                stroke="url(#gradient4)"
+                strokeWidth="1.5"
+                opacity="0.7" />
+          <defs>
+            <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#a78bfa" />
+              <stop offset="50%" stopColor="#22d3ee" />
+              <stop offset="100%" stopColor="#34d399" />
+            </linearGradient>
+          </defs>
+        </svg>
+
+        {/* Star - bottom left */}
+        <svg className="absolute bottom-48 left-1/4 w-16 h-16 animate-float" style={{ animationDuration: '11s', animationDelay: '3s' }} viewBox="0 0 100 100">
+          <path d="M50 5 L61 38 L95 38 L68 58 L79 92 L50 72 L21 92 L32 58 L5 38 L39 38 Z"
+                fill="none"
+                stroke="#22d3ee"
+                strokeWidth="1.5"
+                opacity="0.5"
+                className="animate-pulse" style={{ animationDelay: '1.5s' }} />
+        </svg>
+
+        {/* Grid pattern overlay - subtle */}
+        <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <defs>
+            <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+              <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#22d3ee" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100" height="100" fill="url(#grid)" />
+        </svg>
+
+        {/* Curved line - top */}
+        <svg className="absolute top-0 right-0 w-96 h-48 opacity-20" viewBox="0 0 400 200" preserveAspectRatio="none">
+          <path d="M0,100 Q100,50 200,80 T400,60"
+                fill="none"
+                stroke="url(#gradient5)"
+                strokeWidth="2"
+                className="animate-pulse" />
+          <defs>
+            <linearGradient id="gradient5" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#22d3ee" />
+              <stop offset="50%" stopColor="#a78bfa" />
+              <stop offset="100%" stopColor="#34d399" />
+            </linearGradient>
+          </defs>
+        </svg>
+
+        {/* Dots pattern - scattered */}
+        <svg className="absolute top-1/3 right-1/2 w-64 h-64 opacity-40" viewBox="0 0 100 100">
+          <circle cx="20" cy="20" r="1.5" fill="#22d3ee" className="animate-pulse" />
+          <circle cx="40" cy="15" r="1" fill="#a78bfa" className="animate-pulse" style={{ animationDelay: '0.5s' }} />
+          <circle cx="60" cy="25" r="1.5" fill="#34d399" className="animate-pulse" style={{ animationDelay: '1s' }} />
+          <circle cx="30" cy="40" r="1" fill="#22d3ee" className="animate-pulse" style={{ animationDelay: '1.5s' }} />
+          <circle cx="70" cy="50" r="1.5" fill="#a78bfa" className="animate-pulse" style={{ animationDelay: '2s' }} />
+          <circle cx="50" cy="65" r="1" fill="#34d399" className="animate-pulse" style={{ animationDelay: '0.8s' }} />
+          <circle cx="25" cy="75" r="1.5" fill="#22d3ee" className="animate-pulse" style={{ animationDelay: '1.2s' }} />
+          <circle cx="80" cy="80" r="1" fill="#a78bfa" className="animate-pulse" style={{ animationDelay: '1.8s' }} />
+        </svg>
+      </div>
+
       <div className="grid items-center gap-12 lg:grid-cols-2 relative z-10">
         <div className="space-y-6 animate-fade-in-up">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-violet-500/10 ring-1 ring-white/10 backdrop-blur-sm">
