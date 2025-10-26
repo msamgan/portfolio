@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import Section from './Section'
 import data from '../data.json'
 
 const stats = [
@@ -38,19 +37,51 @@ export default function About() {
   }, [])
 
   return (
-    <Section
-      id="about"
-      title={
-        <span className="inline-block">
-          About{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400">
-            Me
-          </span>
-        </span>
-      }
-      subtitle="Crafting scalable solutions and building the future, one line of code at a time."
-    >
-      <div className="space-y-12">
+    <section id="about" className="relative">
+      {/* Hero section matching Services/Projects style */}
+      <div className="relative min-h-[40vh] flex items-center justify-center pt-24 pb-16 px-6 overflow-hidden">
+        {/* Background effects */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        </div>
+
+        {/* Content */}
+        <div className="relative text-center max-w-4xl mx-auto space-y-6 animate-fade-in-up">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-sm text-cyan-300 mb-4">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            About Me
+          </div>
+
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-violet-200">
+            Crafting Scalable Solutions
+          </h1>
+
+          <p className="text-lg md:text-xl text-[var(--color-muted)] max-w-2xl mx-auto leading-relaxed">
+            Building the future, one line of code at a time. Software Engineer with 9+ years of experience.
+          </p>
+
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto pt-8">
+            {stats.map((stat, idx) => (
+              <div
+                key={idx}
+                className="space-y-2 animate-fade-in-up"
+                style={{ animationDelay: `${(idx + 2) * 0.1}s` }}
+              >
+                <div className="text-3xl md:text-4xl font-bold gradient-text">{stat.value}</div>
+                <div className="text-xs md:text-sm text-[var(--color-muted)]">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Main content section */}
+      <div className="py-16 px-6">
+        <div className="max-w-7xl mx-auto space-y-12">
         {/* Main content grid */}
         <div className="grid lg:grid-cols-3 gap-8 items-start">
           {/* Left: Profile Card */}
@@ -150,31 +181,6 @@ export default function About() {
           </div>
         </div>
 
-        {/* Stats Grid */}
-        <div className={`transition-all duration-700 delay-300 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {stats.map((stat, idx) => (
-              <div
-                key={idx}
-                style={{ animationDelay: `${(idx + 5) * 100}ms` }}
-                className="card text-center group hover:scale-105 cursor-pointer"
-              >
-                <div className="text-3xl mb-2 group-hover:scale-125 transition-transform duration-300">
-                  {stat.icon}
-                </div>
-                <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400 mb-1">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-[var(--color-muted)]">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Call to action banner */}
         <div className={`transition-all duration-700 delay-500 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
@@ -206,7 +212,8 @@ export default function About() {
             </div>
           </div>
         </div>
+        </div>
       </div>
-    </Section>
+    </section>
   )
 }
