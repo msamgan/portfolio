@@ -15,6 +15,7 @@ interface ApiPost {
   author?: string
   featured_image?: string
   tags?: string[] | { name: string }[]
+  related_posts?: ApiPost[]
 }
 
 interface PostPageProps {
@@ -288,6 +289,171 @@ function ShareSection({ post }: { post: ApiPost }) {
 }
 
 
+// Related Posts Component - matches BlogPage styling
+function RelatedPosts({ posts }: { posts: ApiPost[] }) {
+  if (!posts || posts.length === 0) return null
+
+  const formatDate = (iso?: string) => {
+    if (!iso) return ''
+    try {
+      const d = new Date(iso)
+      return d.toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      })
+    } catch {
+      return iso
+    }
+  }
+
+  return (
+    <div className="mt-16 pt-8 border-t border-white/10">
+      <div className="mb-8 flex items-center gap-3">
+        <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-500 flex items-center justify-center flex-shrink-0">
+          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          </svg>
+        </div>
+        <div>
+          <h2 className="text-2xl font-bold gradient-text">Related Articles</h2>
+          <p className="text-sm text-[var(--color-muted)] mt-1">Continue your reading journey</p>
+        </div>
+      </div>
+
+      <div className="space-y-6">
+        {posts.slice(0, 6).map((post, index) => {
+          const date = post.published_at || post.created_at || post.updated_at
+          const dateStr = formatDate(date)
+          const tags = Array.isArray(post.tags)
+            ? post.tags.map((t: unknown) => (typeof t === 'string' ? t : (t as { name?: string })?.name)).filter(Boolean)
+            : []
+          const href = post.slug ? `/${post.slug}` : undefined
+
+          return (
+            <article
+              key={(post.id ?? post.slug ?? Math.random()).toString()}
+              className="card group cursor-pointer transition-all duration-500 hover:shadow-2xl animate-fade-in-up"
+              style={{ animationDelay: `${index * 0.1}s` }}
+              onClick={(e) => {
+                if (!href) return
+                e.preventDefault()
+                window.history.pushState({}, '', href)
+                window.dispatchEvent(new PopStateEvent('popstate'))
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+            >
+              <div className="flex flex-col lg:flex-row gap-6">
+                {/* Image Section */}
+                <div className="relative lg:w-80 w-full aspect-video lg:aspect-[4/3] rounded-xl overflow-hidden bg-gradient-to-br from-cyan-500/10 via-violet-500/10 to-emerald-500/10 flex-shrink-0">
+                  {post.featured_image ? (
+                    <img
+                      src={post.featured_image}
+                      alt={post.title || 'Blog post'}
+                      className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center h-full">
+                      <svg className="w-16 h-16 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                    </div>
+                  )}
+
+                  {/* Dark gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+
+                  {/* External link icon */}
+                  <div className="absolute top-4 right-4 p-2 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-100 scale-90">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Content Section */}
+                <div className="flex-1 flex flex-col gap-4">
+                  {/* Meta information */}
+                  <div className="flex items-center gap-3 text-xs text-[var(--color-muted)]">
+                    {dateStr && (
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3M3 11h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        {dateStr}
+                      </span>
+                    )}
+                    {post.author && (
+                      <>
+                        <span>•</span>
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                          </svg>
+                          {post.author}
+                        </span>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-2xl md:text-3xl font-bold leading-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-300 group-hover:via-violet-300 group-hover:to-emerald-300 transition-all duration-300">
+                    {post.title || post.slug || 'Untitled'}
+                  </h3>
+
+                  {/* Excerpt */}
+                  {post.excerpt && (
+                    <p className="text-[var(--color-muted)] leading-relaxed line-clamp-2 md:line-clamp-3">
+                      {post.excerpt}
+                    </p>
+                  )}
+
+                  {/* Tags and CTA */}
+                  <div className="mt-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    {/* Tags */}
+                    {tags.length > 0 && (
+                      <div className="flex flex-wrap gap-2">
+                        {tags.slice(0, 3).map((tag, i) => (
+                          <span
+                            key={i}
+                            className="badge hover:bg-gradient-to-r hover:from-cyan-500/20 hover:via-violet-500/20 hover:to-emerald-500/20"
+                          >
+                            #{tag}
+                          </span>
+                        ))}
+                        {tags.length > 3 && (
+                          <span className="badge">
+                            +{tags.length - 3} more
+                          </span>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Read more link */}
+                    {href && (
+                      <div className="inline-flex items-center gap-2 text-cyan-300 group-hover:text-cyan-200 font-medium transition-colors duration-300">
+                        <span>Read article</span>
+                        <svg
+                          className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </article>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 export default function PostPage({ slug }: PostPageProps) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -558,6 +724,11 @@ export default function PostPage({ slug }: PostPageProps) {
 
                 {/* Share Section */}
                 <ShareSection post={post} />
+
+                {/* Related Posts */}
+                {post.related_posts && post.related_posts.length > 0 && (
+                  <RelatedPosts posts={post.related_posts} />
+                )}
               </article>
             )}
 
