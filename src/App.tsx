@@ -10,6 +10,7 @@ import ServicesPage from './pages/ServicesPage'
 import ProjectsPage from './pages/ProjectsPage'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
+import BlogPage from './pages/BlogPage'
 
 function App() {
     const [scrollProgress, setScrollProgress] = useState(0)
@@ -46,6 +47,10 @@ function App() {
 
     if (path === '/contact') {
         return <ContactPage/>
+    }
+
+    if (path === '/blog') {
+        return <BlogPage/>
     }
 
     return (
