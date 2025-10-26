@@ -69,7 +69,7 @@ export default function Navbar() {
 
       <Container className="flex h-20 items-center justify-between">
         <a href="/" className="font-bold tracking-tight text-xl group relative z-10">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-violet-400 to-cyan-300 group-hover:from-violet-400 group-hover:via-cyan-300 group-hover:to-violet-400 transition-all duration-500 drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-300 group-hover:from-violet-400 group-hover:via-cyan-300 group-hover:to-violet-400 transition-all duration-500 drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]">
             {data.username}
           </span>
           {/* Animated underline */}

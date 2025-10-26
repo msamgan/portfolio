@@ -51,7 +51,7 @@ export default function Footer() {
                     <div className="lg:col-span-2 space-y-6">
                         <a href="/" className="inline-block group">
               <span
-                  className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-violet-400 to-cyan-300 group-hover:from-violet-400 group-hover:via-cyan-300 group-hover:to-violet-400 transition-all duration-500">
+                  className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-300 group-hover:from-violet-400 group-hover:via-cyan-300 group-hover:to-violet-400 transition-all duration-500">
                 {data.username}
               </span>
                         </a>
@@ -67,11 +67,9 @@ export default function Footer() {
                         <nav className="flex flex-col gap-3">
                             {[
                                 {href: '/#about', label: 'About'},
-                                {href: '/#skills', label: 'Skills'},
                                 {href: '/services', label: 'Services'},
-                                {href: '/#experience', label: 'Experience'},
                                 {href: '/projects', label: 'Projects'},
-                                {href: '/#contact', label: 'Contact'},
+                                {href: '/contact', label: 'Contact'},
                             ].map((link) => (
                                 <a
                                     key={link.href}
