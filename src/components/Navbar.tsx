@@ -3,14 +3,14 @@ import Container from './Container'
 import data from '../data.json'
 
 const links = [
-  { href: '#home', label: 'Home' },
-  { href: '#about', label: 'About' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#services', label: 'Services' },
-  { href: '#experience', label: 'Experience' },
-  { href: '#oss', label: 'Open Source' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/', label: 'Home' },
+  { href: '/#about', label: 'About' },
+  { href: '/#skills', label: 'Skills' },
+  { href: '/services', label: 'Services' },
+  { href: '/#experience', label: 'Experience' },
+  { href: '/#oss', label: 'Open Source' },
+  { href: '/#projects', label: 'Projects' },
+  { href: '/#contact', label: 'Contact' },
 ]
 
 export default function Navbar() {
@@ -32,7 +32,7 @@ export default function Navbar() {
         : 'backdrop-blur-sm bg-[var(--color-bg)]/40 border-b border-white/5'
     }`}>
       <Container className="flex h-16 items-center justify-between">
-        <a href="#home" className="font-bold tracking-tight text-lg group">
+        <a href="/" className="font-bold tracking-tight text-lg group">
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-300 group-hover:from-cyan-300 group-hover:to-violet-400 transition-all">
             {data.username}
           </span>

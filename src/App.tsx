@@ -4,15 +4,16 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
 import Skills from './components/Skills'
-import Services from './components/Services'
 import Experience from './components/Experience'
 import OpenSource from './components/OpenSource'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import ServicesPage from './pages/ServicesPage'
 
 function App() {
   const [scrollProgress, setScrollProgress] = useState(0)
+  const [path, setPath] = useState<string>(window.location.pathname)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,9 +22,19 @@ function App() {
       setScrollProgress(progress)
     }
 
+    const handlePopState = () => setPath(window.location.pathname)
+
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('popstate', handlePopState)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('popstate', handlePopState)
+    }
   }, [])
+
+  if (path === '/services') {
+    return <ServicesPage />
+  }
 
   return (
     <>
@@ -36,7 +47,6 @@ function App() {
         <Hero />
         <About />
         <Skills />
-        <Services />
         <Experience />
         <OpenSource />
         <Projects />
