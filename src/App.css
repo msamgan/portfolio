@@ -1,1 +1,47 @@
 @import "tailwindcss";
+
+:root {
+  /* Brand inspired by deep indigo + emerald accent */
+  --color-bg: #0b1020;
+  --color-surface: #0f172a;
+  --color-text: #e6edf3;
+  --color-muted: #94a3b8;
+  --color-primary: #22d3ee; /* cyan-400 */
+  --color-secondary: #a78bfa; /* violet-400 */
+  --color-accent: #34d399; /* emerald-400 */
+  --color-ring: color-mix(in oklab, var(--color-primary), white 20%);
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background: radial-gradient(1200px 600px at 20% -10%, rgba(34,211,238,0.10), transparent 55%),
+              radial-gradient(1200px 600px at 120% 20%, rgba(167,139,250,0.10), transparent 55%),
+              linear-gradient(180deg, var(--color-bg), #050814 70%);
+  color: var(--color-text);
+}
+
+/* Smooth scroll for in-page nav */
+html { scroll-behavior: smooth; }
+
+/* Tailwind layers for component polish */
+@layer base {
+  h1, h2, h3 { @apply tracking-tight; }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-medium transition;
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.35);
+  }
+  .btn-primary { @apply bg-cyan-400/90 text-black hover:bg-cyan-300 focus:outline-none; }
+  .btn-secondary { @apply bg-violet-500/20 text-violet-200 hover:bg-violet-500/30; }
+  .card {
+    @apply rounded-xl bg-[var(--color-surface)]/60 ring-1 ring-white/5 backdrop-blur p-6;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full bg-white/5 px-3 py-1 text-xs text-[var(--color-muted)] ring-1 ring-white/10;
+  }
+}

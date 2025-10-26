@@ -1,0 +1,189 @@
+{
+    "name": "Mohammed Samgan Khan",
+    "username": "msamgan",
+    "title": "Software Engineer | Laravel Artisan | Open Source Enthusiast",
+    "intro": {
+        "img": "/msamgan.jpeg",
+        "text": [
+            "I’m a seasoned Software Engineer with over 9 years of experience delivering scalable, high-performance software across logistics, e-commerce, and cloud infrastructure. I specialize in full-stack development with deep expertise in PHP (Laravel), JavaScript, and modern frameworks like Node.js and React, and have led the design, development, and deployment of complex applications from scratch.",
+            " Throughout my career, I’ve optimized systems for major logistics providers, reduced operational costs, and improved performance through API integrations and ERP implementations. My work has saved companies hundreds of thousands in maintenance and helped streamline warehouse and delivery operations. I also have hands-on experience with cloud platforms (AWS, Azure, GCP), CI/CD pipelines, and both SQL and NoSQL databases.",
+            "Beyond the workplace, I’m an active open-source contributor with over 21,000 combined downloads across Laravel packages and VS Code extensions. My contributions include tools like Laravel Env Keys Checker and Laravel Pint VS Code Extension, and I’ve collaborated on projects by industry leaders like Nuno Maduro and Tighten. Learn more about my work and projects at msamgan.com."
+        ]
+    },
+    "contact": {
+        "email": "mail@msamgan.com",
+        "phone": "--",
+        "address": "Philadelphia (PA), USA"
+    },
+    "navigation": {
+        "pages": [
+            {
+                "name": "Home",
+                "link": "/",
+                "external": false
+            },
+            {
+                "name": "Posts",
+                "link": "posts",
+                "external": false
+            },
+            {
+                "name": "Services",
+                "link": "services",
+                "external": false
+            },
+            {
+                "name": "Projects",
+                "link": "projects",
+                "external": false
+            },
+            {
+                "name": "Contact",
+                "link": "contact",
+                "external": false
+            },
+            {
+                "name": "Tools",
+                "link": "tools",
+                "external": false
+            },
+            {
+                "name": "Tags",
+                "link": "tags",
+                "external": false
+            },
+            {
+                "name": "Resume",
+                "link": "https://msamgan.s3.us-east-2.amazonaws.com/mohammed+samgan+khan.pdf",
+                "external": true
+            }
+        ],
+        "social": [
+            {
+                "name": "YouTube",
+                "link": "https://www.youtube.com/@FellowDeveloper"
+            },
+            {
+                "name": "GitHub",
+                "link": "https://github.com/msamgan"
+            },
+            {
+                "name": "Twitter",
+                "link": "https://twitter.com/msamgank"
+            },
+            {
+                "name": "LinkedIn",
+                "link": "https://www.linkedin.com/in/mohd-samgan-khan/"
+            }
+        ],
+        "tags": [
+            {
+                "name": "Laravel",
+                "link": "/tag/laravel"
+            },
+            {
+                "name": "PHP",
+                "link": "/tag/php"
+            },
+            {
+                "name": "How to",
+                "link": "/tag/how-to"
+            },
+            {
+                "name": "CLI",
+                "link": "/tag/cli"
+            },
+            {
+                "name": "MySQL",
+                "link": "/tag/mysql"
+            }
+        ]
+    },
+    "services": [
+        {
+            "name": "Web Development",
+            "description": "I build responsive, user-friendly web applications with expertise in front-end and back-end development for seamless integration.",
+            "img": "/services/WebDevelopment.png"
+        },
+        {
+            "name": "Mobile Development",
+            "description": "I develop robust mobile apps across platforms, delivering exceptional user experiences and aligning with business goals.",
+            "img": "/services/MobileDevelopment.png"
+        },
+        {
+            "name": "API Development",
+            "description": "I design secure, scalable APIs for seamless communication, optimizing performance and functionality with expert precision.",
+            "img": "/services/APIDevelopment.png"
+        },
+        {
+            "name": "Database Design",
+            "description": "I design scalable, efficient databases with expertise in modeling, normalization, and optimization for robustness and reliability.",
+            "img": "/services/DatabaseDesign.png"
+        },
+        {
+            "name": "Code Review",
+            "description": "I conduct thorough code reviews, ensuring clean, efficient, maintainable code, enhancing overall software quality.",
+            "img": "/services/CodeReview.png"
+        },
+        {
+            "name": "Technical Consulting",
+            "description": "I offer technical consulting, advising on strategy, architecture, and planning to help businesses overcome software challenges.",
+            "img": "/services/TechnicalConsulting.png"
+        },
+        {
+            "name": "Project Management",
+            "description": "I manage software projects, ensuring timely, on-budget delivery with expertise in planning, resource allocation, risk, and quality.",
+            "img": "/services/ProjectManagement.png"
+        },
+        {
+            "name": "Software Architecture",
+            "description": "I design scalable, maintainable software architectures, ensuring robust and flexible systems for long-term application success.",
+            "img": "/services/SoftwareArchitecture.png"
+        }
+    ],
+    "projects": [
+        {
+            "name": "laravel Actions aka Lact",
+            "description": "connecting Js based fronted with laravel backend",
+            "img": "/lact-logo.png",
+            "link": "https://getlact.com/",
+            "repo": "https://github.com/msamgan/lact"
+        },
+        {
+            "name": "laravel environment keys checker",
+            "description": "Check if all the keys are available across all the .env files.",
+            "img": "/laravel.png",
+            "link": "/docs/env-checker",
+            "repo": "https://github.com/msamgan/laravel-env-keys-checker"
+        },
+        {
+            "name": "lara Pint",
+            "description": "vscode laravel pint formatter extension. A terrific Pint extension for Laravel which does everything you want.",
+            "img": "https://msamgan.gallerycdn.vsassets.io/extensions/msamgan/laravel-pint-vscode/0.1.3/1667797465197/Microsoft.VisualStudio.Services.Icons.Default",
+            "link": "https://marketplace.visualstudio.com/items?itemName=msamgan.laravel-pint-vscode#review-details",
+            "repo": "https://github.com/3rd-planet/vscode-larapint"
+        },
+        {
+            "name": "ms0 Url Shortener",
+            "description": "ms0 is a free URL shortening service that allows you to shorten a long URL into a short one.",
+            "img": "https://ms0.org/ms0_logo.png",
+            "link": "https://ms0.org",
+            "repo": "https://github.com/msamgan/ms0"
+        },
+        {
+            "name": "Framework X",
+            "description": "Framework X emerges as a beacon for developers seeking to streamline their API creation journey. Crafted for speed",
+            "img": "https://frameworkx.info/img/frameworkx.png",
+            "link": "https://frameworkx.info",
+            "repo": "https://github.com/3rd-planet/framework-x"
+        }
+    ],
+    "tools": [
+        {
+            "name": "Url Shortener",
+            "description": "Url Shortener is a free online tool that lets you shorten a long URL into a short one.",
+            "img": "https://ms0.org/ms0_logo.png",
+            "link": "https://ms0.org"
+        }
+    ]
+}
