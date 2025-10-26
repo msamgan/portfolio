@@ -317,14 +317,20 @@ export default function BlogPage() {
                                         name?: string
                                     })?.name)).filter(Boolean)
                                     : []
-                                const href = post.slug ? `https://msamgan.dev/blog/${post.slug}` : undefined
+                                const href = post.slug ? `/${post.slug}` : undefined
 
                                 return (
                                     <article
                                         key={(post.id ?? post.slug ?? Math.random()).toString()}
                                         className="card group cursor-pointer transition-all duration-500 hover:shadow-2xl animate-fade-in-up"
                                         style={{animationDelay: `${index * 0.1}s`}}
-                                        onClick={() => href && window.open(href, '_blank')}
+                                        onClick={(e) => {
+                                            if (!href) return
+                                            e.preventDefault()
+                                            window.history.pushState({}, '', href)
+                                            // trigger App to re-render for new path
+                                            window.dispatchEvent(new PopStateEvent('popstate'))
+                                        }}
                                     >
                                         <div className="flex flex-col lg:flex-row gap-6">
                                             {/* Image Section */}

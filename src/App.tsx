@@ -11,6 +11,7 @@ import ProjectsPage from './pages/ProjectsPage'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 import BlogPage from './pages/BlogPage'
+import PostPage from './pages/PostPage'
 
 function App() {
     const [scrollProgress, setScrollProgress] = useState(0)
@@ -51,6 +52,12 @@ function App() {
 
     if (path === '/posts') {
         return <BlogPage/>
+    }
+
+    // Dynamic post route: any other non-root path treated as slug
+    if (path !== '/' && !['/services','/projects','/about','/contact','/posts'].includes(path)) {
+        const slug = path.replace(/^\//, '')
+        return <PostPage slug={slug} />
     }
 
     return (
