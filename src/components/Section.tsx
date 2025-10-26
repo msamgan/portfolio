@@ -12,9 +12,17 @@ export default function Section({ id, title, subtitle, children, className = '' 
     <section id={id} className={`py-16 sm:py-24 ${className}`}>
       <Container>
         {(title || subtitle) && (
-          <header className="mb-10">
-            {title && <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--color-text)]">{title}</h2>}
-            {subtitle && <p className="mt-2 text-[var(--color-muted)] max-w-3xl">{subtitle}</p>}
+          <header className="mb-12 text-center">
+            {title && (
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
+                {title}
+              </h2>
+            )}
+            {subtitle && (
+              <p className="mt-4 text-lg text-[var(--color-muted)] max-w-3xl mx-auto">
+                {subtitle}
+              </p>
+            )}
           </header>
         )}
         {children}
