@@ -15,7 +15,6 @@ export default function Footer() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-300">
                 {data.username}
               </span>
-              <span className="text-white/50">.dev</span>
             </a>
             <p className="text-white/60 text-sm">
               Building scalable, high-performance software solutions.

@@ -35,7 +35,6 @@ export default function Navbar() {
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-300 group-hover:from-cyan-300 group-hover:to-violet-400 transition-all">
             {data.username}
           </span>
-          <span className="text-white/50 group-hover:text-white/70 transition-colors">.dev</span>
         </a>
 
         {/* Desktop navigation */}

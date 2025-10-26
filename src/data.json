@@ -3,7 +3,7 @@
     "username": "msamgan",
     "title": "Software Engineer | Laravel Artisan | Open Source Enthusiast",
     "intro": {
-        "img": "/msamgan.jpeg",
+        "img": "src/assets/msamgan.jpeg",
         "text": [
             "I’m a seasoned Software Engineer with over 9 years of experience delivering scalable, high-performance software across logistics, e-commerce, and cloud infrastructure. I specialize in full-stack development with deep expertise in PHP (Laravel), JavaScript, and modern frameworks like Node.js and React, and have led the design, development, and deployment of complex applications from scratch.",
             " Throughout my career, I’ve optimized systems for major logistics providers, reduced operational costs, and improved performance through API integrations and ERP implementations. My work has saved companies hundreds of thousands in maintenance and helped streamline warehouse and delivery operations. I also have hands-on experience with cloud platforms (AWS, Azure, GCP), CI/CD pipelines, and both SQL and NoSQL databases.",
@@ -103,56 +103,56 @@
         {
             "name": "Web Development",
             "description": "I build responsive, user-friendly web applications with expertise in front-end and back-end development for seamless integration.",
-            "img": "/services/WebDevelopment.png"
+            "img": "src/assets/services/WebDevelopment.png"
         },
         {
             "name": "Mobile Development",
             "description": "I develop robust mobile apps across platforms, delivering exceptional user experiences and aligning with business goals.",
-            "img": "/services/MobileDevelopment.png"
+            "img": "src/assets/services/MobileDevelopment.png"
         },
         {
             "name": "API Development",
             "description": "I design secure, scalable APIs for seamless communication, optimizing performance and functionality with expert precision.",
-            "img": "/services/APIDevelopment.png"
+            "img": "src/assets/services/APIDevelopment.png"
         },
         {
             "name": "Database Design",
             "description": "I design scalable, efficient databases with expertise in modeling, normalization, and optimization for robustness and reliability.",
-            "img": "/services/DatabaseDesign.png"
+            "img": "src/assets/services/DatabaseDesign.png"
         },
         {
             "name": "Code Review",
             "description": "I conduct thorough code reviews, ensuring clean, efficient, maintainable code, enhancing overall software quality.",
-            "img": "/services/CodeReview.png"
+            "img": "src/assets/services/CodeReview.png"
         },
         {
             "name": "Technical Consulting",
             "description": "I offer technical consulting, advising on strategy, architecture, and planning to help businesses overcome software challenges.",
-            "img": "/services/TechnicalConsulting.png"
+            "img": "src/assets/services/TechnicalConsulting.png"
         },
         {
             "name": "Project Management",
             "description": "I manage software projects, ensuring timely, on-budget delivery with expertise in planning, resource allocation, risk, and quality.",
-            "img": "/services/ProjectManagement.png"
+            "img": "src/assets/services/ProjectManagement.png"
         },
         {
             "name": "Software Architecture",
             "description": "I design scalable, maintainable software architectures, ensuring robust and flexible systems for long-term application success.",
-            "img": "/services/SoftwareArchitecture.png"
+            "img": "src/assets/services/SoftwareArchitecture.png"
         }
     ],
     "projects": [
         {
             "name": "laravel Actions aka Lact",
             "description": "connecting Js based fronted with laravel backend",
-            "img": "/lact-logo.png",
+            "img": "src/assets/lact-logo.png",
             "link": "https://getlact.com/",
             "repo": "https://github.com/msamgan/lact"
         },
         {
             "name": "laravel environment keys checker",
             "description": "Check if all the keys are available across all the .env files.",
-            "img": "/laravel.png",
+            "img": "src/assets/laravel.png",
             "link": "/docs/env-checker",
             "repo": "https://github.com/msamgan/laravel-env-keys-checker"
         },

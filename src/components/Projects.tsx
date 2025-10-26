@@ -1,5 +1,13 @@
 import Section from './Section'
 import data from '../data.json'
+import lactLogo from '../assets/lact-logo.png'
+import laravelLogo from '../assets/laravel.png'
+
+// Map of local images
+const localImages: Record<string, string> = {
+  'src/assets/lact-logo.png': lactLogo,
+  'src/assets/laravel.png': laravelLogo,
+}
 
 export default function Projects() {
   return (
@@ -18,7 +26,7 @@ export default function Projects() {
             <div className="relative aspect-video w-full rounded-xl overflow-hidden mb-4 bg-gradient-to-tr from-cyan-400/10 via-violet-500/10 to-emerald-400/10">
               {p.img ? (
                 <img
-                  src={p.img}
+                  src={localImages[p.img] || p.img}
                   alt={p.name}
                   className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />

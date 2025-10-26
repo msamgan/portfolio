@@ -2,6 +2,7 @@ import Section from './Section'
 import { LinkButton } from './Button'
 import IconLink from './IconLink'
 import data from '../data.json'
+import profileImage from '../assets/msamgan.jpeg'
 
 export default function Hero() {
   const socials = Object.fromEntries(
@@ -70,24 +71,11 @@ export default function Hero() {
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-cyan-500 via-violet-500 to-emerald-500 opacity-75 blur-xl" />
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-cyan-500 via-violet-500 to-emerald-500 p-[2px]">
               <div className="relative h-full w-full rounded-3xl bg-[var(--color-surface)] overflow-hidden">
-                {data.intro.img ? (
-                  <img
-                    src={data.intro.img}
-                    alt={data.name}
-                    className="h-full w-full object-cover"
-                  />
-                ) : (
-                  <div className="flex h-full items-center justify-center">
-                    <div className="text-center space-y-4 p-8">
-                      <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-tr from-cyan-400/30 via-violet-500/30 to-emerald-400/30 flex items-center justify-center">
-                        <svg className="w-12 h-12 text-cyan-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                      </div>
-                      <p className="text-sm text-white/70">Professional Photo</p>
-                    </div>
-                  </div>
-                )}
+                <img
+                  src={profileImage}
+                  alt={data.name}
+                  className="h-full w-full object-cover"
+                />
               </div>
             </div>
 
