@@ -3,7 +3,7 @@ import data from '../data.json'
 
 const stats = [
   { label: 'Years Experience', value: '9+', icon: '💼' },
-  { label: 'Open Source Downloads', value: '21K+', icon: '📦' },
+  { label: 'Open Source Downloads', value: '31K+', icon: '📦' },
   { label: 'Projects Delivered', value: '50+', icon: '🚀' },
   { label: 'Technologies Mastered', value: '15+', icon: '⚡' },
 ]
