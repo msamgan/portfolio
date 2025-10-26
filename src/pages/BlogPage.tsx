@@ -93,7 +93,7 @@ export default function BlogPage() {
             }
         }
 
-        load()
+        load().then()
         return () => controller.abort()
     }, [page])
 
