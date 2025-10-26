@@ -1,258 +1,443 @@
-import { useEffect, useMemo, useState } from 'react'
+import {useEffect, useMemo, useState} from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
 interface ApiPost {
-  id?: number | string
-  title?: string
-  slug?: string
-  excerpt?: string
-  content?: string
-  created_at?: string
-  published_at?: string
-  updated_at?: string
-  author?: string
-  cover_image?: string
-  tags?: string[] | { name: string }[]
+    id?: number | string
+    title?: string
+    slug?: string
+    excerpt?: string
+    content?: string
+    created_at?: string
+    published_at?: string
+    updated_at?: string
+    author?: string
+    featured_image?: string
+    tags?: string[] | { name: string }[]
 }
 
 interface ApiResponse {
-  data?: ApiPost[]
-  items?: ApiPost[]
-  posts?: ApiPost[]
-  page?: number
-  current_page?: number
-  pageSize?: number
-  per_page?: number
-  total?: number
-  total_pages?: number
-  last_page?: number
-  meta?: {
+    data?: ApiPost[]
+    items?: ApiPost[]
+    posts?: ApiPost[]
+    page?: number
     current_page?: number
+    pageSize?: number
     per_page?: number
     total?: number
-    last_page?: number
     total_pages?: number
-  }
+    last_page?: number
+    meta?: {
+        current_page?: number
+        per_page?: number
+        total?: number
+        last_page?: number
+        total_pages?: number
+    }
 }
 
 export default function BlogPage() {
-  const [scrollProgress, setScrollProgress] = useState(0)
-  const [page, setPage] = useState(1)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [posts, setPosts] = useState<ApiPost[]>([])
-  const [pagination, setPagination] = useState({
-    current: 1,
-    perPage: 10,
-    total: 0,
-    totalPages: 1,
-  })
+    const [scrollProgress, setScrollProgress] = useState(0)
+    const [page, setPage] = useState(1)
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState<string | null>(null)
+    const [posts, setPosts] = useState<ApiPost[]>([])
+    const [pagination, setPagination] = useState({
+        current: 1,
+        perPage: 10,
+        total: 0,
+        totalPages: 1,
+    })
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
-      const progress = (window.scrollY / totalHeight) * 100
-      setScrollProgress(progress)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  useEffect(() => {
-    const controller = new AbortController()
-
-    async function load() {
-      setLoading(true)
-      setError(null)
-      try {
-        const url = new URL('https://msamgan.dev/api/post/list/paginated')
-        url.searchParams.set('page', String(page))
-        const res = await fetch(url.toString(), { signal: controller.signal })
-        if (!res.ok) throw new Error(`Failed to load posts: ${res.status}`)
-        const json: ApiResponse = await res.json()
-
-        const list = json.data ?? json.items ?? json.posts ?? []
-        setPosts(Array.isArray(list) ? list : [])
-
-        // derive pagination
-        const meta = json.meta ?? {}
-        const current = meta.current_page ?? json.current_page ?? json.page ?? page
-        const perPage = meta.per_page ?? json.per_page ?? json.pageSize ?? (Array.isArray(list) ? list.length : 10)
-        const total = meta.total ?? json.total ?? 0
-        const totalPages = meta.last_page ?? meta.total_pages ?? json.last_page ?? json.total_pages ?? (perPage ? Math.max(1, Math.ceil(total / perPage)) : 1)
-
-        setPagination({ current, perPage, total, totalPages })
-      } catch (e: any) {
-        if (e?.name !== 'AbortError') {
-          setError(e?.message || 'Something went wrong while loading posts.')
+    useEffect(() => {
+        const handleScroll = () => {
+            const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
+            const progress = (window.scrollY / totalHeight) * 100
+            setScrollProgress(progress)
         }
-      } finally {
-        setLoading(false)
-      }
-    }
 
-    load()
-    return () => controller.abort()
-  }, [page])
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
 
-  const hasPrev = useMemo(() => pagination.current > 1, [pagination.current])
-  const hasNext = useMemo(() => pagination.current < pagination.totalPages, [pagination.current, pagination.totalPages])
+    useEffect(() => {
+        const controller = new AbortController()
 
-  return (
-    <>
-      {/* Scroll progress indicator */}
-      <div
-        className="fixed top-0 left-0 right-0 z-50 h-1 bg-gradient-to-r from-cyan-500 via-violet-500 to-emerald-500"
-        style={{ width: `${scrollProgress}%`, transition: 'width 0.1s ease' }}
-      />
+        async function load() {
+            setLoading(true)
+            setError(null)
+            try {
+                const url = new URL('https://msamgan.dev/api/post/list/paginated')
+                url.searchParams.set('page', String(page))
+                const res = await fetch(url.toString(), {signal: controller.signal})
+                if (!res.ok) throw new Error(`Failed to load posts: ${res.status}`)
+                const json: ApiResponse = await res.json()
 
-      <Navbar />
+                const list = json.data ?? json.items ?? json.posts ?? []
+                setPosts(Array.isArray(list) ? list : [])
 
-      {/* Hero section for blog page */}
-      <section className="relative min-h-[40vh] flex items-center justify-center pt-24 pb-16 px-6 overflow-hidden">
-        {/* Background effects */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        </div>
+                // derive pagination
+                const meta = json.meta ?? {}
+                const current = meta.current_page ?? json.current_page ?? json.page ?? page
+                const perPage = meta.per_page ?? json.per_page ?? json.pageSize ?? (Array.isArray(list) ? list.length : 10)
+                const total = meta.total ?? json.total ?? 0
+                const totalPages = meta.last_page ?? meta.total_pages ?? json.last_page ?? json.total_pages ?? (perPage ? Math.max(1, Math.ceil(total / perPage)) : 1)
 
-        {/* Content */}
-        <div className="relative text-center max-w-4xl mx-auto space-y-6 animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-sm text-cyan-300 mb-4">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6l4 2" />
-            </svg>
-            Latest Articles
-          </div>
+                setPagination({current, perPage, total, totalPages})
+            } catch (e: unknown) {
+                if (e && typeof e === 'object' && 'name' in e && e.name !== 'AbortError') {
+                    setError((e as Error)?.message || 'Something went wrong while loading posts.')
+                }
+            } finally {
+                setLoading(false)
+            }
+        }
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-violet-200">
-            Blog
-          </h1>
+        load()
+        return () => controller.abort()
+    }, [page])
 
-          <p className="text-lg md:text-xl text-[var(--color-muted)] max-w-2xl mx-auto leading-relaxed">
-            Insights, tutorials, and updates from my work and open-source journey.
-          </p>
-        </div>
-      </section>
+    const hasPrev = useMemo(() => pagination.current > 1, [pagination])
+    const hasNext = useMemo(() => pagination.current < pagination.totalPages, [pagination])
 
-      <main className="relative px-6 py-6">
-        <div className="max-w-5xl mx-auto">
-          {error && (
-            <div className="mb-6 p-4 border border-red-500/30 bg-red-500/10 text-red-200 rounded-lg">
-              {error}
-            </div>
-          )}
+    return (
+        <>
+            {/* Scroll progress indicator */}
+            <div
+                className="fixed top-0 left-0 right-0 z-50 h-1 bg-gradient-to-r from-cyan-500 via-violet-500 to-emerald-500"
+                style={{width: `${scrollProgress}%`, transition: 'width 0.1s ease'}}
+            />
 
-          {loading && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {Array.from({ length: 6 }).map((_, idx) => (
-                <div key={idx} className="p-6 rounded-2xl bg-white/5 border border-white/10 animate-pulse h-40" />
-              ))}
-            </div>
-          )}
+            <Navbar/>
 
-          {!loading && posts.length === 0 && !error && (
-            <div className="p-6 border border-white/10 bg-white/5 rounded-xl text-center text-[var(--color-muted)]">
-              No posts found.
-            </div>
-          )}
+            {/* Hero section for blog page */}
+            <section
+                className="relative min-h-[40vh] flex items-center justify-center pt-24 pb-16 px-6 overflow-hidden">
+                {/* Background effects */}
+                <div className="absolute inset-0 pointer-events-none">
+                    <div
+                        className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"/>
+                    <div
+                        className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl animate-pulse"
+                        style={{animationDelay: '1s'}}/>
+                </div>
 
-          {!loading && posts.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {posts.map((post) => {
-                const date = post.published_at || post.created_at || post.updated_at
-                const dateStr = date ? new Date(date).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) : ''
-                const tags = Array.isArray(post.tags)
-                  ? post.tags.map((t: any) => (typeof t === 'string' ? t : t?.name)).filter(Boolean)
-                  : []
-                const href = post.slug ? `https://msamgan.dev/blog/${post.slug}` : undefined
-
-                return (
-                  <article key={(post.id ?? post.slug ?? Math.random()).toString()} className="group relative p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors duration-300">
-                    <div className="flex flex-col h-full gap-4">
-                      <div className="flex items-center gap-3 text-xs text-[var(--color-muted)]">
-                        {dateStr && <span className="inline-flex items-center gap-1">
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3M3 11h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                          {dateStr}
-                        </span>}
-                        {tags.length > 0 && <span>•</span>}
-                        <div className="flex flex-wrap gap-2">
-                          {tags.slice(0, 4).map((tag, i) => (
-                            <span key={i} className="px-2 py-0.5 rounded-full bg-white/10 text-xs text-cyan-200 border border-white/10">{tag}</span>
-                          ))}
-                        </div>
-                      </div>
-
-                      <h3 className="text-xl font-semibold leading-tight">
-                        {href ? (
-                          <a href={href} target="_blank" rel="noreferrer" className="hover:underline">
-                            {post.title || post.slug || 'Untitled'}
-                          </a>
-                        ) : (
-                          post.title || post.slug || 'Untitled'
-                        )}
-                      </h3>
-
-                      {post.excerpt && (
-                        <p className="text-sm text-[var(--color-muted)] line-clamp-3">{post.excerpt}</p>
-                      )}
-
-                      <div className="mt-auto pt-2">
-                        {href && (
-                          <a href={href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-cyan-300 hover:text-cyan-200">
-                            Read more
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                            </svg>
-                          </a>
-                        )}
-                      </div>
+                {/* Content */}
+                <div className="relative text-center max-w-4xl mx-auto space-y-6 animate-fade-in-up">
+                    <div
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-sm text-cyan-300 mb-4">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6l4 2"/>
+                        </svg>
+                        Latest Articles
                     </div>
-                  </article>
-                )
-              })}
-            </div>
-          )}
 
-          {/* Pagination */}
-          <div className="flex items-center justify-center gap-4 mt-10">
-            <button
-              disabled={!hasPrev || loading}
-              onClick={() => setPage((p) => Math.max(1, p - 1))}
-              className={`px-4 py-2 rounded-full border text-sm transition-all ${hasPrev && !loading ? 'border-white/20 text-white hover:bg-white/10' : 'border-white/10 text-white/40 cursor-not-allowed'}`}
-            >
-              Previous
-            </button>
-            <div className="text-sm text-[var(--color-muted)]">
-              Page {pagination.current} {pagination.totalPages ? `of ${pagination.totalPages}` : ''}
-            </div>
-            <button
-              disabled={!hasNext || loading}
-              onClick={() => setPage((p) => p + 1)}
-              className={`px-4 py-2 rounded-full border text-sm transition-all ${hasNext && !loading ? 'border-white/20 text-white hover:bg-white/10' : 'border-white/10 text-white/40 cursor-not-allowed'}`}
-            >
-              Next
-            </button>
-          </div>
-        </div>
-      </main>
+                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-violet-200">
+                        Blog
+                    </h1>
 
-      <Footer />
+                    <p className="text-lg md:text-xl text-[var(--color-muted)] max-w-2xl mx-auto leading-relaxed">
+                        Insights, tutorials, and updates from my work and open-source journey.
+                    </p>
+                </div>
+            </section>
 
-      {/* Scroll to top button */}
-      {scrollProgress > 20 && (
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-8 right-8 z-40 p-3 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 glow"
-          aria-label="Scroll to top"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-          </svg>
-        </button>
-      )}
-    </>
-  )
+            <main className="relative px-6 py-6">
+                <div className="max-w-5xl mx-auto">
+                    {error && (
+                        <div className="mb-6 p-6 border border-red-500/30 bg-red-500/10 rounded-xl backdrop-blur-sm">
+                            <div className="flex items-start gap-3">
+                                <svg className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" fill="none"
+                                     stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <div>
+                                    <h3 className="text-red-200 font-semibold mb-1">Error Loading Posts</h3>
+                                    <p className="text-red-300/80 text-sm">{error}</p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {loading && (
+                        <div className="space-y-6">
+                            {Array.from({length: 4}).map((_, idx) => (
+                                <div key={idx} className="card animate-pulse">
+                                    <div className="flex flex-col lg:flex-row gap-6">
+                                        <div
+                                            className="lg:w-80 w-full aspect-video lg:aspect-[4/3] rounded-xl bg-white/10"/>
+                                        <div className="flex-1 flex flex-col gap-4">
+                                            <div className="flex gap-3">
+                                                <div className="h-8 w-32 bg-white/10 rounded-lg"/>
+                                                <div className="h-8 w-32 bg-white/10 rounded-lg"/>
+                                            </div>
+                                            <div className="h-8 w-3/4 bg-white/10 rounded"/>
+                                            <div className="h-4 w-full bg-white/10 rounded"/>
+                                            <div className="h-4 w-5/6 bg-white/10 rounded"/>
+                                            <div className="mt-auto flex gap-2">
+                                                <div className="h-6 w-20 bg-white/10 rounded-full"/>
+                                                <div className="h-6 w-20 bg-white/10 rounded-full"/>
+                                                <div className="h-6 w-20 bg-white/10 rounded-full"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    {!loading && posts.length === 0 && !error && (
+                        <div className="card text-center py-16">
+                            <div className="flex flex-col items-center gap-4">
+                                <div className="p-6 rounded-full bg-white/5 border border-white/10">
+                                    <svg className="w-16 h-16 text-white/20" fill="none" stroke="currentColor"
+                                         viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
+                                              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                    </svg>
+                                </div>
+                                <h3 className="text-xl font-semibold text-white/80">No Posts Found</h3>
+                                <p className="text-[var(--color-muted)] max-w-md">
+                                    There are currently no blog posts available. Check back soon for new content!
+                                </p>
+                            </div>
+                        </div>
+                    )}
+
+                    {!loading && posts.length > 0 && (
+                        <div className="space-y-6">
+                            {posts.map((post, index) => {
+                                const date = post.published_at || post.created_at || post.updated_at
+                                const dateStr = date ? new Date(date).toLocaleDateString(undefined, {
+                                    year: 'numeric',
+                                    month: 'short',
+                                    day: 'numeric'
+                                }) : ''
+                                const tags = Array.isArray(post.tags)
+                                    ? post.tags.map((t: unknown) => (typeof t === 'string' ? t : (t as {
+                                        name?: string
+                                    })?.name)).filter(Boolean)
+                                    : []
+                                const href = post.slug ? `https://msamgan.dev/blog/${post.slug}` : undefined
+
+                                return (
+                                    <article
+                                        key={(post.id ?? post.slug ?? Math.random()).toString()}
+                                        className="card group cursor-pointer transition-all duration-500 hover:shadow-2xl animate-fade-in-up"
+                                        style={{animationDelay: `${index * 0.1}s`}}
+                                        onClick={() => href && window.open(href, '_blank')}
+                                    >
+                                        <div className="flex flex-col lg:flex-row gap-6">
+                                            {/* Image Section */}
+                                            <div
+                                                className="relative lg:w-80 w-full aspect-video lg:aspect-[4/3] rounded-xl overflow-hidden bg-gradient-to-br from-cyan-500/10 via-violet-500/10 to-emerald-500/10 flex-shrink-0">
+                                                {post.featured_image ? (
+                                                    <img
+                                                        src={post.featured_image}
+                                                        alt={post.title || 'Blog post'}
+                                                        className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                                    />
+                                                ) : (
+                                                    <div className="flex items-center justify-center h-full">
+                                                        <svg className="w-16 h-16 text-white/20" fill="none"
+                                                             stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round"
+                                                                  strokeWidth={1.5}
+                                                                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                                        </svg>
+                                                    </div>
+                                                )}
+
+                                                {/* Dark gradient overlay */}
+                                                <div
+                                                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500"/>
+
+                                                {/* External link icon */}
+                                                <div
+                                                    className="absolute top-4 right-4 p-2 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-100 scale-90">
+                                                    <svg className="w-4 h-4" fill="none" stroke="currentColor"
+                                                         viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round"
+                                                              strokeWidth={2}
+                                                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                                    </svg>
+                                                </div>
+
+                                                {/* Reading time badge (optional, placeholder for now) */}
+                                                <div
+                                                    className="absolute bottom-4 left-4 px-3 py-1.5 rounded-lg bg-black/40 backdrop-blur-md border border-white/20 text-white text-xs font-medium flex items-center gap-1.5">
+                                                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor"
+                                                         viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round"
+                                                              strokeWidth={2} d="M12 6v6l4 2"/>
+                                                    </svg>
+                                                    <span>5 min read</span>
+                                                </div>
+                                            </div>
+
+                                            {/* Content Section */}
+                                            <div className="flex-1 flex flex-col gap-4">
+                                                {/* Meta information */}
+                                                <div
+                                                    className="flex items-center gap-3 text-xs text-[var(--color-muted)]">
+                                                    {dateStr && (
+                                                        <span
+                                                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
+                              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                      d="M8 7V3m8 4V3M3 11h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                              </svg>
+                                                            {dateStr}
+                            </span>
+                                                    )}
+                                                    {post.author && (
+                                                        <>
+                                                            <span>•</span>
+                                                            <span
+                                                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
+                                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                </svg>
+                                                                {post.author}
+                              </span>
+                                                        </>
+                                                    )}
+                                                </div>
+
+                                                {/* Title */}
+                                                <h3 className="text-2xl md:text-3xl font-bold leading-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-300 group-hover:via-violet-300 group-hover:to-emerald-300 transition-all duration-300">
+                                                    {post.title || post.slug || 'Untitled'}
+                                                </h3>
+
+                                                {/* Excerpt */}
+                                                {post.excerpt && (
+                                                    <p className="text-[var(--color-muted)] leading-relaxed line-clamp-2 md:line-clamp-3">
+                                                        {post.excerpt}
+                                                    </p>
+                                                )}
+
+                                                {/* Tags and CTA */}
+                                                <div
+                                                    className="mt-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                                                    {/* Tags */}
+                                                    {tags.length > 0 && (
+                                                        <div className="flex flex-wrap gap-2">
+                                                            {tags.slice(0, 3).map((tag, i) => (
+                                                                <span
+                                                                    key={i}
+                                                                    className="badge hover:bg-gradient-to-r hover:from-cyan-500/20 hover:via-violet-500/20 hover:to-emerald-500/20"
+                                                                >
+                                  #{tag}
+                                </span>
+                                                            ))}
+                                                            {tags.length > 3 && (
+                                                                <span className="badge">
+                                  +{tags.length - 3} more
+                                </span>
+                                                            )}
+                                                        </div>
+                                                    )}
+
+                                                    {/* Read more link */}
+                                                    {href && (
+                                                        <div
+                                                            className="inline-flex items-center gap-2 text-cyan-300 group-hover:text-cyan-200 font-medium transition-colors duration-300">
+                                                            <span>Read article</span>
+                                                            <svg
+                                                                className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                viewBox="0 0 24 24"
+                                                            >
+                                                                <path strokeLinecap="round" strokeLinejoin="round"
+                                                                      strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                                                            </svg>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+                                )
+                            })}
+                        </div>
+                    )}
+
+                    {/* Pagination */}
+                    {!loading && posts.length > 0 && pagination.totalPages > 1 && (
+                        <div
+                            className="flex flex-col sm:flex-row items-center justify-between gap-6 mt-12 pt-8 border-t border-white/10">
+                            <button
+                                disabled={!hasPrev || loading}
+                                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                                className={`inline-flex items-center gap-2 px-6 py-3 rounded-full border text-sm font-medium transition-all duration-300 ${
+                                    hasPrev && !loading
+                                        ? 'border-white/20 text-white hover:bg-white/10 hover:border-white/30 hover:scale-105'
+                                        : 'border-white/10 text-white/40 cursor-not-allowed'
+                                }`}
+                            >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                          d="M15 19l-7-7 7-7"/>
+                                </svg>
+                                Previous
+                            </button>
+
+                            <div className="flex items-center gap-3">
+                                <div
+                                    className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-[var(--color-muted)]">
+                                    Page <span className="text-white font-semibold mx-1">{pagination.current}</span>
+                                    {pagination.totalPages > 0 && (
+                                        <>
+                                            of <span
+                                            className="text-white font-semibold ml-1">{pagination.totalPages}</span>
+                                        </>
+                                    )}
+                                </div>
+                                {pagination.total > 0 && (
+                                    <div className="hidden sm:block text-xs text-[var(--color-muted)]">
+                                        ({pagination.total} total articles)
+                                    </div>
+                                )}
+                            </div>
+
+                            <button
+                                disabled={!hasNext || loading}
+                                onClick={() => setPage((p) => p + 1)}
+                                className={`inline-flex items-center gap-2 px-6 py-3 rounded-full border text-sm font-medium transition-all duration-300 ${
+                                    hasNext && !loading
+                                        ? 'border-white/20 text-white hover:bg-white/10 hover:border-white/30 hover:scale-105'
+                                        : 'border-white/10 text-white/40 cursor-not-allowed'
+                                }`}
+                            >
+                                Next
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                          d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                        </div>
+                    )}
+                </div>
+            </main>
+
+            <Footer/>
+
+            {/* Scroll to top button */}
+            {scrollProgress > 20 && (
+                <button
+                    onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
+                    className="fixed bottom-8 right-8 z-40 p-3 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 glow"
+                    aria-label="Scroll to top"
+                >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                              d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+                    </svg>
+                </button>
+            )}
+        </>
+    )
 }
