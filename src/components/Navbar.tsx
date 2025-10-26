@@ -7,7 +7,7 @@ const links = [
   { href: '/about', label: 'About' },
   { href: '/services', label: 'Services' },
   { href: '/projects', label: 'Projects' },
-  { href: '/#contact', label: 'Contact' },
+  { href: '/contact', label: 'Contact' },
 ]
 
 export default function Navbar() {
@@ -105,7 +105,7 @@ export default function Navbar() {
 
         {/* Desktop CTA */}
         <a
-          href="#contact"
+          href="/contact"
           className="hidden md:flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 text-sm text-white font-semibold hover:shadow-xl hover:shadow-cyan-500/30 transition-all duration-300 hover:scale-105 active:scale-95 relative overflow-hidden group"
         >
           <span className="relative z-10">Hire me</span>
@@ -177,7 +177,7 @@ export default function Navbar() {
                 )
               })}
               <a
-                href="#contact"
+                href="/contact"
                 onClick={() => setIsOpen(false)}
                 style={{
                   animationDelay: `${links.length * 50}ms`,

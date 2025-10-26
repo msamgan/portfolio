@@ -9,6 +9,7 @@ import Footer from './components/Footer'
 import ServicesPage from './pages/ServicesPage'
 import ProjectsPage from './pages/ProjectsPage'
 import AboutPage from './pages/AboutPage'
+import ContactPage from './pages/ContactPage'
 
 function App() {
   const [scrollProgress, setScrollProgress] = useState(0)
@@ -41,6 +42,10 @@ function App() {
 
   if (path === '/about') {
     return <AboutPage />
+  }
+
+  if (path === '/contact') {
+    return <ContactPage />
   }
 
   return (
