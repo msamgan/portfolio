@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Container from '../components/Container'
@@ -19,6 +19,69 @@ interface ApiPost {
 
 interface PostPageProps {
   slug: string
+}
+
+// Component to render post content with enhanced code block handling
+function PostContent({ content }: { content: string }) {
+  const contentRef = useRef<HTMLDivElement>(null)
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
+
+  useEffect(() => {
+    if (!contentRef.current) return
+
+    // Find all pre > code blocks and add copy buttons
+    const preBlocks = contentRef.current.querySelectorAll('pre')
+
+    preBlocks.forEach((pre, index) => {
+      // Skip if button already exists
+      if (pre.querySelector('.copy-code-button')) return
+
+      const code = pre.querySelector('code')
+      if (!code) return
+
+      // Create wrapper for positioning
+      pre.style.position = 'relative'
+
+      // Create copy button
+      const button = document.createElement('button')
+      button.className = 'copy-code-button'
+      button.setAttribute('aria-label', 'Copy code')
+      button.innerHTML = `
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+        </svg>
+      `
+
+      button.addEventListener('click', () => {
+        const codeText = code.textContent || ''
+        navigator.clipboard.writeText(codeText).then(() => {
+          setCopiedIndex(index)
+          button.innerHTML = `
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          `
+          setTimeout(() => {
+            setCopiedIndex(null)
+            button.innerHTML = `
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+            `
+          }, 2000)
+        })
+      })
+
+      pre.appendChild(button)
+    })
+  }, [content])
+
+  return (
+    <div
+      ref={contentRef}
+      dangerouslySetInnerHTML={{ __html: content }}
+    />
+  )
 }
 
 export default function PostPage({ slug }: PostPageProps) {
@@ -265,28 +328,7 @@ export default function PostPage({ slug }: PostPageProps) {
                 {/* Content */}
                 {post.content && (
                   <div className="post-content">
-                    <div
-                      className="prose prose-lg prose-invert max-w-none
-                        prose-headings:font-bold prose-headings:tracking-tight
-                        prose-h1:text-4xl prose-h1:mb-6 prose-h1:mt-12
-                        prose-h2:text-3xl prose-h2:mb-4 prose-h2:mt-10 prose-h2:gradient-text
-                        prose-h3:text-2xl prose-h3:mb-3 prose-h3:mt-8
-                        prose-p:text-[var(--color-text)] prose-p:leading-relaxed prose-p:mb-6
-                        prose-a:text-cyan-400 prose-a:no-underline hover:prose-a:text-cyan-300 prose-a:transition-colors
-                        prose-strong:text-white prose-strong:font-semibold
-                        prose-code:text-cyan-300 prose-code:bg-white/5 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
-                        prose-pre:bg-[var(--color-surface)] prose-pre:border prose-pre:border-white/10 prose-pre:rounded-xl prose-pre:shadow-xl
-                        prose-blockquote:border-l-4 prose-blockquote:border-cyan-500 prose-blockquote:bg-white/5 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:rounded-r-xl prose-blockquote:not-italic
-                        prose-ul:list-disc prose-ul:ml-6 prose-ul:space-y-2
-                        prose-ol:list-decimal prose-ol:ml-6 prose-ol:space-y-2
-                        prose-li:text-[var(--color-text)] prose-li:leading-relaxed
-                        prose-img:rounded-xl prose-img:border prose-img:border-white/10 prose-img:shadow-2xl
-                        prose-hr:border-white/10 prose-hr:my-12
-                        prose-table:border-collapse prose-table:w-full
-                        prose-th:bg-white/5 prose-th:border prose-th:border-white/10 prose-th:px-4 prose-th:py-2 prose-th:text-left prose-th:font-semibold
-                        prose-td:border prose-td:border-white/10 prose-td:px-4 prose-td:py-2"
-                      dangerouslySetInnerHTML={{ __html: post.content }}
-                    />
+                    <PostContent content={post.content} />
                   </div>
                 )}
 

@@ -253,4 +253,287 @@ html {
     transform: scaleX(1);
     transform-origin: left;
   }
+
+  /* Post content styling */
+  .post-content {
+    @apply text-base sm:text-lg;
+  }
+
+  .post-content p {
+    @apply mb-6 leading-relaxed text-[var(--color-text)]/95;
+    line-height: 1.8;
+  }
+
+  .post-content h1,
+  .post-content h2,
+  .post-content h3,
+  .post-content h4,
+  .post-content h5,
+  .post-content h6 {
+    @apply font-bold tracking-tight scroll-mt-20;
+  }
+
+  .post-content h1 {
+    @apply text-4xl mb-6 mt-12;
+    background: linear-gradient(135deg, #22d3ee, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .post-content h2 {
+    @apply text-3xl mb-5 mt-10;
+    background: linear-gradient(135deg, #22d3ee, #a78bfa, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .post-content h3 {
+    @apply text-2xl mb-4 mt-8 text-cyan-300;
+  }
+
+  .post-content h4 {
+    @apply text-xl mb-3 mt-6 text-violet-300;
+  }
+
+  .post-content h5,
+  .post-content h6 {
+    @apply text-lg mb-3 mt-4 text-emerald-300;
+  }
+
+  .post-content a {
+    @apply text-cyan-400 no-underline relative;
+    transition: color 0.2s;
+  }
+
+  .post-content a:hover {
+    @apply text-cyan-300;
+  }
+
+  .post-content a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: -1px;
+    left: 0;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+
+  .post-content a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .post-content strong,
+  .post-content b {
+    @apply text-white font-semibold;
+  }
+
+  .post-content em,
+  .post-content i {
+    @apply text-cyan-200;
+  }
+
+  .post-content ul,
+  .post-content ol {
+    @apply mb-6 ml-6 space-y-3;
+  }
+
+  .post-content ul {
+    @apply list-disc;
+  }
+
+  .post-content ol {
+    @apply list-decimal;
+  }
+
+  .post-content li {
+    @apply text-[var(--color-text)]/95 leading-relaxed pl-2;
+  }
+
+  .post-content li::marker {
+    @apply text-cyan-400;
+  }
+
+  .post-content blockquote {
+    @apply border-l-4 border-cyan-500 bg-gradient-to-r from-cyan-500/10 to-transparent py-4 px-6 my-6 rounded-r-xl not-italic relative;
+  }
+
+  .post-content blockquote::before {
+    content: '"';
+    @apply absolute -top-2 left-4 text-6xl text-cyan-500/30 font-serif;
+  }
+
+  .post-content blockquote p {
+    @apply mb-0 text-white/90 italic;
+  }
+
+  .post-content img {
+    @apply rounded-xl border border-white/10 shadow-2xl my-8 w-full;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .post-content img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 25px 70px -20px rgba(0,0,0,0.6), 0 0 30px rgba(34,211,238,0.15);
+  }
+
+  .post-content hr {
+    @apply border-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent my-12;
+  }
+
+  /* Code blocks */
+  .post-content code {
+    @apply text-sm font-mono;
+  }
+
+  .post-content :not(pre) > code {
+    @apply bg-gradient-to-r from-cyan-500/10 to-violet-500/10 text-cyan-300 px-2 py-1 rounded border border-cyan-500/20;
+    font-size: 0.9em;
+  }
+
+  .post-content pre {
+    @apply bg-[var(--color-surface)] border border-white/10 rounded-xl p-6 my-8 overflow-x-auto shadow-2xl relative;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  }
+
+  .post-content pre::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-accent));
+  }
+
+  .post-content pre code {
+    @apply bg-transparent text-[var(--color-text)] block p-0 border-0;
+    line-height: 1.7;
+    font-size: 0.95em;
+  }
+
+  /* Custom scrollbar for code blocks */
+  .post-content pre::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .post-content pre::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.2);
+    border-radius: 4px;
+  }
+
+  .post-content pre::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    border-radius: 4px;
+  }
+
+  .post-content pre::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
+  }
+
+  /* Tables */
+  .post-content table {
+    @apply w-full border-collapse my-8 rounded-xl overflow-hidden;
+  }
+
+  .post-content thead {
+    background: linear-gradient(135deg, rgba(34,211,238,0.1), rgba(167,139,250,0.1));
+  }
+
+  .post-content th {
+    @apply border border-white/10 px-4 py-3 text-left font-semibold text-cyan-300;
+  }
+
+  .post-content td {
+    @apply border border-white/10 px-4 py-3 text-[var(--color-text)]/90;
+  }
+
+  .post-content tbody tr {
+    @apply transition-colors;
+  }
+
+  .post-content tbody tr:hover {
+    background: rgba(34,211,238,0.05);
+  }
+
+  /* Video embeds */
+  .post-content iframe {
+    @apply rounded-xl my-8 w-full border border-white/10 shadow-2xl;
+    aspect-ratio: 16 / 9;
+  }
+
+  /* Figure and figcaption */
+  .post-content figure {
+    @apply my-8;
+  }
+
+  .post-content figcaption {
+    @apply text-sm text-[var(--color-muted)] mt-3 text-center italic;
+  }
+
+  /* Keyboard keys */
+  .post-content kbd {
+    @apply bg-white/10 text-white px-2 py-1 rounded border border-white/20 text-sm font-mono shadow-md;
+    display: inline-block;
+    min-width: 1.5em;
+    text-align: center;
+  }
+
+  /* Definition lists */
+  .post-content dl {
+    @apply my-6;
+  }
+
+  .post-content dt {
+    @apply font-semibold text-cyan-300 mt-4 mb-2;
+  }
+
+  .post-content dd {
+    @apply ml-6 text-[var(--color-text)]/90 mb-4;
+  }
+
+  /* Abbreviations */
+  .post-content abbr {
+    @apply border-b border-dotted border-cyan-400 cursor-help;
+    text-decoration: none;
+  }
+
+  /* Mark/Highlight */
+  .post-content mark {
+    @apply bg-gradient-to-r from-yellow-400/20 to-amber-400/20 text-yellow-100 px-1 rounded;
+  }
+
+  /* Copy code button */
+  .copy-code-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 8px;
+    background: rgba(34, 211, 238, 0.1);
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    border-radius: 8px;
+    color: var(--color-primary);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .copy-code-button:hover {
+    background: rgba(34, 211, 238, 0.2);
+    border-color: rgba(34, 211, 238, 0.5);
+    transform: scale(1.05);
+  }
+
+  .copy-code-button:active {
+    transform: scale(0.95);
+  }
 }
