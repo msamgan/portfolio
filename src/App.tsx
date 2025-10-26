@@ -49,7 +49,7 @@ function App() {
         return <ContactPage/>
     }
 
-    if (path === '/blog') {
+    if (path === '/posts') {
         return <BlogPage/>
     }
 

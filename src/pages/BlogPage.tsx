@@ -42,6 +42,8 @@ export default function BlogPage() {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
     const [posts, setPosts] = useState<ApiPost[]>([])
+    const [searchQuery, setSearchQuery] = useState('')
+    const [debouncedSearch, setDebouncedSearch] = useState('')
     const [pagination, setPagination] = useState({
         current: 1,
         perPage: 10,
@@ -60,6 +62,16 @@ export default function BlogPage() {
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
+    // Debounce search query
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedSearch(searchQuery)
+            setPage(1) // Reset to first page when search changes
+        }, 500)
+
+        return () => clearTimeout(timer)
+    }, [searchQuery])
+
     useEffect(() => {
         const controller = new AbortController()
 
@@ -69,6 +81,9 @@ export default function BlogPage() {
             try {
                 const url = new URL('https://msamgan.dev/api/post/list/paginated')
                 url.searchParams.set('page', String(page))
+                if (debouncedSearch.trim()) {
+                    url.searchParams.set('query', debouncedSearch.trim())
+                }
                 const res = await fetch(url.toString(), {signal: controller.signal})
                 if (!res.ok) throw new Error(`Failed to load posts: ${res.status}`)
                 const json: ApiResponse = await res.json()
@@ -82,7 +97,6 @@ export default function BlogPage() {
                 const perPage = meta.per_page ?? json.per_page ?? json.pageSize ?? (Array.isArray(list) ? list.length : 10)
                 const total = meta.total ?? json.total ?? 0
                 const totalPages = meta.last_page ?? meta.total_pages ?? json.last_page ?? json.total_pages ?? (perPage ? Math.max(1, Math.ceil(total / perPage)) : 1)
-
                 setPagination({current, perPage, total, totalPages})
             } catch (e: unknown) {
                 if (e && typeof e === 'object' && 'name' in e && e.name !== 'AbortError') {
@@ -95,7 +109,7 @@ export default function BlogPage() {
 
         load().then()
         return () => controller.abort()
-    }, [page])
+    }, [page, debouncedSearch])
 
     const hasPrev = useMemo(() => pagination.current > 1, [pagination])
     const hasNext = useMemo(() => pagination.current < pagination.totalPages, [pagination])
@@ -139,6 +153,48 @@ export default function BlogPage() {
                     <p className="text-lg md:text-xl text-[var(--color-muted)] max-w-2xl mx-auto leading-relaxed">
                         Insights, tutorials, and updates from my work and open-source journey.
                     </p>
+
+                    {/* Search Bar */}
+                    <div className="max-w-2xl mx-auto mt-8 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                        <div className="relative group">
+                            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <svg className="w-5 h-5 text-[var(--color-muted)] group-focus-within:text-cyan-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </div>
+                            <input
+                                type="text"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                placeholder="Search articles..."
+                                className="w-full pl-12 pr-12 py-4 rounded-full bg-white/5 border border-white/10 text-white placeholder-[var(--color-muted)] focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all duration-300 backdrop-blur-sm hover:bg-white/10"
+                            />
+                            {searchQuery && (
+                                <button
+                                    onClick={() => setSearchQuery('')}
+                                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-[var(--color-muted)] hover:text-white transition-colors duration-300"
+                                    aria-label="Clear search"
+                                >
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            )}
+                            {loading && debouncedSearch && (
+                                <div className="absolute inset-y-0 right-0 pr-4 flex items-center">
+                                    <svg className="animate-spin h-5 w-5 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                </div>
+                            )}
+                        </div>
+                        {debouncedSearch && (
+                            <div className="mt-3 text-sm text-[var(--color-muted)] text-center animate-fade-in-up">
+                                Searching for: <span className="text-cyan-300 font-medium">"{debouncedSearch}"</span>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </section>
 
@@ -197,10 +253,23 @@ export default function BlogPage() {
                                               d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-semibold text-white/80">No Posts Found</h3>
+                                <h3 className="text-xl font-semibold text-white/80">
+                                    {debouncedSearch ? 'No Results Found' : 'No Posts Found'}
+                                </h3>
                                 <p className="text-[var(--color-muted)] max-w-md">
-                                    There are currently no blog posts available. Check back soon for new content!
+                                    {debouncedSearch
+                                        ? `No articles match your search for "${debouncedSearch}". Try different keywords.`
+                                        : 'There are currently no blog posts available. Check back soon for new content!'
+                                    }
                                 </p>
+                                {debouncedSearch && (
+                                    <button
+                                        onClick={() => setSearchQuery('')}
+                                        className="mt-4 btn btn-secondary"
+                                    >
+                                        Clear Search
+                                    </button>
+                                )}
                             </div>
                         </div>
                     )}
@@ -264,7 +333,7 @@ export default function BlogPage() {
                                                     </svg>
                                                 </div>
 
-                                                {/* Reading time badge (optional, placeholder for now) */}
+                                                {/* Reading time badge */}
                                                 <div
                                                     className="absolute bottom-4 left-4 px-3 py-1.5 rounded-lg bg-black/40 backdrop-blur-md border border-white/20 text-white text-xs font-medium flex items-center gap-1.5">
                                                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor"
@@ -441,3 +510,4 @@ export default function BlogPage() {
         </>
     )
 }
+
