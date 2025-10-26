@@ -34,6 +34,7 @@ export default function ProjectsPage() {
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" />
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
         </div>
 
         {/* Content */}
@@ -50,8 +51,24 @@ export default function ProjectsPage() {
           </h1>
 
           <p className="text-lg md:text-xl text-[var(--color-muted)] max-w-2xl mx-auto leading-relaxed">
-            Explore my open-source work and featured projects.
+            Explore my open-source work and featured projects that have helped thousands of developers worldwide.
           </p>
+
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto pt-8">
+            <div className="space-y-2 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+              <div className="text-3xl md:text-4xl font-bold gradient-text">21K+</div>
+              <div className="text-sm text-[var(--color-muted)]">Total Downloads</div>
+            </div>
+            <div className="space-y-2 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+              <div className="text-3xl md:text-4xl font-bold gradient-text">5+</div>
+              <div className="text-sm text-[var(--color-muted)]">Featured Projects</div>
+            </div>
+            <div className="space-y-2 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+              <div className="text-3xl md:text-4xl font-bold gradient-text">100%</div>
+              <div className="text-sm text-[var(--color-muted)]">Open Source</div>
+            </div>
+          </div>
         </div>
       </section>
 
