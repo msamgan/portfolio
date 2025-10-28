@@ -457,7 +457,7 @@ export default function TagsPage() {
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                         <a
-                            href="/blog"
+                            href="/posts"
                             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-cyan-500 to-violet-500 text-white font-medium hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-105 active:scale-95"
                         >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
