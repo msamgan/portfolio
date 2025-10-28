@@ -381,8 +381,9 @@ export default function TagsPage() {
                                         const label = renderTagLabel(t)
                                         const count = renderTagCount(t)
                                         return (
-                                            <div
+                                            <a
                                                 key={idx}
+                                                href={`/tag/${typeof t === 'string' ? encodeURIComponent(t.toLowerCase().replace(/\s+/g,'-')) : encodeURIComponent((t.slug || t.name || '').toLowerCase().replace(/\s+/g,'-'))}`}
                                                 className="group relative card px-4 py-3 flex items-center justify-between hover:scale-105 transition-all duration-300 cursor-pointer animate-fade-in-up"
                                                 style={{animationDelay: `${Math.min(idx * 0.05, 1)}s`}}
                                             >
@@ -411,7 +412,7 @@ export default function TagsPage() {
 
                                                 {/* Animated gradient progress bar */}
                                                 <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500 via-violet-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-b-2xl"/>
-                                            </div>
+                                            </a>
                                         )
                                     })}
                                 </div>

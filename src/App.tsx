@@ -14,6 +14,7 @@ import BlogPage from './pages/BlogPage'
 import PostPage from './pages/PostPage'
 import ToolsPage from './pages/ToolsPage'
 import TagsPage from './pages/TagsPage'
+import TagPostsPage from './pages/TagPostsPage'
 
 function App() {
     const [scrollProgress, setScrollProgress] = useState(0)
@@ -62,6 +63,12 @@ function App() {
 
     if (path === '/tags') {
         return <TagsPage/>
+    }
+
+    // Tag posts route
+    if (path.startsWith('/tag/')) {
+        const slug = decodeURIComponent(path.replace(/^\/tag\//, ''))
+        return <TagPostsPage slug={slug} />
     }
 
     // Dynamic post route: any other non-root path treated as slug
