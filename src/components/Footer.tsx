@@ -1,4 +1,5 @@
 import Container from './Container';
+import SponsorMe from './SponsorMe';
 import data from '../data.json';
 
 const socialIcons: Record<string, React.ReactElement> = {
@@ -59,6 +60,11 @@ export default function Footer() {
             </div>
 
             <Container className="relative">
+                {/* Sponsor Me Section */}
+                <div className="pb-12 animate-fade-in-up">
+                    <SponsorMe />
+                </div>
+
                 {/* Main footer content */}
                 <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4 py-16">
                     {/* Brand & Description */}

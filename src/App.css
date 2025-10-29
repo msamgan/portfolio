@@ -637,4 +637,18 @@ html {
     .copy-code-button:active {
         transform: scale(0.95);
     }
+
+    /* Shimmer animation for sponsor card */
+    @keyframes shimmer {
+        0% {
+            transform: translateX(-100%);
+        }
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+    .animate-shimmer {
+        animation: shimmer 2s infinite;
+    }
 }
