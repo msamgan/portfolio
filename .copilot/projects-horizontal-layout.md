@@ -4,7 +4,7 @@
 
 ## Summary
 
-Updated the Projects component to use a **horizontal card layout** matching the Services page and BlogPage design for complete consistency across the portfolio.
+Updated the Projects component to use a **horizontal card layout** matching the Services page and BlogPage design for complete consistency across the portfolio. Also added a **search bar** to filter projects by name, description, or category.
 
 ---
 
@@ -16,6 +16,7 @@ Updated the Projects component to use a **horizontal card layout** matching the 
 - **Vertical cards** with image on top, content below
 - Compact layout suitable for grid display
 - Different visual structure from Services and Blog pages
+- No search functionality
 
 ### After
 
@@ -23,6 +24,8 @@ Updated the Projects component to use a **horizontal card layout** matching the 
 - **Side-by-side layout** (image left, content right) on desktop
 - **Stacked layout** (image top, content bottom) on mobile
 - **Identical structure** to Services/BlogPage for design consistency
+- **Search bar** with real-time filtering
+- **Empty state** when no results found
 
 ---
 
@@ -276,7 +279,13 @@ Each category has a unique icon displayed in both the hover badge and bottom row
 
 Possible improvements:
 
-1. **Project Details Pages**
+1. **Enhanced Search**
+   - ✅ Basic search implemented
+   - Add search debouncing for better performance
+   - Add search highlighting in results
+   - Add filter chips for quick category filtering
+
+2. **Project Details Pages**
    - Link "Learn more" to dedicated project pages
    - Add detailed case studies
    - Include tech stack details
@@ -302,8 +311,10 @@ Possible improvements:
 
 - Layout now perfectly matches Services and BlogPage
 - All three pages (Services, Blog, Projects) share the same horizontal card design
+- **Search functionality added** - users can filter projects by name, description, or category
 - Consistent experience across the entire portfolio
 - Easy to maintain - same patterns everywhere
 - Better use of screen real estate on wide displays
 - Improved focus on each individual project
+- Search uses `useMemo` for optimized performance
 

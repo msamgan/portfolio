@@ -1,6 +1,6 @@
 import Section from './Section';
 import data from '../data.json';
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import lactLogo from '../assets/lact-logo.png';
 import laravelLogo from '../assets/laravel.png';
 
@@ -110,14 +110,88 @@ const getProjectCategory = (name: string): string => {
 };
 
 export default function Projects() {
+    const [searchQuery, setSearchQuery] = useState('');
+
+    // Filter projects based on search query
+    const filteredProjects = useMemo(() => {
+        if (!searchQuery.trim()) {
+            return data.projects;
+        }
+
+        const query = searchQuery.toLowerCase();
+        return data.projects.filter(
+            (p) =>
+                p.name.toLowerCase().includes(query) ||
+                p.description.toLowerCase().includes(query) ||
+                getProjectCategory(p.name).toLowerCase().includes(query)
+        );
+    }, [searchQuery]);
+
     return (
         <Section
             id="projects"
             title="Featured Projects"
             subtitle="A few highlights. Explore more on my site."
         >
+            {/* Search Bar */}
+            <div className="max-w-2xl mx-auto mb-12 animate-fade-in-up">
+                <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <svg
+                            className="w-5 h-5 text-[var(--color-muted)] group-focus-within:text-cyan-400 transition-colors duration-300"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                            />
+                        </svg>
+                    </div>
+                    <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder="Search projects by name, description, or category..."
+                        className="w-full pl-12 pr-12 py-4 rounded-full bg-white/5 border border-white/10 text-white placeholder-[var(--color-muted)] focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all duration-300 backdrop-blur-sm hover:bg-white/10"
+                    />
+                    {searchQuery && (
+                        <button
+                            onClick={() => setSearchQuery('')}
+                            className="absolute inset-y-0 right-0 pr-4 flex items-center text-[var(--color-muted)] hover:text-white transition-colors duration-300"
+                            aria-label="Clear search"
+                        >
+                            <svg
+                                className="w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
+                            </svg>
+                        </button>
+                    )}
+                </div>
+
+                {/* Search results count */}
+                {searchQuery && (
+                    <div className="mt-4 text-center text-sm text-[var(--color-muted)]">
+                        Found {filteredProjects.length} project{filteredProjects.length !== 1 ? 's' : ''}
+                    </div>
+                )}
+            </div>
+
             <div className="space-y-6">
-                {data.projects.map((p, index) => {
+                {filteredProjects.length > 0 ? (
+                    filteredProjects.map((p, index) => {
                     const category = getProjectCategory(p.name);
                     const icon = projectIcons[category] || projectIcons['default'];
 
@@ -277,7 +351,37 @@ export default function Projects() {
                             </div>
                         </article>
                     );
-                })}
+                })
+                ) : (
+                    // No results found state
+                    <div className="text-center py-16 animate-fade-in-up">
+                        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/5 border border-white/10 mb-6">
+                            <svg
+                                className="w-10 h-10 text-[var(--color-muted)]"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                />
+                            </svg>
+                        </div>
+                        <h3 className="text-xl font-bold text-white mb-2">No projects found</h3>
+                        <p className="text-[var(--color-muted)] mb-6">
+                            Try adjusting your search query or{' '}
+                            <button
+                                onClick={() => setSearchQuery('')}
+                                className="text-cyan-400 hover:text-cyan-300 underline transition-colors"
+                            >
+                                clear the search
+                            </button>
+                        </p>
+                    </div>
+                )}
             </div>
 
             {/* Enhanced CTA */}
