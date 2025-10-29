@@ -238,10 +238,10 @@ export default function DocsPage({ slug }: DocsPageProps) {
                     </div>
 
                     {/* Page Header */}
-                    <div className="mb-12">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-violet-500/10 border border-cyan-500/20 mb-6">
+                    <div className="mb-6">
+                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-cyan-500/10 to-violet-500/10 border border-cyan-500/20">
                             <svg
-                                className="w-4 h-4 text-cyan-400"
+                                className="w-3.5 h-3.5 text-cyan-400"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -253,7 +253,7 @@ export default function DocsPage({ slug }: DocsPageProps) {
                                     d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                                 />
                             </svg>
-                            <span className="text-sm text-cyan-300 font-medium">Documentation</span>
+                            <span className="text-xs text-cyan-300 font-medium">Documentation</span>
                         </div>
                     </div>
 
