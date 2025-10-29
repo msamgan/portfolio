@@ -15,6 +15,7 @@ import PostPage from './pages/PostPage';
 import ToolsPage from './pages/ToolsPage';
 import TagsPage from './pages/TagsPage';
 import TagPostsPage from './pages/TagPostsPage';
+import DocumentationPage from './pages/DocumentationPage';
 
 function App() {
     const [scrollProgress, setScrollProgress] = useState(0);
@@ -60,6 +61,10 @@ function App() {
 
     if (path === '/tools') {
         return <ToolsPage />;
+    }
+
+    if (path === '/documentation') {
+        return <DocumentationPage />;
     }
 
     if (path === '/tags') {

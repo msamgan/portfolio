@@ -185,5 +185,14 @@
             "img": "https://ms0.org/ms0_logo.png",
             "link": "https://ms0.org"
         }
+    ],
+    "docs": [
+        {
+            "name": "Laravel Env Keys Checker",
+            "description": "A Laravel package to check if all the keys are available across all the .env files.",
+            "img": "src/assets/laravel.png",
+            "link": "/docs/env-checker",
+            "repo": "https://github.com/msamgan/laravel-env-keys-checker"
+        }
     ]
 }
