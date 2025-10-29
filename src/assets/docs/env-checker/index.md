@@ -15,8 +15,7 @@ to the .env.example file or the other way around.
 
 - Check if all the keys are available across all the .env files.
 - Add the missing keys to the .env files automatically (configurable) considering the line numbers and empty lines.
-- Check if the .env and other provided files are present in .gitignore, so that they are not committed to git by
-  mistake.
+- Check if the .env and other provided files are present in .gitignore, so that they are not committed to git by mistake.
 - Sync all the available keys by line across all the .env files. Referencing the master .env file. (Configurable, default is .env)
 
 ## Installation
@@ -138,6 +137,13 @@ You can configure the package by publishing the configuration file.
 ```php
 # Master .env file to be used for syncing the keys
 'master_env' => env('MASTER_ENV', '.env'),
+```
+
+```php
+# Additional locations to scan for .env files (relative to project root)
+# Can be paths to specific files or directories to scan
+# Example: ['storage/envs/', 'custom/.env.production']
+'additional_env_locations' => explode(',', (string) env('KEYS_CHECKER_ADDITIONAL_LOCATIONS', '')),
 ```
 
 ## Testing

@@ -203,12 +203,97 @@ export default function DocsPage({ slug }: DocsPageProps) {
     }, [content]);
 
     return (
-        <>
+        <div className="min-h-screen bg-[var(--color-bg)] text-white relative overflow-hidden">
             {/* Scroll progress indicator */}
             <div
                 className="fixed top-0 left-0 right-0 z-50 h-1 bg-gradient-to-r from-cyan-500 via-violet-500 to-emerald-500"
                 style={{ width: `${scrollProgress}%`, transition: 'width 0.1s ease' }}
             />
+
+            {/* Background decorative elements */}
+            <div className="absolute top-20 right-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl animate-pulse pointer-events-none" />
+            <div
+                className="absolute bottom-20 left-10 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl animate-pulse pointer-events-none"
+                style={{ animationDelay: '1s' }}
+            />
+
+            {/* Abstract geometric figures */}
+            <div className="absolute inset-0 pointer-events-none opacity-20">
+                <svg
+                    className="absolute top-32 right-1/4 w-24 h-24 animate-float"
+                    style={{ animationDuration: '6s' }}
+                    viewBox="0 0 100 100"
+                >
+                    <path
+                        d="M50 5 L90 27.5 L90 72.5 L50 95 L10 72.5 L10 27.5 Z"
+                        fill="none"
+                        stroke="url(#gradient1)"
+                        strokeWidth="1.5"
+                        className="animate-pulse"
+                    />
+                    <defs>
+                        <linearGradient
+                            id="gradient1"
+                            x1="0%"
+                            y1="0%"
+                            x2="100%"
+                            y2="100%"
+                        >
+                            <stop
+                                offset="0%"
+                                stopColor="#22d3ee"
+                            />
+                            <stop
+                                offset="100%"
+                                stopColor="#a78bfa"
+                            />
+                        </linearGradient>
+                    </defs>
+                </svg>
+
+                <svg
+                    className="absolute top-1/3 left-16 w-20 h-20 animate-float"
+                    style={{ animationDuration: '8s', animationDelay: '1s' }}
+                    viewBox="0 0 100 100"
+                >
+                    <circle
+                        cx="50"
+                        cy="50"
+                        r="20"
+                        fill="none"
+                        stroke="#22d3ee"
+                        strokeWidth="1.5"
+                        opacity="0.6"
+                    />
+                    <circle
+                        cx="50"
+                        cy="50"
+                        r="30"
+                        fill="none"
+                        stroke="#a78bfa"
+                        strokeWidth="1.5"
+                        opacity="0.4"
+                    />
+                </svg>
+
+                <svg
+                    className="absolute bottom-1/4 right-20 w-16 h-16 animate-float"
+                    style={{ animationDuration: '7s', animationDelay: '2s' }}
+                    viewBox="0 0 100 100"
+                >
+                    <rect
+                        x="25"
+                        y="25"
+                        width="50"
+                        height="50"
+                        fill="none"
+                        stroke="#34d399"
+                        strokeWidth="1.5"
+                        opacity="0.5"
+                        transform="rotate(45 50 50)"
+                    />
+                </svg>
+            </div>
 
             <Navbar />
 
@@ -360,6 +445,6 @@ export default function DocsPage({ slug }: DocsPageProps) {
             </main>
 
             <Footer />
-        </>
+        </div>
     );
 }
