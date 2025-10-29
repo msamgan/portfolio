@@ -437,6 +437,30 @@ html {
             0 0 30px rgba(34, 211, 238, 0.15);
     }
 
+    /* Inline badge images (Packagist, tests, downloads, etc.) - only SVG badges */
+    .post-content p img[src*="shields.io"],
+    .post-content p img[src*="badge"],
+    .post-content p img[src*="svg"],
+    .post-content a img[src*="shields.io"],
+    .post-content a img[src*="badge"],
+    .post-content a img[src*="svg"] {
+        @apply inline-block my-0 mx-1 align-middle border-0 shadow-none rounded;
+        max-height: 20px;
+        width: auto;
+        transition: opacity 0.2s;
+    }
+
+    .post-content p img[src*="shields.io"]:hover,
+    .post-content p img[src*="badge"]:hover,
+    .post-content p img[src*="svg"]:hover,
+    .post-content a img[src*="shields.io"]:hover,
+    .post-content a img[src*="badge"]:hover,
+    .post-content a img[src*="svg"]:hover {
+        transform: none;
+        box-shadow: none;
+        opacity: 0.8;
+    }
+
     .post-content hr {
         @apply border-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent my-12;
     }
@@ -533,7 +557,7 @@ html {
     }
 
     .post-content figcaption {
-        @apply text-sm text-[var(--color-muted)] mt-3 text-center italic;
+        @apply text-xs text-[var(--color-muted)] mt-2 text-center italic;
     }
 
     /* Keyboard keys */
