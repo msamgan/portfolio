@@ -1,4 +1,3 @@
-import Section from './Section';
 import data from '../data.json';
 import React, { useState, useMemo } from 'react';
 
@@ -162,13 +161,20 @@ export default function Services() {
     }, [searchQuery]);
 
     return (
-        <Section
-            id="services"
-            title="Services"
-            subtitle="Ways I can help your team ship faster and smarter."
-        >
-            {/* Search Bar */}
-            <div className="max-w-2xl mx-auto mb-12 animate-fade-in-up">
+        <div className="py-16 sm:py-24">
+            <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+                {/* Header */}
+                <header className="mb-12 text-center">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
+                        Services
+                    </h2>
+                    <p className="mt-4 text-lg text-[var(--color-muted)] max-w-3xl mx-auto">
+                        Ways I can help your team ship faster and smarter.
+                    </p>
+                </header>
+
+                {/* Search Bar */}
+                <div className="max-w-2xl mx-auto mb-12 animate-fade-in-up">
                 <div className="relative group">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                         <svg
@@ -222,10 +228,9 @@ export default function Services() {
                 )}
             </div>
 
-            {/* Services List with Blog-style background */}
-            <div className="relative px-6 py-6 -mx-6">
-                <div className="max-w-5xl mx-auto">
-                    {filteredServices.length === 0 ? (
+            {/* Services List */}
+            <div className="max-w-4xl mx-auto">
+                {filteredServices.length === 0 ? (
                         <div className="card text-center py-16">
                             <div className="flex flex-col items-center gap-4">
                                 <div className="p-6 rounded-full bg-white/5 border border-white/10">
@@ -341,6 +346,6 @@ export default function Services() {
                     )}
                 </div>
             </div>
-        </Section>
+        </div>
     );
 }
