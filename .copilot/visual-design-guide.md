@@ -16,16 +16,16 @@ The enhanced services page follows a modern, professional aesthetic that emphasi
 #### Gradient Schemes Used:
 
 1. **Primary Gradient** (Cyan → Violet → Emerald)
-   - Used for: Progress bars, borders, glows
-   - Creates: Dynamic, tech-forward feel
+    - Used for: Progress bars, borders, glows
+    - Creates: Dynamic, tech-forward feel
 
 2. **Text Gradients** (White → Cyan-100 → Violet-200)
-   - Used for: Headlines, hero text
-   - Creates: Depth and premium feel
+    - Used for: Headlines, hero text
+    - Creates: Depth and premium feel
 
 3. **Background Gradients** (Dark → Darker with color hints)
-   - Used for: Card backgrounds, section backgrounds
-   - Creates: Subtle depth without distraction
+    - Used for: Card backgrounds, section backgrounds
+    - Creates: Subtle depth without distraction
 
 #### Color Opacity Levels:
 
@@ -71,12 +71,12 @@ Initial State → Hover State
 
 1. **Default**: Clean, minimal with subtle glow
 2. **Hover**: Enhanced with multiple effects:
-   - Card lifts with scale transform
-   - Image zooms revealing more detail
-   - Icon badge appears in corner
-   - "Learn more" text slides in
-   - Gradient border becomes visible
-   - Background glow intensifies
+    - Card lifts with scale transform
+    - Image zooms revealing more detail
+    - Icon badge appears in corner
+    - "Learn more" text slides in
+    - Gradient border becomes visible
+    - Background glow intensifies
 
 **Touch Targets:**
 
@@ -145,22 +145,22 @@ Body Text      text-sm   text-sm   text-base
 #### Visual Elements:
 
 1. **Background Blobs**:
-   - Two large gradient circles (cyan, violet)
-   - Positioned at different corners
-   - Pulsing animation (3s infinite)
-   - Heavy blur (blur-3xl) for soft effect
+    - Two large gradient circles (cyan, violet)
+    - Positioned at different corners
+    - Pulsing animation (3s infinite)
+    - Heavy blur (blur-3xl) for soft effect
 
 2. **Professional Badge**:
-   - Glassmorphism style
-   - Lightning bolt icon
-   - Subtle border and backdrop blur
-   - "Professional Services" text in cyan
+    - Glassmorphism style
+    - Lightning bolt icon
+    - Subtle border and backdrop blur
+    - "Professional Services" text in cyan
 
 3. **Stats Row**:
-   - Three equal columns
-   - Large gradient numbers
-   - Muted label text
-   - Staggered fade-in (0.2s, 0.3s, 0.4s)
+    - Three equal columns
+    - Large gradient numbers
+    - Muted label text
+    - Staggered fade-in (0.2s, 0.3s, 0.4s)
 
 ### 🎴 Service Card Deep Dive
 
@@ -314,26 +314,26 @@ All visual elements maintain consistency with:
 ## Future Design Enhancements
 
 1. **Micro-interactions**:
-   - Particle effects on card hover
-   - Animated service icons
-   - Number counters in stats section
+    - Particle effects on card hover
+    - Animated service icons
+    - Number counters in stats section
 
 2. **Advanced Animations**:
-   - Parallax scrolling effects
-   - Scroll-triggered animations
-   - SVG path animations
+    - Parallax scrolling effects
+    - Scroll-triggered animations
+    - SVG path animations
 
 3. **Enhanced Imagery**:
-   - Custom service illustrations
-   - Animated SVG backgrounds
-   - Icon animations on hover
+    - Custom service illustrations
+    - Animated SVG backgrounds
+    - Icon animations on hover
 
 4. **Interactive Elements**:
-   - Service comparison tool
-   - Pricing calculator
-   - Booking calendar integration
+    - Service comparison tool
+    - Pricing calculator
+    - Booking calendar integration
 
 5. **Content Enrichment**:
-   - Case study previews
-   - Client testimonials
-   - Process timeline visualization
+    - Case study previews
+    - Client testimonials
+    - Process timeline visualization

@@ -20,10 +20,10 @@ The Tag Posts Page has been completely redesigned to match the modern, professio
 - Large gradient headline displaying the tag name (text-4xl to text-6xl responsive)
 - Descriptive subtitle highlighting the tag in cyan
 - **Live Stats Display:**
-  - Article count (dynamic based on results)
-  - Appears with fade-in animation (0.2s delay)
-  - Gradient text effect on numbers
-  - Contextual label (Article/Articles based on count)
+    - Article count (dynamic based on results)
+    - Appears with fade-in animation (0.2s delay)
+    - Gradient text effect on numbers
+    - Contextual label (Article/Articles based on count)
 
 #### 2. Enhanced Loading State
 
@@ -32,10 +32,10 @@ The Tag Posts Page has been completely redesigned to match the modern, professio
 - Horizontal card layout matching BlogPage
 - Image placeholder on left (320px width, aspect-4/3 on desktop)
 - Content section on right with:
-  - Meta badges placeholders
-  - Title placeholder (75% width)
-  - Excerpt lines (2 lines)
-  - Tag placeholders (3 badges)
+    - Meta badges placeholders
+    - Title placeholder (75% width)
+    - Excerpt lines (2 lines)
+    - Tag placeholders (3 badges)
 - Pulse animation on all elements
 - 4 skeleton cards for better visual feedback
 
@@ -46,11 +46,11 @@ The Tag Posts Page has been completely redesigned to match the modern, professio
 - Large warning icon (w-12 h-12) in red theme
 - Clear error message display
 - **Retry Button:**
-  - Gradient styling (cyan → violet)
-  - Refresh icon
-  - Hover effects (shadow with cyan glow, scale 105%)
-  - Active state (scale 95%)
-  - onclick: window.location.reload()
+    - Gradient styling (cyan → violet)
+    - Refresh icon
+    - Hover effects (shadow with cyan glow, scale 105%)
+    - Active state (scale 95%)
+    - onclick: window.location.reload()
 
 #### 4. Enhanced Empty State
 
@@ -68,38 +68,38 @@ The Tag Posts Page has been completely redesigned to match the modern, professio
 
 - **Horizontal Card** (flex-col on mobile, flex-row on desktop)
 - **Image Section** (left side, 320px width on desktop):
-  - Aspect ratio 16/9 on mobile, 4/3 on desktop
-  - Dark overlay gradient (from-black/80 via-black/30)
-  - Image zoom effect on hover (scale-110, 700ms)
-  - Overlay lightens on hover (opacity 60% → 40%)
-  - External link icon badge (top-right, appears on hover)
-    - Glassmorphism background
-    - Fade-in animation (300ms)
-    - Scale animation (90% → 100%)
-  - Reading time badge (bottom-left, always visible)
-    - "5 min read" with clock icon
-    - Black/50 background with backdrop blur
+    - Aspect ratio 16/9 on mobile, 4/3 on desktop
+    - Dark overlay gradient (from-black/80 via-black/30)
+    - Image zoom effect on hover (scale-110, 700ms)
+    - Overlay lightens on hover (opacity 60% → 40%)
+    - External link icon badge (top-right, appears on hover)
+        - Glassmorphism background
+        - Fade-in animation (300ms)
+        - Scale animation (90% → 100%)
+    - Reading time badge (bottom-left, always visible)
+        - "5 min read" with clock icon
+        - Black/50 background with backdrop blur
 
 - **Content Section** (right side, flex-1):
-  - Meta information with enhanced badges:
-    - Date badge with calendar icon
-    - Author badge with user icon
-    - Rounded pill style with bg-white/5 and border
-  - Title with gradient effect on hover (cyan → violet → emerald)
-  - Excerpt with line-clamp-2 on mobile, line-clamp-3 on desktop
-  - Tags display at bottom:
-    - Maximum 3 tags shown with tag icons
-    - "+X more" indicator for additional tags
-    - Gradient background (cyan/10 → violet/10)
-    - Hover effect (brightens to /20)
-  - "Read article" link with arrow
-    - Arrow slides right on hover (translateX)
-    - Cyan color theme
+    - Meta information with enhanced badges:
+        - Date badge with calendar icon
+        - Author badge with user icon
+        - Rounded pill style with bg-white/5 and border
+    - Title with gradient effect on hover (cyan → violet → emerald)
+    - Excerpt with line-clamp-2 on mobile, line-clamp-3 on desktop
+    - Tags display at bottom:
+        - Maximum 3 tags shown with tag icons
+        - "+X more" indicator for additional tags
+        - Gradient background (cyan/10 → violet/10)
+        - Hover effect (brightens to /20)
+    - "Read article" link with arrow
+        - Arrow slides right on hover (translateX)
+        - Cyan color theme
 
 - **Interactive Effects:**
-  - Card shadow increases on hover (hover:shadow-2xl)
-  - Gradient progress bar at bottom (0.5px height)
-  - Staggered fade-in on load (0.1s per card, max 0.5s)
+    - Card shadow increases on hover (hover:shadow-2xl)
+    - Gradient progress bar at bottom (0.5px height)
+    - Staggered fade-in on load (0.1s per card, max 0.5s)
 
 #### 6. Enhanced CTA Section
 
@@ -109,14 +109,14 @@ The Tag Posts Page has been completely redesigned to match the modern, professio
 - Large heading (text-3xl to text-4xl)
 - Descriptive text
 - Two prominent CTAs:
-  1. **"All Blog Posts"** (Primary)
-     - Gradient button (cyan → violet)
-     - Blog icon
-     - Hover: shadow with cyan glow, scale 105%
-  2. **"Explore All Tags"** (Secondary)
-     - Glassmorphism style
-     - Tag icon
-     - Hover: bg-white/10, scale 105%
+    1. **"All Blog Posts"** (Primary)
+        - Gradient button (cyan → violet)
+        - Blog icon
+        - Hover: shadow with cyan glow, scale 105%
+    2. **"Explore All Tags"** (Secondary)
+        - Glassmorphism style
+        - Tag icon
+        - Hover: bg-white/10, scale 105%
 - Responsive layout (stacks on mobile)
 
 ### ✨ Interactive Elements

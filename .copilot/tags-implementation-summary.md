@@ -11,9 +11,9 @@
 - [x] Implemented large gradient headline (responsive text-5xl to text-7xl)
 - [x] Added descriptive subtitle
 - [x] Integrated live stats display:
-  - Total Tags count
-  - Total Tagged Items count
-  - 100% Categorized indicator
+    - Total Tags count
+    - Total Tagged Items count
+    - 100% Categorized indicator
 - [x] Applied staggered fade-in animations (0.2s, 0.3s, 0.4s delays)
 - [x] Gradient text effect on stats numbers
 
@@ -32,11 +32,11 @@
 - [x] Implemented gradient glow effect on hover
 - [x] Created count badges with gradient backgrounds
 - [x] Added multiple hover effects:
-  - Card scales to 105%
-  - Icon scales to 110%
-  - Text transitions to gradient (cyan→violet)
-  - Border becomes visible
-  - Animated gradient progress bar at bottom
+    - Card scales to 105%
+    - Icon scales to 110%
+    - Text transitions to gradient (cyan→violet)
+    - Border becomes visible
+    - Animated gradient progress bar at bottom
 - [x] Applied staggered fade-in animations (max 1s)
 - [x] Smooth 300-500ms transitions
 
@@ -66,8 +66,8 @@
 - [x] Added gradient background effect
 - [x] Created clear value proposition
 - [x] Implemented two prominent CTAs:
-  - "View Blog" (primary with gradient)
-  - "Browse Projects" (secondary with glassmorphism)
+    - "View Blog" (primary with gradient)
+    - "Browse Projects" (secondary with glassmorphism)
 - [x] Linked to relevant content areas
 
 ### 8. Navigation Features
@@ -80,10 +80,10 @@
 ### 9. Responsive Design
 
 - [x] Implemented responsive grid:
-  - Mobile (<640px): 2 columns
-  - Tablet (640-768px): 3 columns
-  - Medium (768-1024px): 4 columns
-  - Desktop (≥1024px): 5 columns
+    - Mobile (<640px): 2 columns
+    - Tablet (640-768px): 3 columns
+    - Medium (768-1024px): 4 columns
+    - Desktop (≥1024px): 5 columns
 - [x] Applied responsive typography scaling
 - [x] Tested on all breakpoints
 
@@ -162,8 +162,8 @@ const [scrollProgress, setScrollProgress] = useState(0);
 const [tags, setTags] = useState<TagItem[] | string[]>([]);
 const [loading, setLoading] = useState(true);
 const [error, setError] = useState<string | null>(null);
-const [searchQuery, setSearchQuery] = useState("");
-const [sortBy, setSortBy] = useState<"name" | "count">("name");
+const [searchQuery, setSearchQuery] = useState('');
+const [sortBy, setSortBy] = useState<'name' | 'count'>('name');
 ```
 
 ### Performance Optimizations

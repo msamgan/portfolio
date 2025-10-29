@@ -169,12 +169,12 @@ All documentation in `/.copilot/`:
 1. Navigate to `/projects` route
 2. Verify all project images load
 3. Hover over project cards to see:
-   - Category badge appears
-   - External link icon appears
-   - Image zooms
-   - Title becomes gradient
-   - "View Project" text slides in
-   - Glow border appears
+    - Category badge appears
+    - External link icon appears
+    - Image zooms
+    - Title becomes gradient
+    - "View Project" text slides in
+    - Glow border appears
 4. Hover over open source cards
 5. Click GitHub buttons to verify links
 6. Test CTA buttons

@@ -256,28 +256,28 @@
 ### Potential Additions
 
 1. **Reading Time Calculation**
-   - Replace placeholder with actual word count calculation
-   - API should provide word count
+    - Replace placeholder with actual word count calculation
+    - API should provide word count
 
 2. **Tag Filtering**
-   - Click tags to filter posts
-   - Update URL with tag parameter
+    - Click tags to filter posts
+    - Update URL with tag parameter
 
 3. **Search Functionality**
-   - Add search bar to hero section
-   - Filter posts by title/content
+    - Add search bar to hero section
+    - Filter posts by title/content
 
 4. **View Toggle**
-   - Grid vs List view option
-   - User preference saved to localStorage
+    - Grid vs List view option
+    - User preference saved to localStorage
 
 5. **Infinite Scroll**
-   - Alternative to pagination
-   - Load more on scroll
+    - Alternative to pagination
+    - Load more on scroll
 
 6. **Social Sharing**
-   - Share buttons on hover
-   - Copy link functionality
+    - Share buttons on hover
+    - Copy link functionality
 
 ## 📝 Maintenance Notes
 

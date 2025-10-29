@@ -121,7 +121,7 @@ Updated the TagPostsPage to use the same **horizontal card layout** as the BlogP
 ```jsx
 // Mobile: flex-col (stacked)
 // Desktop: flex-row (side-by-side)
-className = "flex flex-col lg:flex-row gap-6";
+className = 'flex flex-col lg:flex-row gap-6';
 ```
 
 ### Image Sizing
@@ -129,14 +129,14 @@ className = "flex flex-col lg:flex-row gap-6";
 ```jsx
 // Desktop: fixed width, aspect-4/3
 // Mobile: full width, aspect-video
-className = "lg:w-80 w-full aspect-video lg:aspect-[4/3]";
+className = 'lg:w-80 w-full aspect-video lg:aspect-[4/3]';
 ```
 
 ### Content Flexibility
 
 ```jsx
 // Takes remaining space
-className = "flex-1 flex flex-col gap-4";
+className = 'flex-1 flex flex-col gap-4';
 ```
 
 ---
@@ -144,11 +144,11 @@ className = "flex-1 flex flex-col gap-4";
 ## Files Modified
 
 1. **Source:**
-   - `/src/pages/TagPostsPage.tsx` - Updated to horizontal layout
+    - `/src/pages/TagPostsPage.tsx` - Updated to horizontal layout
 
 2. **Documentation:**
-   - `/.copilot/tag-posts-page-enhancements.md` - Updated documentation
-   - `/.copilot/tag-posts-horizontal-layout.md` - This summary
+    - `/.copilot/tag-posts-page-enhancements.md` - Updated documentation
+    - `/.copilot/tag-posts-horizontal-layout.md` - This summary
 
 ---
 

@@ -17,14 +17,14 @@ This document outlines the enhancements made to the Services page to improve UI/
 - Added proper imports for all 8 service images from `src/assets/services/`
 - Created a mapping object (`localImages`) to connect data.json paths with actual imported images
 - Images now load correctly for all services:
-  - Web Development
-  - Mobile Development
-  - API Development
-  - Database Design
-  - Code Review
-  - Technical Consulting
-  - Project Management
-  - Software Architecture
+    - Web Development
+    - Mobile Development
+    - API Development
+    - Database Design
+    - Code Review
+    - Technical Consulting
+    - Project Management
+    - Software Architecture
 
 ### 2. Enhanced Services Component (`/src/components/Services.tsx`)
 
@@ -33,20 +33,20 @@ This document outlines the enhancements made to the Services page to improve UI/
 - **Service Icons**: Added custom SVG icons for each service type that appear on hover
 - **Icon Badges**: Small icon badges on the left of service titles for better visual hierarchy
 - **Enhanced Hover Effects**:
-  - Smooth image zoom (scale-110) with 700ms transition
-  - Animated gradient borders on hover
-  - "Learn more" text that slides in from the right
-  - Icon badge that fades in on the image corner
-  - Gradient glow effect around cards
+    - Smooth image zoom (scale-110) with 700ms transition
+    - Animated gradient borders on hover
+    - "Learn more" text that slides in from the right
+    - Icon badge that fades in on the image corner
+    - Gradient glow effect around cards
 - **Better Typography**:
-  - Larger, bolder service titles (text-xl)
-  - Gradient text effect on hover (cyan to violet)
-  - Improved text contrast and readability
+    - Larger, bolder service titles (text-xl)
+    - Gradient text effect on hover (cyan to violet)
+    - Improved text contrast and readability
 - **Visual Enhancements**:
-  - Darker image overlays for better text readability
-  - Animated decorative progress bar at the bottom of each card
-  - Smooth transitions on all interactive elements (500ms duration)
-  - Staggered fade-in animations for cards
+    - Darker image overlays for better text readability
+    - Animated decorative progress bar at the bottom of each card
+    - Smooth transitions on all interactive elements (500ms duration)
+    - Staggered fade-in animations for cards
 
 ### 3. Enhanced Services Page (`/src/pages/ServicesPage.tsx`)
 
@@ -54,19 +54,19 @@ This document outlines the enhancements made to the Services page to improve UI/
 
 - **Scroll Progress Indicator**: Top bar showing scroll position (matching App.tsx)
 - **Hero Section**:
-  - Eye-catching headline with gradient text
-  - Animated background blobs
-  - Professional badge indicator
-  - Stats section showing:
-    - 9+ Years Experience
-    - 50+ Projects Delivered
-    - 8 Service Areas
+    - Eye-catching headline with gradient text
+    - Animated background blobs
+    - Professional badge indicator
+    - Stats section showing:
+        - 9+ Years Experience
+        - 50+ Projects Delivered
+        - 8 Service Areas
 - **CTA Section**:
-  - "Ready to Start Your Project?" call-to-action
-  - Two prominent buttons:
-    - "Get in Touch" (primary - links to email)
-    - "View Contact Info" (secondary - links to contact section)
-  - Gradient background for visual appeal
+    - "Ready to Start Your Project?" call-to-action
+    - Two prominent buttons:
+        - "Get in Touch" (primary - links to email)
+        - "View Contact Info" (secondary - links to contact section)
+    - Gradient background for visual appeal
 - **Scroll to Top Button**: Floating button that appears after 20% scroll
 
 ### 4. Design Consistency
@@ -74,9 +74,9 @@ This document outlines the enhancements made to the Services page to improve UI/
 All enhancements follow the existing theme from App.tsx:
 
 - **Color Palette**:
-  - Cyan (#22d3ee) - Primary
-  - Violet (#a78bfa) - Secondary
-  - Emerald (#34d399) - Accent
+    - Cyan (#22d3ee) - Primary
+    - Violet (#a78bfa) - Secondary
+    - Emerald (#34d399) - Accent
 - **Animations**: Same timing functions and durations
 - **Spacing**: Consistent padding and margins
 - **Typography**: Same font weights and sizes
@@ -121,27 +121,27 @@ src/
 ## Testing Recommendations
 
 1. **Visual Testing**:
-   - Verify all 8 service images load correctly
-   - Check hover effects on service cards
-   - Test scroll progress indicator
-   - Verify scroll-to-top button appears/hides correctly
+    - Verify all 8 service images load correctly
+    - Check hover effects on service cards
+    - Test scroll progress indicator
+    - Verify scroll-to-top button appears/hides correctly
 
 2. **Responsive Testing**:
-   - Test on mobile (cards should stack in single column)
-   - Test on tablet (2-column grid)
-   - Test on desktop (3-column grid)
-   - Verify hero section text sizing across breakpoints
+    - Test on mobile (cards should stack in single column)
+    - Test on tablet (2-column grid)
+    - Test on desktop (3-column grid)
+    - Verify hero section text sizing across breakpoints
 
 3. **Interaction Testing**:
-   - Hover over service cards to see all animations
-   - Click scroll-to-top button
-   - Click CTA buttons
-   - Test smooth scrolling behavior
+    - Hover over service cards to see all animations
+    - Click scroll-to-top button
+    - Click CTA buttons
+    - Test smooth scrolling behavior
 
 4. **Performance Testing**:
-   - Check page load time
-   - Verify smooth animations (60fps)
-   - Check memory usage during interactions
+    - Check page load time
+    - Verify smooth animations (60fps)
+    - Check memory usage during interactions
 
 ## Future Enhancement Ideas
 

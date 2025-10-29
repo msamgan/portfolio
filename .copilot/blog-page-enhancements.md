@@ -23,33 +23,33 @@ The blog page has been transformed from a simple grid layout to a modern, horizo
 - **Aspect Ratio:** `aspect-video` on mobile, `aspect-[4/3]` on desktop
 - **Gradient Fallback:** Beautiful gradient background when no cover image exists
 - **Hover Effects:**
-  - Image scales to 110% with smooth 700ms transition
-  - Dark overlay reduces from 60% to 40% opacity
-  - External link icon appears in top-right corner
-  - Reading time badge always visible in bottom-left
+    - Image scales to 110% with smooth 700ms transition
+    - Dark overlay reduces from 60% to 40% opacity
+    - External link icon appears in top-right corner
+    - Reading time badge always visible in bottom-left
 - **Visual Indicators:**
-  - External link icon (top-right) - appears on hover
-  - Reading time badge (bottom-left) - with clock icon
-  - Gradient overlay for readability
+    - External link icon (top-right) - appears on hover
+    - Reading time badge (bottom-left) - with clock icon
+    - Gradient overlay for readability
 
 #### 3. Content Section Improvements
 
 - **Meta Information:** Enhanced pill-style badges with icons
-  - Date badge with calendar icon
-  - Author badge with user icon
-  - Consistent spacing with bullet separators
+    - Date badge with calendar icon
+    - Author badge with user icon
+    - Consistent spacing with bullet separators
 - **Typography:**
-  - Larger, bolder titles (text-2xl to text-3xl)
-  - Gradient color on hover (cyan → violet → emerald)
-  - Better line-clamp for excerpts (2-3 lines)
+    - Larger, bolder titles (text-2xl to text-3xl)
+    - Gradient color on hover (cyan → violet → emerald)
+    - Better line-clamp for excerpts (2-3 lines)
 - **Tags Display:**
-  - Maximum 3 tags shown
-  - "+X more" indicator for additional tags
-  - Gradient hover effect on tags
+    - Maximum 3 tags shown
+    - "+X more" indicator for additional tags
+    - Gradient hover effect on tags
 - **Call-to-Action:**
-  - "Read article" link with arrow icon
-  - Arrow animates on hover (translateX)
-  - Positioned at bottom-right of card
+    - "Read article" link with arrow icon
+    - Arrow animates on hover (translateX)
+    - Positioned at bottom-right of card
 
 ### 🎭 Interactive States
 
@@ -95,29 +95,29 @@ Desktop (≥ 1024px):
 
 - **Layout:** Matches final horizontal card layout
 - **Skeleton Elements:**
-  - Image placeholder (320px × aspect-4/3)
-  - 2 meta badges
-  - Title placeholder (75% width)
-  - 2 excerpt lines
-  - 3 tag placeholders
+    - Image placeholder (320px × aspect-4/3)
+    - 2 meta badges
+    - Title placeholder (75% width)
+    - 2 excerpt lines
+    - 3 tag placeholders
 - **Animation:** Pulse effect on all elements
 - **Count:** 4 skeleton cards
 
 #### 2. Empty State
 
 - **Center-aligned card with:**
-  - Large icon in rounded background
-  - Clear heading
-  - Helpful message
-  - Proper spacing and hierarchy
+    - Large icon in rounded background
+    - Clear heading
+    - Helpful message
+    - Proper spacing and hierarchy
 
 #### 3. Error State
 
 - **Red-themed alert box with:**
-  - Warning icon
-  - Clear error title
-  - Error message
-  - Backdrop blur effect
+    - Warning icon
+    - Clear error title
+    - Error message
+    - Backdrop blur effect
 
 ### 🔄 Pagination Enhancement
 
@@ -126,9 +126,9 @@ Desktop (≥ 1024px):
 - **Layout:** Flexbox with space-between alignment
 - **Responsive:** Stacks vertically on mobile
 - **Components:**
-  1. Previous button (left)
-  2. Page indicator (center)
-  3. Next button (right)
+    1. Previous button (left)
+    2. Page indicator (center)
+    3. Next button (right)
 
 #### Button States
 

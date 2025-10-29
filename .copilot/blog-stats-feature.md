@@ -77,7 +77,7 @@ A beautiful stats grid has been added to the blog page hero section, positioned 
 
 ```css
 .gradient-text {
-  @apply text-transparent bg-clip-text bg-gradient-to-r 
+    @apply text-transparent bg-clip-text bg-gradient-to-r 
          from-cyan-400 via-violet-400 to-emerald-400;
 }
 ```
@@ -210,31 +210,31 @@ Hero Section
 ### Potential Improvements
 
 1. **Real-time Calculations:**
-   - Calculate actual average read time from posts
-   - Count unique tags for "Topics Covered"
-   - Calculate actual monthly posting rate
+    - Calculate actual average read time from posts
+    - Count unique tags for "Topics Covered"
+    - Calculate actual monthly posting rate
 
 2. **Additional Stats:**
-   - Total views/reads
-   - Most popular category
-   - Latest post date
-   - Total authors (if multi-author blog)
+    - Total views/reads
+    - Most popular category
+    - Latest post date
+    - Total authors (if multi-author blog)
 
 3. **Interactive Stats:**
-   - Click to filter (e.g., click "Topics" to show all tags)
-   - Hover tooltips with more details
-   - Animated counters (count up effect)
+    - Click to filter (e.g., click "Topics" to show all tags)
+    - Hover tooltips with more details
+    - Animated counters (count up effect)
 
 4. **API Integration:**
-   ```typescript
-   // Could fetch from API response
-   const stats = {
-     totalArticles: json.meta?.total || 50,
-     avgReadTime: json.meta?.avgReadTime || 5,
-     topics: json.meta?.topicCount || 10,
-     monthlyPosts: json.meta?.monthlyAvg || 4,
-   };
-   ```
+    ```typescript
+    // Could fetch from API response
+    const stats = {
+        totalArticles: json.meta?.total || 50,
+        avgReadTime: json.meta?.avgReadTime || 5,
+        topics: json.meta?.topicCount || 10,
+        monthlyPosts: json.meta?.monthlyAvg || 4,
+    };
+    ```
 
 ## 📊 Code Structure
 

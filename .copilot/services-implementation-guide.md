@@ -87,9 +87,9 @@ Key patterns used throughout:
 All colors use CSS custom properties from theme:
 
 ```css
---color-bg: #0a0e1a --color-surface: #0f172a --color-text: #f1f5f9
-  --color-muted: #94a3b8 --color-primary: #22d3ee (cyan-400)
-  --color-secondary: #a78bfa (violet-400) --color-accent: #34d399 (emerald-400);
+--color-bg: #0a0e1a --color-surface: #0f172a --color-text: #f1f5f9 --color-muted: #94a3b8
+    --color-primary: #22d3ee (cyan-400) --color-secondary: #a78bfa (violet-400)
+    --color-accent: #34d399 (emerald-400);
 ```
 
 ## Responsive Breakpoints
@@ -103,9 +103,9 @@ Grid layout changes:
 Text sizing:
 
 - Hero heading:
-  - Mobile: text-5xl
-  - Medium: text-6xl
-  - Large: text-7xl
+    - Mobile: text-5xl
+    - Medium: text-6xl
+    - Large: text-7xl
 
 ## Image Specifications
 
@@ -204,13 +204,13 @@ Services are defined in `data.json`:
 
 ```json
 {
-  "services": [
-    {
-      "name": "Service Name",
-      "description": "Service description...",
-      "img": "src/assets/services/ImageName.png"
-    }
-  ]
+    "services": [
+        {
+            "name": "Service Name",
+            "description": "Service description...",
+            "img": "src/assets/services/ImageName.png"
+        }
+    ]
 }
 ```
 

@@ -64,21 +64,21 @@
 
 ```tsx
 <article className="p-6 rounded-2xl bg-white/5">
-  <div className="flex flex-col gap-4">
-    {/* Meta: date, tags inline */}
-    <div className="text-xs">...</div>
+    <div className="flex flex-col gap-4">
+        {/* Meta: date, tags inline */}
+        <div className="text-xs">...</div>
 
-    {/* Title */}
-    <h3 className="text-xl">
-      <a href="#">Title</a>
-    </h3>
+        {/* Title */}
+        <h3 className="text-xl">
+            <a href="#">Title</a>
+        </h3>
 
-    {/* Excerpt */}
-    <p className="text-sm line-clamp-3">...</p>
+        {/* Excerpt */}
+        <p className="text-sm line-clamp-3">...</p>
 
-    {/* CTA */}
-    <a href="#">Read more →</a>
-  </div>
+        {/* CTA */}
+        <a href="#">Read more →</a>
+    </div>
 </article>
 ```
 
@@ -95,33 +95,33 @@
 
 ```tsx
 <article className="card group">
-  <div className="flex lg:flex-row gap-6">
-    {/* Image Section - 320px */}
-    <div className="lg:w-80 aspect-[4/3]">
-      <img className="group-hover:scale-110" />
-      <div>/* overlay */</div>
-      <div>/* 🔗 icon */</div>
-      <div>/* ⏱ badge */</div>
+    <div className="flex lg:flex-row gap-6">
+        {/* Image Section - 320px */}
+        <div className="lg:w-80 aspect-[4/3]">
+            <img className="group-hover:scale-110" />
+            <div>/* overlay */</div>
+            <div>/* 🔗 icon */</div>
+            <div>/* ⏱ badge */</div>
+        </div>
+
+        {/* Content Section - flex-1 */}
+        <div className="flex-1 flex flex-col gap-4">
+            {/* Meta badges */}
+            <div>📅 Date • 👤 Author</div>
+
+            {/* Title */}
+            <h3 className="text-2xl md:text-3xl group-hover:gradient">Title</h3>
+
+            {/* Excerpt */}
+            <p className="line-clamp-2 md:line-clamp-3">...</p>
+
+            {/* Tags & CTA */}
+            <div className="mt-auto flex justify-between">
+                <div>#tag1 #tag2 #tag3 +2 more</div>
+                <div>Read article →</div>
+            </div>
+        </div>
     </div>
-
-    {/* Content Section - flex-1 */}
-    <div className="flex-1 flex flex-col gap-4">
-      {/* Meta badges */}
-      <div>📅 Date • 👤 Author</div>
-
-      {/* Title */}
-      <h3 className="text-2xl md:text-3xl group-hover:gradient">Title</h3>
-
-      {/* Excerpt */}
-      <p className="line-clamp-2 md:line-clamp-3">...</p>
-
-      {/* Tags & CTA */}
-      <div className="mt-auto flex justify-between">
-        <div>#tag1 #tag2 #tag3 +2 more</div>
-        <div>Read article →</div>
-      </div>
-    </div>
-  </div>
 </article>
 ```
 
@@ -166,8 +166,8 @@ Clear visual progression
 
 ```css
 :hover {
-  background: white/10; /* subtle */
-  border-color: white/15;
+    background: white/10; /* subtle */
+    border-color: white/15;
 }
 ```
 
@@ -177,25 +177,25 @@ Clear visual progression
 
 ```css
 :hover {
-  /* Card */
-  transform: scale(1.02);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    /* Card */
+    transform: scale(1.02);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 
-  /* Image */
-  transform: scale(1.1);
+    /* Image */
+    transform: scale(1.1);
 
-  /* Overlay */
-  opacity: 0.4;
+    /* Overlay */
+    opacity: 0.4;
 
-  /* Title */
-  background: gradient(cyan, violet, emerald);
+    /* Title */
+    background: gradient(cyan, violet, emerald);
 
-  /* Icons */
-  opacity: 1;
-  transform: scale(1);
+    /* Icons */
+    opacity: 1;
+    transform: scale(1);
 
-  /* CTA */
-  translatex: 4px;
+    /* CTA */
+    translatex: 4px;
 }
 ```
 
@@ -240,13 +240,13 @@ Intelligent layout shift
 
 ```tsx
 {
-  loading && (
-    <div className="grid md:grid-cols-2 gap-6">
-      {[...Array(6)].map(() => (
-        <div className="h-40 bg-white/5 animate-pulse" />
-      ))}
-    </div>
-  );
+    loading && (
+        <div className="grid md:grid-cols-2 gap-6">
+            {[...Array(6)].map(() => (
+                <div className="h-40 bg-white/5 animate-pulse" />
+            ))}
+        </div>
+    );
 }
 ```
 
@@ -256,23 +256,23 @@ Intelligent layout shift
 
 ```tsx
 {
-  loading && (
-    <div className="space-y-6">
-      {[...Array(4)].map(() => (
-        <div className="card animate-pulse">
-          <div className="flex lg:flex-row gap-6">
-            <div className="lg:w-80 aspect-[4/3] bg-white/10" />
-            <div className="flex-1">
-              {/* Meta badges */}
-              {/* Title */}
-              {/* Excerpt lines */}
-              {/* Tags */}
-            </div>
-          </div>
+    loading && (
+        <div className="space-y-6">
+            {[...Array(4)].map(() => (
+                <div className="card animate-pulse">
+                    <div className="flex lg:flex-row gap-6">
+                        <div className="lg:w-80 aspect-[4/3] bg-white/10" />
+                        <div className="flex-1">
+                            {/* Meta badges */}
+                            {/* Title */}
+                            {/* Excerpt lines */}
+                            {/* Tags */}
+                        </div>
+                    </div>
+                </div>
+            ))}
         </div>
-      ))}
-    </div>
-  );
+    );
 }
 ```
 

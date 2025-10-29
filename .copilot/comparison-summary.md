@@ -62,9 +62,9 @@ All enhancements follow these principles:
 - ✅ Animated gradient borders
 - ✅ Enhanced hero with better stats (21K+ downloads, 5+ projects, 100% open source)
 - ✅ Enhanced open source cards with:
-  - Custom package icons
-  - Download count badges
-  - Type labels
+    - Custom package icons
+    - Download count badges
+    - Type labels
 - ✅ GitHub profile promotional section
 - ✅ Enhanced CTA sections
 - ✅ Scroll progress indicator
@@ -115,18 +115,18 @@ Stagger: 100ms (card delays)
 ### Card Effects (Both Pages)
 
 1. **Default State**:
-   - Subtle gradient background
-   - Light ring border
-   - Soft shadow
+    - Subtle gradient background
+    - Light ring border
+    - Soft shadow
 
 2. **Hover State**:
-   - Scale: 1.0 → 1.02
-   - Image: 1.0 → 1.1
-   - Border opacity: 0 → 1
-   - Glow: Appears
-   - Badges: Fade in
-   - Text: Slides in
-   - Colors: Enhanced
+    - Scale: 1.0 → 1.02
+    - Image: 1.0 → 1.1
+    - Border opacity: 0 → 1
+    - Glow: Appears
+    - Badges: Fade in
+    - Text: Slides in
+    - Colors: Enhanced
 
 ### Typography Scale
 

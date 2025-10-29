@@ -13,12 +13,10 @@
 
 ```css
 /* Gradients */
---gradient-primary: from-cyan-500 via-violet-500 to-emerald-500
-  --gradient-text: from-white via-cyan-100 to-violet-200
-  --gradient-hover: from-cyan-300 via-violet-300 to-emerald-300
-  /* Backgrounds */ --card-bg: from-[var(--color-surface)]/60
-  to-[var(--color-surface)]/40 --overlay-light: black/40
-  --overlay-dark: black/80;
+--gradient-primary: from-cyan-500 via-violet-500 to-emerald-500 --gradient-text: from-white
+    via-cyan-100 to-violet-200 --gradient-hover: from-cyan-300 via-violet-300 to-emerald-300
+    /* Backgrounds */ --card-bg: from-[var(--color-surface)]/60 to-[var(--color-surface)]/40
+    --overlay-light: black/40 --overlay-dark: black/80;
 ```
 
 ### Typography
@@ -42,37 +40,37 @@ color: var(--color-muted)
 
 ```tsx
 <article className="card group">
-  <div className="flex flex-col lg:flex-row gap-6">
-    {/* Image Section - 320px wide on desktop */}
-    <div className="relative lg:w-80 ...">
-      <img /> {/* or gradient placeholder */}
-      <div>/* overlay */</div>
-      <div>/* external link icon */</div>
-      <div>/* reading time badge */</div>
+    <div className="flex flex-col lg:flex-row gap-6">
+        {/* Image Section - 320px wide on desktop */}
+        <div className="relative lg:w-80 ...">
+            <img /> {/* or gradient placeholder */}
+            <div>/* overlay */</div>
+            <div>/* external link icon */</div>
+            <div>/* reading time badge */</div>
+        </div>
+
+        {/* Content Section - flex-1 */}
+        <div className="flex-1 flex flex-col gap-4">
+            {/* Meta badges */}
+            <div className="flex items-center gap-3">
+                <span>/* date */</span>
+                <span>• </span>
+                <span>/* author */</span>
+            </div>
+
+            {/* Title */}
+            <h3>/* post title */</h3>
+
+            {/* Excerpt */}
+            <p>/* post excerpt */</p>
+
+            {/* Tags & CTA */}
+            <div className="mt-auto flex justify-between">
+                <div>/* tags */</div>
+                <div>/* read more link */</div>
+            </div>
+        </div>
     </div>
-
-    {/* Content Section - flex-1 */}
-    <div className="flex-1 flex flex-col gap-4">
-      {/* Meta badges */}
-      <div className="flex items-center gap-3">
-        <span>/* date */</span>
-        <span>• </span>
-        <span>/* author */</span>
-      </div>
-
-      {/* Title */}
-      <h3>/* post title */</h3>
-
-      {/* Excerpt */}
-      <p>/* post excerpt */</p>
-
-      {/* Tags & CTA */}
-      <div className="mt-auto flex justify-between">
-        <div>/* tags */</div>
-        <div>/* read more link */</div>
-      </div>
-    </div>
-  </div>
 </article>
 ```
 
@@ -82,9 +80,9 @@ color: var(--color-muted)
 
 ```css
 .card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.5);
-  ring: white/15;
+    transform: scale(1.02);
+    box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.5);
+    ring: white/15;
 }
 ```
 
@@ -92,8 +90,8 @@ color: var(--color-muted)
 
 ```css
 img:hover {
-  transform: scale(1.1);
-  transition: 700ms;
+    transform: scale(1.1);
+    transition: 700ms;
 }
 ```
 
@@ -101,9 +99,9 @@ img:hover {
 
 ```css
 h3:hover {
-  background: linear-gradient(cyan-300, violet-300, emerald-300);
-  -webkit-background-clip: text;
-  color: transparent;
+    background: linear-gradient(cyan-300, violet-300, emerald-300);
+    -webkit-background-clip: text;
+    color: transparent;
 }
 ```
 
@@ -212,17 +210,17 @@ Entire card opens post in new tab
 
 ```typescript
 interface ApiPost {
-  id?: number | string;
-  title?: string;
-  slug?: string;
-  excerpt?: string;
-  content?: string;
-  created_at?: string;
-  published_at?: string;
-  updated_at?: string;
-  author?: string;
-  cover_image?: string;
-  tags?: string[] | { name: string }[];
+    id?: number | string;
+    title?: string;
+    slug?: string;
+    excerpt?: string;
+    content?: string;
+    created_at?: string;
+    published_at?: string;
+    updated_at?: string;
+    author?: string;
+    cover_image?: string;
+    tags?: string[] | { name: string }[];
 }
 ```
 

@@ -13,13 +13,13 @@ A beautiful, functional search bar has been added to the blog page hero section 
 - **Location:** Hero section, below the description text
 - **Styling:** Full-width rounded pill design matching theme
 - **Icons:**
-  - Magnifying glass icon (left side)
-  - Clear button with X icon (right side, appears when typing)
-  - Loading spinner (appears while searching)
+    - Magnifying glass icon (left side)
+    - Clear button with X icon (right side, appears when typing)
+    - Loading spinner (appears while searching)
 - **States:**
-  - Default: Semi-transparent background with subtle border
-  - Focus: Cyan ring glow effect
-  - Hover: Slightly brighter background
+    - Default: Semi-transparent background with subtle border
+    - Focus: Cyan ring glow effect
+    - Hover: Slightly brighter background
 
 #### Visual Feedback
 
@@ -82,29 +82,29 @@ Now shows different messages based on context:
 #### State Variables
 
 ```typescript
-const [searchQuery, setSearchQuery] = useState("");
-const [debouncedSearch, setDebouncedSearch] = useState("");
+const [searchQuery, setSearchQuery] = useState('');
+const [debouncedSearch, setDebouncedSearch] = useState('');
 ```
 
 #### Debounce Effect
 
 ```typescript
 useEffect(() => {
-  const timer = setTimeout(() => {
-    setDebouncedSearch(searchQuery);
-    setPage(1); // Reset to first page
-  }, 500);
-  return () => clearTimeout(timer);
+    const timer = setTimeout(() => {
+        setDebouncedSearch(searchQuery);
+        setPage(1); // Reset to first page
+    }, 500);
+    return () => clearTimeout(timer);
 }, [searchQuery]);
 ```
 
 #### API Integration
 
 ```typescript
-const url = new URL("https://msamgan.dev/api/post/list/paginated");
-url.searchParams.set("page", String(page));
+const url = new URL('https://msamgan.dev/api/post/list/paginated');
+url.searchParams.set('page', String(page));
 if (debouncedSearch.trim()) {
-  url.searchParams.set("query", debouncedSearch.trim());
+    url.searchParams.set('query', debouncedSearch.trim());
 }
 ```
 
@@ -112,7 +112,7 @@ if (debouncedSearch.trim()) {
 
 ```typescript
 useEffect(() => {
-  // ... API call logic
+    // ... API call logic
 }, [page, debouncedSearch]); // Refetches when either changes
 ```
 
@@ -183,7 +183,8 @@ useEffect(() => {
 ```html
 {debouncedSearch && (
 <div className="mt-3 ... animate-fade-in-up">
-  Searching for: <span className="text-cyan-300">"{debouncedSearch}"</span>
+    Searching for:
+    <span className="text-cyan-300">"{debouncedSearch}"</span>
 </div>
 )}
 ```

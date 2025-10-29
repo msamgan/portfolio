@@ -24,14 +24,14 @@
 
 - ✅ Scroll progress indicator at top (matches main app)
 - ✅ Hero section with:
-  - Animated background blobs
-  - Professional badge
-  - Large gradient headline
-  - Stats row (9+ years, 50+ projects, 8 services)
+    - Animated background blobs
+    - Professional badge
+    - Large gradient headline
+    - Stats row (9+ years, 50+ projects, 8 services)
 - ✅ CTA section with:
-  - Clear call-to-action text
-  - Two prominent buttons (email + contact info)
-  - Gradient background
+    - Clear call-to-action text
+    - Two prominent buttons (email + contact info)
+    - Gradient background
 - ✅ Scroll-to-top button (appears after 20% scroll)
 
 ## 🎨 Design Consistency

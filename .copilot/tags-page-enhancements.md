@@ -20,31 +20,31 @@ The Tags page has been completely redesigned to match the modern, professional a
 - Large gradient headline (text-5xl to text-7xl responsive)
 - Descriptive subtitle with improved typography
 - **Live Stats Display:**
-  - Total Tags count
-  - Total Tagged Items count
-  - 100% Categorized indicator
-  - Stats appear with staggered fade-in animations (0.2s, 0.3s, 0.4s delays)
-  - Gradient text effect on numbers
+    - Total Tags count
+    - Total Tagged Items count
+    - 100% Categorized indicator
+    - Stats appear with staggered fade-in animations (0.2s, 0.3s, 0.4s delays)
+    - Gradient text effect on numbers
 
 #### 2. Search & Filter Controls
 
 **New Features:**
 
 - **Search Input:**
-  - Icon-enhanced input field with magnifying glass
-  - Real-time filtering as you type
-  - Clear button (X) appears when there's a search query
-  - Focus states with cyan ring and border
-  - Placeholder text styling
+    - Icon-enhanced input field with magnifying glass
+    - Real-time filtering as you type
+    - Clear button (X) appears when there's a search query
+    - Focus states with cyan ring and border
+    - Placeholder text styling
 - **Sort Dropdown:**
-  - Sort by Name (A-Z)
-  - Sort by Count (High to Low)
-  - Custom styled select with chevron icon
-  - Consistent with search input styling
+    - Sort by Name (A-Z)
+    - Sort by Count (High to Low)
+    - Custom styled select with chevron icon
+    - Consistent with search input styling
 - **Results Counter:**
-  - Shows count of visible tags
-  - Updates with search query
-  - Displays active search term
+    - Shows count of visible tags
+    - Updates with search query
+    - Displays active search term
 
 #### 3. Enhanced Tag Cards
 
@@ -53,15 +53,15 @@ The Tags page has been completely redesigned to match the modern, professional a
 - **Tag Icon:** Small tag icon on left with cyan color
 - **Gradient Glow:** Background glow effect on hover (cyan → violet → emerald)
 - **Count Badge:** Pills showing number of tagged items
-  - Gradient background (cyan/violet)
-  - Increases opacity on hover
+    - Gradient background (cyan/violet)
+    - Increases opacity on hover
 - **Hover Effects:**
-  - Card scales up (1.05) smoothly
-  - Tag icon scales (1.10)
-  - Text transitions to gradient (cyan → violet)
-  - Border becomes visible
-  - Animated gradient progress bar at bottom
-  - Multiple 300-500ms transitions for smooth feel
+    - Card scales up (1.05) smoothly
+    - Tag icon scales (1.10)
+    - Text transitions to gradient (cyan → violet)
+    - Border becomes visible
+    - Animated gradient progress bar at bottom
+    - Multiple 300-500ms transitions for smooth feel
 - **Staggered Animation:** Cards fade in with progressive delay (max 1s)
 
 #### 4. Loading State
@@ -148,8 +148,8 @@ Stats          text-3xl  text-4xl  text-4xl
 - Gradient background effect
 - Clear value proposition
 - Two prominent CTAs:
-  1. **View Blog** (Primary) - Gradient button with cyan glow
-  2. **Browse Projects** (Secondary) - Glassmorphism style
+    1. **View Blog** (Primary) - Gradient button with cyan glow
+    2. **Browse Projects** (Secondary) - Glassmorphism style
 - Links to relevant content areas
 - Matches design of other pages
 
@@ -236,17 +236,17 @@ const [scrollProgress, setScrollProgress] = useState(0);
 const [tags, setTags] = useState<TagItem[] | string[]>([]);
 const [loading, setLoading] = useState(true);
 const [error, setError] = useState<string | null>(null);
-const [searchQuery, setSearchQuery] = useState("");
-const [sortBy, setSortBy] = useState<"name" | "count">("name");
+const [searchQuery, setSearchQuery] = useState('');
+const [sortBy, setSortBy] = useState<'name' | 'count'>('name');
 ```
 
 ### Computed Values
 
 ```typescript
 const filteredTags = useMemo(() => {
-  // Filter by search query
-  // Sort by name or count
-  // Return processed array
+    // Filter by search query
+    // Sort by name or count
+    // Return processed array
 }, [tags, searchQuery, sortBy]);
 ```
 

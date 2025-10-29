@@ -8,29 +8,29 @@
 
 - ✅ Scroll progress indicator at top (matches other pages)
 - ✅ Enhanced hero section with:
-  - Three animated background blobs (staggered pulse)
-  - Professional "Content Organization" badge
-  - Large gradient headline
-  - Live stats row (Total Tags, Tagged Items, 100% Categorized)
+    - Three animated background blobs (staggered pulse)
+    - Professional "Content Organization" badge
+    - Large gradient headline
+    - Live stats row (Total Tags, Tagged Items, 100% Categorized)
 - ✅ Search & filter controls:
-  - Real-time search with icon
-  - Sort by name or count dropdown
-  - Results counter
-  - Clear search button
+    - Real-time search with icon
+    - Sort by name or count dropdown
+    - Results counter
+    - Clear search button
 - ✅ Enhanced tag cards with:
-  - Tag icon on left
-  - Gradient glow on hover
-  - Count badges
-  - Animated gradient borders
-  - Progress bar footer
-  - Staggered fade-in animations
+    - Tag icon on left
+    - Gradient glow on hover
+    - Count badges
+    - Animated gradient borders
+    - Progress bar footer
+    - Staggered fade-in animations
 - ✅ Loading state with skeleton UI
 - ✅ Enhanced error state with retry button
 - ✅ Empty state for no results
 - ✅ CTA section with:
-  - Clear call-to-action text
-  - Two prominent buttons (Blog + Projects)
-  - Gradient background
+    - Clear call-to-action text
+    - Two prominent buttons (Blog + Projects)
+    - Gradient background
 - ✅ Scroll-to-top button (appears after 20% scroll)
 
 ## 🎨 Design Consistency
@@ -80,12 +80,12 @@ All changes follow the existing theme:
 ### Tag Cards
 
 - Hover to see multiple effects:
-  - Card scales up (1.05)
-  - Icon scales (1.10)
-  - Text becomes gradient
-  - Glow effect appears
-  - Border becomes visible
-  - Progress bar animates
+    - Card scales up (1.05)
+    - Icon scales (1.10)
+    - Text becomes gradient
+    - Glow effect appears
+    - Border becomes visible
+    - Progress bar animates
 - Count badges for tagged items
 - Staggered fade-in on load
 

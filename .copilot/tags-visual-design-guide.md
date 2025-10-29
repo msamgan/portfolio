@@ -304,8 +304,8 @@ Behavior:
 ### Primary Colors
 
 ```css
---cyan-500: #06b6d4 /* Icons, accents */ --violet-500: #8b5cf6
-  /* Accents, gradients */ --emerald-500: #10b981 /* Tertiary accent */;
+--cyan-500: #06b6d4 /* Icons, accents */ --violet-500: #8b5cf6 /* Accents, gradients */
+    --emerald-500: #10b981 /* Tertiary accent */;
 ```
 
 ### Opacity Levels
@@ -485,7 +485,10 @@ Focus Ring:
 
 ```html
 <button aria-label="Scroll to top">...</button>
-<input placeholder="Search tags..." aria-label="Search tags" />
+<input
+    placeholder="Search tags..."
+    aria-label="Search tags"
+/>
 <button aria-label="Clear search">...</button>
 ```
 
@@ -493,16 +496,17 @@ Focus Ring:
 
 ```html
 <main>
-  for main content
-  <section>
-    for distinct sections
-    <h1>
-      ,
-      <h2>
-        for proper heading hierarchy <button>for interactive elements</button>
-      </h2>
-    </h1>
-  </section>
+    for main content
+    <section>
+        for distinct sections
+        <h1>
+            ,
+            <h2>
+                for proper heading hierarchy
+                <button>for interactive elements</button>
+            </h2>
+        </h1>
+    </section>
 </main>
 ```
 
@@ -531,7 +535,7 @@ width, height, left, right, top, bottom
 
 ```css
 .tag-card:hover {
-  will-change: transform;
+    will-change: transform;
 }
 ```
 
@@ -540,7 +544,7 @@ width, height, left, right, top, bottom
 ```typescript
 // useMemo prevents unnecessary recalculation
 const filteredTags = useMemo(() => {
-  // Only recalc when dependencies change
+    // Only recalc when dependencies change
 }, [tags, searchQuery, sortBy]);
 ```
 
