@@ -1,51 +1,101 @@
-import Section from './Section'
+import Section from "./Section";
 
 const skills = [
   {
-    title: 'Languages & Frameworks',
+    title: "Languages & Frameworks",
     icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+      <svg
+        className="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+        />
       </svg>
     ),
-    items: ['PHP', 'Laravel', 'JavaScript', 'TypeScript', 'Node.js', 'React'],
-    gradient: 'from-cyan-500 to-blue-500'
+    items: ["PHP", "Laravel", "JavaScript", "TypeScript", "Node.js", "React"],
+    gradient: "from-cyan-500 to-blue-500",
   },
   {
-    title: 'Cloud & DevOps',
+    title: "Cloud & DevOps",
     icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+      <svg
+        className="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+        />
       </svg>
     ),
-    items: ['AWS', 'Azure', 'GCP', 'CI/CD', 'Docker', 'GitHub Actions'],
-    gradient: 'from-violet-500 to-purple-500'
+    items: ["AWS", "Azure", "GCP", "CI/CD", "Docker", "GitHub Actions"],
+    gradient: "from-violet-500 to-purple-500",
   },
   {
-    title: 'Databases & Messaging',
+    title: "Databases & Messaging",
     icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+      <svg
+        className="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
+        />
       </svg>
     ),
-    items: ['MySQL', 'PostgreSQL', 'MongoDB', 'Redis', 'RabbitMQ'],
-    gradient: 'from-emerald-500 to-green-500'
+    items: ["MySQL", "PostgreSQL", "MongoDB", "Redis", "RabbitMQ"],
+    gradient: "from-emerald-500 to-green-500",
   },
   {
-    title: 'Practices',
+    title: "Practices",
     icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      <svg
+        className="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+        />
       </svg>
     ),
-    items: ['System Design', 'API Integrations', 'ERP', 'Testing', 'Performance'],
-    gradient: 'from-amber-500 to-orange-500'
+    items: [
+      "System Design",
+      "API Integrations",
+      "ERP",
+      "Testing",
+      "Performance",
+    ],
+    gradient: "from-amber-500 to-orange-500",
   },
-]
+];
 
 export default function Skills() {
   return (
-    <Section id="skills" title="Skills & Tech" subtitle="A toolbox crafted by building at scale.">
+    <Section
+      id="skills"
+      title="Skills & Tech"
+      subtitle="A toolbox crafted by building at scale."
+    >
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {skills.map((group, index) => (
           <div
@@ -54,12 +104,14 @@ export default function Skills() {
             style={{ animationDelay: `${index * 0.1}s` }}
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className={`p-2 rounded-lg bg-gradient-to-br ${group.gradient} bg-opacity-10`}>
-                <div className="text-white">
-                  {group.icon}
-                </div>
+              <div
+                className={`p-2 rounded-lg bg-gradient-to-br ${group.gradient} bg-opacity-10`}
+              >
+                <div className="text-white">{group.icon}</div>
               </div>
-              <h3 className="text-lg font-semibold text-white">{group.title}</h3>
+              <h3 className="text-lg font-semibold text-white">
+                {group.title}
+              </h3>
             </div>
             <div className="flex flex-wrap gap-2">
               {group.items.map((item) => (
@@ -73,7 +125,9 @@ export default function Skills() {
             </div>
 
             {/* Hover effect indicator */}
-            <div className={`mt-4 h-1 w-0 rounded-full bg-gradient-to-r ${group.gradient} transition-all duration-500 group-hover:w-full`} />
+            <div
+              className={`mt-4 h-1 w-0 rounded-full bg-gradient-to-r ${group.gradient} transition-all duration-500 group-hover:w-full`}
+            />
           </div>
         ))}
       </div>
@@ -102,5 +156,5 @@ export default function Skills() {
         </div>
       </div>
     </Section>
-  )
+  );
 }

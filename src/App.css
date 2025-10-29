@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -18,16 +18,42 @@
   --section-spacing: 6rem;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    "Oxygen",
+    "Ubuntu",
+    "Cantarell",
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    sans-serif;
   background:
-    radial-gradient(ellipse 1400px 800px at 10% 0%, rgba(34,211,238,0.08), transparent 50%),
-    radial-gradient(ellipse 1200px 700px at 90% 30%, rgba(167,139,250,0.06), transparent 50%),
-    radial-gradient(ellipse 1000px 600px at 50% 100%, rgba(52,211,153,0.04), transparent 50%),
+    radial-gradient(
+      ellipse 1400px 800px at 10% 0%,
+      rgba(34, 211, 238, 0.08),
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse 1200px 700px at 90% 30%,
+      rgba(167, 139, 250, 0.06),
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse 1000px 600px at 50% 100%,
+      rgba(52, 211, 153, 0.04),
+      transparent 50%
+    ),
     linear-gradient(180deg, var(--color-bg) 0%, #05070f 100%);
   color: var(--color-text);
   overflow-x: hidden;
@@ -49,12 +75,20 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+  background: linear-gradient(
+    180deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--color-secondary), var(--color-accent));
+  background: linear-gradient(
+    180deg,
+    var(--color-secondary),
+    var(--color-accent)
+  );
 }
 
 /* Selection color */
@@ -65,7 +99,9 @@ html {
 
 /* Tailwind layers for component polish */
 @layer base {
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     @apply tracking-tight;
   }
 
@@ -78,11 +114,11 @@ html {
   /* Button styles */
   .btn {
     @apply inline-flex items-center gap-2 rounded-full px-6 py-3 font-medium transition-all duration-300 relative overflow-hidden;
-    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.4);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
   }
 
   .btn::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -91,7 +127,9 @@ html {
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
     transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
+    transition:
+      width 0.6s,
+      height 0.6s;
   }
 
   .btn:hover::before {
@@ -101,11 +139,15 @@ html {
 
   .btn-primary {
     @apply bg-gradient-to-r from-cyan-500 to-cyan-400 text-black hover:from-cyan-400 hover:to-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400/50;
-    box-shadow: 0 0 20px rgba(34, 211, 238, 0.3), 0 10px 30px -10px rgba(0,0,0,0.4);
+    box-shadow:
+      0 0 20px rgba(34, 211, 238, 0.3),
+      0 10px 30px -10px rgba(0, 0, 0, 0.4);
   }
 
   .btn-primary:hover {
-    box-shadow: 0 0 30px rgba(34, 211, 238, 0.5), 0 15px 40px -10px rgba(0,0,0,0.5);
+    box-shadow:
+      0 0 30px rgba(34, 211, 238, 0.5),
+      0 15px 40px -10px rgba(0, 0, 0, 0.5);
     transform: translateY(-2px);
   }
 
@@ -121,20 +163,26 @@ html {
   }
 
   .card::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--color-primary), var(--color-secondary), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-primary),
+      var(--color-secondary),
+      transparent
+    );
     opacity: 0;
     transition: opacity 0.3s;
   }
 
   .card:hover {
     @apply ring-white/15 transform scale-[1.02];
-    box-shadow: 0 20px 60px -15px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.5);
   }
 
   .card:hover::before {
@@ -163,13 +211,20 @@ html {
   }
 
   .gradient-border::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     border-radius: inherit;
     padding: 2px;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary), var(--color-accent));
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-secondary),
+      var(--color-accent)
+    );
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     mask-composite: exclude;
     opacity: 0.5;
     transition: opacity 0.3s;
@@ -197,7 +252,8 @@ html {
 
   /* Floating animation */
   @keyframes float {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0px);
     }
     50% {
@@ -228,7 +284,9 @@ html {
   }
 
   .glow:hover {
-    box-shadow: 0 0 30px rgba(34, 211, 238, 0.5), 0 0 60px rgba(34, 211, 238, 0.2);
+    box-shadow:
+      0 0 30px rgba(34, 211, 238, 0.5),
+      0 0 60px rgba(34, 211, 238, 0.2);
   }
 
   /* Link hover effect */
@@ -237,13 +295,17 @@ html {
   }
 
   .link-hover::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 100%;
     height: 1px;
     bottom: -2px;
     left: 0;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    background: linear-gradient(
+      90deg,
+      var(--color-primary),
+      var(--color-secondary)
+    );
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.3s ease;
@@ -312,13 +374,17 @@ html {
   }
 
   .post-content a::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 100%;
     height: 1px;
     bottom: -1px;
     left: 0;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    background: linear-gradient(
+      90deg,
+      var(--color-primary),
+      var(--color-secondary)
+    );
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.3s ease;
@@ -375,12 +441,16 @@ html {
 
   .post-content img {
     @apply rounded-xl border border-white/10 shadow-2xl my-8 w-full;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition:
+      transform 0.3s,
+      box-shadow 0.3s;
   }
 
   .post-content img:hover {
     transform: scale(1.02);
-    box-shadow: 0 25px 70px -20px rgba(0,0,0,0.6), 0 0 30px rgba(34,211,238,0.15);
+    box-shadow:
+      0 25px 70px -20px rgba(0, 0, 0, 0.6),
+      0 0 30px rgba(34, 211, 238, 0.15);
   }
 
   .post-content hr {
@@ -403,13 +473,18 @@ html {
   }
 
   .post-content pre::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-accent));
+    background: linear-gradient(
+      90deg,
+      var(--color-primary),
+      var(--color-secondary),
+      var(--color-accent)
+    );
   }
 
   .post-content pre code {
@@ -424,17 +499,25 @@ html {
   }
 
   .post-content pre::-webkit-scrollbar-track {
-    background: rgba(0,0,0,0.2);
+    background: rgba(0, 0, 0, 0.2);
     border-radius: 4px;
   }
 
   .post-content pre::-webkit-scrollbar-thumb {
-    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    background: linear-gradient(
+      90deg,
+      var(--color-primary),
+      var(--color-secondary)
+    );
     border-radius: 4px;
   }
 
   .post-content pre::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
+    background: linear-gradient(
+      90deg,
+      var(--color-secondary),
+      var(--color-accent)
+    );
   }
 
   /* Tables */
@@ -443,7 +526,11 @@ html {
   }
 
   .post-content thead {
-    background: linear-gradient(135deg, rgba(34,211,238,0.1), rgba(167,139,250,0.1));
+    background: linear-gradient(
+      135deg,
+      rgba(34, 211, 238, 0.1),
+      rgba(167, 139, 250, 0.1)
+    );
   }
 
   .post-content th {
@@ -459,7 +546,7 @@ html {
   }
 
   .post-content tbody tr:hover {
-    background: rgba(34,211,238,0.05);
+    background: rgba(34, 211, 238, 0.05);
   }
 
   /* Video embeds */

@@ -5,6 +5,7 @@
 ### ✅ Enhanced UI/UX
 
 #### Tags Page (`/src/pages/TagsPage.tsx`)
+
 - ✅ Scroll progress indicator at top (matches other pages)
 - ✅ Enhanced hero section with:
   - Three animated background blobs (staggered pulse)
@@ -35,6 +36,7 @@
 ## 🎨 Design Consistency
 
 All changes follow the existing theme:
+
 - Same color palette (cyan, violet, emerald)
 - Matching animation timings (300ms, 500ms, 700ms)
 - Consistent spacing and typography
@@ -62,18 +64,21 @@ All changes follow the existing theme:
 ## 🎯 Key Features
 
 ### Hero Section
+
 - Eye-catching headline with gradient text
 - Three animated background blobs
 - Live stats that update based on API data
 - Fully responsive
 
 ### Search & Filter
+
 - Real-time search (instant filtering)
 - Sort by name (A-Z) or count (high to low)
 - Clear search button appears when typing
 - Results counter shows filtered count
 
 ### Tag Cards
+
 - Hover to see multiple effects:
   - Card scales up (1.05)
   - Icon scales (1.10)
@@ -85,6 +90,7 @@ All changes follow the existing theme:
 - Staggered fade-in on load
 
 ### CTA Section
+
 - Clear value proposition
 - Links to Blog and Projects pages
 - Consistent with other pages
@@ -98,6 +104,7 @@ All changes follow the existing theme:
 ## 🎬 Animations
 
 All animations are smooth and performant:
+
 - Card hover: 300ms ease
 - Icon scale: 300ms ease
 - Glow effect: 500ms transition
@@ -116,18 +123,21 @@ All animations are smooth and performant:
 ## 🎨 Visual Features
 
 ### Color Gradients
+
 - **Text Gradient:** white → cyan-100 → violet-200
 - **Button Gradient:** cyan-500 → violet-500
 - **Progress Gradient:** cyan → violet → emerald
 - **Glow Gradient:** cyan/20 → violet/20 → emerald/20
 
 ### Card Effects
+
 - Subtle card border (white/10)
 - Glassmorphism background
 - Gradient glow on hover
 - Animated bottom border
 
 ### Typography
+
 - Hero: text-5xl to text-7xl (responsive)
 - Heading: text-2xl
 - Tags: text-sm
@@ -136,6 +146,7 @@ All animations are smooth and performant:
 ## 🔍 Search Feature Details
 
 ### How It Works
+
 1. User types in search box
 2. `filteredTags` useMemo recalculates
 3. Grid updates instantly
@@ -143,6 +154,7 @@ All animations are smooth and performant:
 5. Empty state if no matches
 
 ### Performance
+
 - Uses `useMemo` for optimization
 - Only recalculates when dependencies change
 - Handles large tag lists efficiently
@@ -150,10 +162,12 @@ All animations are smooth and performant:
 ## 📊 Sort Feature Details
 
 ### Sort Options
+
 1. **Name (A-Z):** Alphabetical order
 2. **Count:** By number of tagged items (descending)
 
 ### Implementation
+
 - Dropdown select with custom styling
 - Maintains search filter when sorting
 - Smooth reordering animation (stagger effect)
@@ -179,18 +193,23 @@ All animations are smooth and performant:
 ## 🛠️ Maintenance
 
 ### To Modify Stats
+
 Edit the stats calculation in the hero section:
+
 ```typescript
 {Array.isArray(tags) ? tags.length : 0}+
 ```
 
 ### To Add New Sort Options
+
 1. Update `sortBy` state type
 2. Add option to select dropdown
 3. Update sort logic in `filteredTags` useMemo
 
 ### To Change Tag Card Layout
+
 Modify the grid columns in the CSS:
+
 ```
 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5
 ```
@@ -207,4 +226,3 @@ grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5
 **Last Updated:** October 28, 2025
 **Design System:** Fully consistent with portfolio theme
 **Performance:** Optimized with useMemo and GPU-accelerated animations
-

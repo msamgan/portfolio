@@ -3,6 +3,7 @@
 ## Layout Transformation
 
 ### BEFORE: Grid Layout
+
 ```
 ┌─────────────────────────────────────────┐
 │  ┌─────────────┐    ┌─────────────┐    │
@@ -17,6 +18,7 @@
 ```
 
 **Characteristics:**
+
 - 2-column grid (md:grid-cols-2)
 - Equal width cards
 - Minimal visual hierarchy
@@ -25,6 +27,7 @@
 - Compact information display
 
 ### AFTER: Horizontal Cards
+
 ```
 ┌─────────────────────────────────────────────────────────┐
 │  ┌────────┐  ┌─────────────────────────────────────┐  │
@@ -45,6 +48,7 @@
 ```
 
 **Characteristics:**
+
 - Full-width horizontal cards
 - 320px fixed-width images on desktop
 - Clear left-to-right reading flow
@@ -57,20 +61,21 @@
 ### Card Structure
 
 #### BEFORE
+
 ```tsx
 <article className="p-6 rounded-2xl bg-white/5">
   <div className="flex flex-col gap-4">
     {/* Meta: date, tags inline */}
     <div className="text-xs">...</div>
-    
+
     {/* Title */}
     <h3 className="text-xl">
       <a href="#">Title</a>
     </h3>
-    
+
     {/* Excerpt */}
     <p className="text-sm line-clamp-3">...</p>
-    
+
     {/* CTA */}
     <a href="#">Read more →</a>
   </div>
@@ -78,6 +83,7 @@
 ```
 
 **Issues:**
+
 - No image preview
 - Cramped layout
 - Tags mixed with date
@@ -86,6 +92,7 @@
 - Basic hover state
 
 #### AFTER
+
 ```tsx
 <article className="card group">
   <div className="flex lg:flex-row gap-6">
@@ -96,20 +103,18 @@
       <div>/* 🔗 icon */</div>
       <div>/* ⏱ badge */</div>
     </div>
-    
+
     {/* Content Section - flex-1 */}
     <div className="flex-1 flex flex-col gap-4">
       {/* Meta badges */}
       <div>📅 Date • 👤 Author</div>
-      
+
       {/* Title */}
-      <h3 className="text-2xl md:text-3xl group-hover:gradient">
-        Title
-      </h3>
-      
+      <h3 className="text-2xl md:text-3xl group-hover:gradient">Title</h3>
+
       {/* Excerpt */}
       <p className="line-clamp-2 md:line-clamp-3">...</p>
-      
+
       {/* Tags & CTA */}
       <div className="mt-auto flex justify-between">
         <div>#tag1 #tag2 #tag3 +2 more</div>
@@ -121,6 +126,7 @@
 ```
 
 **Improvements:**
+
 - ✅ Large image preview
 - ✅ Spacious layout
 - ✅ Separated meta badges
@@ -132,6 +138,7 @@
 ## Visual Hierarchy
 
 ### BEFORE
+
 ```
 1. Date/Tags (equal weight)
 2. Title
@@ -142,6 +149,7 @@ All elements compete for attention
 ```
 
 ### AFTER
+
 ```
 1. Image (primary visual anchor)
 2. Title (large, bold)
@@ -155,6 +163,7 @@ Clear visual progression
 ## Hover Effects Comparison
 
 ### BEFORE
+
 ```css
 :hover {
   background: white/10; /* subtle */
@@ -165,27 +174,28 @@ Clear visual progression
 **Interaction:** Minimal feedback
 
 ### AFTER
+
 ```css
 :hover {
   /* Card */
   transform: scale(1.02);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-  
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+
   /* Image */
   transform: scale(1.1);
-  
+
   /* Overlay */
   opacity: 0.4;
-  
+
   /* Title */
   background: gradient(cyan, violet, emerald);
-  
+
   /* Icons */
   opacity: 1;
-  transform: scale(1.0);
-  
+  transform: scale(1);
+
   /* CTA */
-  translateX: 4px;
+  translatex: 4px;
 }
 ```
 
@@ -194,6 +204,7 @@ Clear visual progression
 ## Responsive Behavior
 
 ### BEFORE
+
 ```
 Mobile:  1 column
 Tablet:  2 columns
@@ -203,6 +214,7 @@ Simple grid adaptation
 ```
 
 ### AFTER
+
 ```
 Mobile (<1024px):
 ┌─────────────┐
@@ -225,37 +237,43 @@ Intelligent layout shift
 ## Loading States
 
 ### BEFORE
+
 ```tsx
-{loading && (
-  <div className="grid md:grid-cols-2 gap-6">
-    {[...Array(6)].map(() => (
-      <div className="h-40 bg-white/5 animate-pulse" />
-    ))}
-  </div>
-)}
+{
+  loading && (
+    <div className="grid md:grid-cols-2 gap-6">
+      {[...Array(6)].map(() => (
+        <div className="h-40 bg-white/5 animate-pulse" />
+      ))}
+    </div>
+  );
+}
 ```
 
 **Experience:** Generic rectangles, doesn't match final layout
 
 ### AFTER
+
 ```tsx
-{loading && (
-  <div className="space-y-6">
-    {[...Array(4)].map(() => (
-      <div className="card animate-pulse">
-        <div className="flex lg:flex-row gap-6">
-          <div className="lg:w-80 aspect-[4/3] bg-white/10" />
-          <div className="flex-1">
-            {/* Meta badges */}
-            {/* Title */}
-            {/* Excerpt lines */}
-            {/* Tags */}
+{
+  loading && (
+    <div className="space-y-6">
+      {[...Array(4)].map(() => (
+        <div className="card animate-pulse">
+          <div className="flex lg:flex-row gap-6">
+            <div className="lg:w-80 aspect-[4/3] bg-white/10" />
+            <div className="flex-1">
+              {/* Meta badges */}
+              {/* Title */}
+              {/* Excerpt lines */}
+              {/* Tags */}
+            </div>
           </div>
         </div>
-      </div>
-    ))}
-  </div>
-)}
+      ))}
+    </div>
+  );
+}
 ```
 
 **Experience:** Matches final layout, no jarring shift
@@ -263,6 +281,7 @@ Intelligent layout shift
 ## Pagination UI
 
 ### BEFORE
+
 ```
 ┌────────────────────────────────┐
 │  [Prev]  Page 1 of 5  [Next]  │
@@ -272,6 +291,7 @@ Intelligent layout shift
 **Style:** Basic, centered layout
 
 ### AFTER
+
 ```
 ┌─────────────────────────────────────────────┐
 │ [← Previous]   Page 1 of 5   [Next →]     │
@@ -279,7 +299,8 @@ Intelligent layout shift
 └─────────────────────────────────────────────┘
 ```
 
-**Style:** 
+**Style:**
+
 - Spread layout (space-between)
 - Icons in buttons
 - Additional context (total count)
@@ -289,6 +310,7 @@ Intelligent layout shift
 ## Information Architecture
 
 ### BEFORE
+
 ```
 ┌─────────────┐
 │ Date • Tags │  ← Mixed meta
@@ -302,6 +324,7 @@ Scannability: Moderate
 ```
 
 ### AFTER
+
 ```
 ┌────┬────────────────────┐
 │    │ 📅 Date • 👤 Auth │  ← Clear meta
@@ -320,6 +343,7 @@ Scannability: Excellent
 ## Design System Consistency
 
 ### BEFORE
+
 ✅ Uses theme colors
 ✅ Responsive design
 ❌ Doesn't match Services/Projects layout style
@@ -327,6 +351,7 @@ Scannability: Excellent
 ❌ Basic card styling
 
 ### AFTER
+
 ✅ Uses theme colors
 ✅ Responsive design
 ✅ Matches Services/Projects layout style
@@ -339,6 +364,7 @@ Scannability: Excellent
 ## User Experience Impact
 
 ### BEFORE
+
 - **Discoverability:** Moderate - small cards, limited info
 - **Engagement:** Low - minimal visual interest
 - **Decision Making:** Harder - less context visible
@@ -346,6 +372,7 @@ Scannability: Excellent
 - **Mobile Experience:** Cramped - too much in small space
 
 ### AFTER
+
 - **Discoverability:** High - large images grab attention
 - **Engagement:** High - rich interactions encourage exploration
 - **Decision Making:** Easier - title, image, excerpt all visible
@@ -355,18 +382,21 @@ Scannability: Excellent
 ## Technical Improvements
 
 ### Code Quality
+
 - ✅ Fixed TypeScript errors (any → unknown)
 - ✅ Fixed React Hook dependencies
 - ✅ Better error handling
 - ✅ Consistent type safety
 
 ### Performance
+
 - ✅ Optimized re-renders (useMemo)
 - ✅ Hardware-accelerated animations
 - ✅ Proper cleanup (AbortController)
 - ✅ Skeleton prevents layout shift
 
 ### Accessibility
+
 - ✅ Semantic HTML (article)
 - ✅ ARIA labels where needed
 - ✅ Clear hover states
@@ -375,15 +405,15 @@ Scannability: Excellent
 
 ## Metrics Comparison
 
-| Metric | Before | After | Change |
-|--------|--------|-------|--------|
-| Visual Hierarchy | ⭐⭐ | ⭐⭐⭐⭐⭐ | +150% |
-| Information Display | ⭐⭐ | ⭐⭐⭐⭐⭐ | +150% |
-| Engagement Potential | ⭐⭐ | ⭐⭐⭐⭐⭐ | +150% |
-| Design Consistency | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | +67% |
-| Mobile Experience | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | +67% |
-| Loading Experience | ⭐⭐ | ⭐⭐⭐⭐⭐ | +150% |
-| Code Quality | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | +25% |
+| Metric               | Before   | After      | Change |
+| -------------------- | -------- | ---------- | ------ |
+| Visual Hierarchy     | ⭐⭐     | ⭐⭐⭐⭐⭐ | +150%  |
+| Information Display  | ⭐⭐     | ⭐⭐⭐⭐⭐ | +150%  |
+| Engagement Potential | ⭐⭐     | ⭐⭐⭐⭐⭐ | +150%  |
+| Design Consistency   | ⭐⭐⭐   | ⭐⭐⭐⭐⭐ | +67%   |
+| Mobile Experience    | ⭐⭐⭐   | ⭐⭐⭐⭐⭐ | +67%   |
+| Loading Experience   | ⭐⭐     | ⭐⭐⭐⭐⭐ | +150%  |
+| Code Quality         | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | +25%   |
 
 ## Summary
 
@@ -398,4 +428,3 @@ The blog page has been **completely transformed** from a functional but basic li
 7. ✅ Delivers excellent user experience
 
 **Result:** A blog page worthy of a professional portfolio that encourages exploration and engagement while maintaining technical excellence.
-

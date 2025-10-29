@@ -3,6 +3,7 @@
 ## Design Philosophy
 
 The enhanced services page follows a modern, professional aesthetic that emphasizes:
+
 - **Trust & Expertise**: Clean, professional layouts with subtle animations
 - **Visual Hierarchy**: Clear progression from hero → services → CTA
 - **Engagement**: Interactive elements that reward user exploration
@@ -13,6 +14,7 @@ The enhanced services page follows a modern, professional aesthetic that emphasi
 ### 🎨 Color & Gradients
 
 #### Gradient Schemes Used:
+
 1. **Primary Gradient** (Cyan → Violet → Emerald)
    - Used for: Progress bars, borders, glows
    - Creates: Dynamic, tech-forward feel
@@ -26,6 +28,7 @@ The enhanced services page follows a modern, professional aesthetic that emphasi
    - Creates: Subtle depth without distraction
 
 #### Color Opacity Levels:
+
 - `/5` (5% opacity): Subtle backgrounds, badges
 - `/10` (10% opacity): Hover states, secondary elements
 - `/20` (20% opacity): Active states, emphasis elements
@@ -35,6 +38,7 @@ The enhanced services page follows a modern, professional aesthetic that emphasi
 ### ✨ Animation Enhancements
 
 #### Card Animations:
+
 ```
 Initial State → Hover State
 ├── Scale: 1.0 → 1.02 (subtle lift)
@@ -47,12 +51,14 @@ Initial State → Hover State
 ```
 
 #### Timing Strategy:
+
 - **Fast** (300ms): Small UI changes (badge, text)
 - **Medium** (500ms): Card effects, overlays
 - **Slow** (700ms): Image zooms for smooth feel
-- **Stagger**: 100ms delay between cards (index * 0.1s)
+- **Stagger**: 100ms delay between cards (index \* 0.1s)
 
 #### Animation Curves:
+
 - `ease`: General purpose (most animations)
 - `ease-out`: Fade-ins, slide-ins
 - `ease-in-out`: Infinite animations (floating blobs)
@@ -60,7 +66,9 @@ Initial State → Hover State
 ### 🎯 Interactive Elements
 
 #### Service Cards:
+
 **Visual States:**
+
 1. **Default**: Clean, minimal with subtle glow
 2. **Hover**: Enhanced with multiple effects:
    - Card lifts with scale transform
@@ -71,18 +79,22 @@ Initial State → Hover State
    - Background glow intensifies
 
 **Touch Targets:**
+
 - Entire card is clickable (future: link to detail page)
 - Minimum 44x44px touch targets on mobile
 - Clear visual feedback on interaction
 
 #### Buttons:
+
 **Primary Button** (Get in Touch):
+
 - Bright cyan gradient
 - Strong shadow with cyan glow
 - Lifts on hover (-2px translateY)
 - Ripple effect on click (via ::before pseudo)
 
 **Secondary Button** (View Contact):
+
 - Subtle glassmorphism effect
 - Ring border that brightens on hover
 - Matches card styling for consistency
@@ -90,6 +102,7 @@ Initial State → Hover State
 ### 📱 Responsive Design
 
 #### Breakpoint Strategy:
+
 ```
 Mobile First Approach:
 - Base: 1 column, stacked layout
@@ -98,6 +111,7 @@ Mobile First Approach:
 ```
 
 #### Typography Scaling:
+
 ```
 Element         Mobile    Tablet    Desktop
 Hero H1        text-5xl  text-6xl  text-7xl
@@ -107,6 +121,7 @@ Body Text      text-sm   text-sm   text-base
 ```
 
 #### Spacing Adjustments:
+
 - Mobile: Tighter spacing (gap-6, py-16)
 - Tablet: Medium spacing (gap-6, py-20)
 - Desktop: Generous spacing (gap-8, py-24)
@@ -114,6 +129,7 @@ Body Text      text-sm   text-sm   text-base
 ### 🌟 Hero Section Design
 
 #### Layout Structure:
+
 ```
 ┌─────────────────────────────────────┐
 │  [Animated Blob Background]         │
@@ -127,7 +143,8 @@ Body Text      text-sm   text-sm   text-base
 ```
 
 #### Visual Elements:
-1. **Background Blobs**: 
+
+1. **Background Blobs**:
    - Two large gradient circles (cyan, violet)
    - Positioned at different corners
    - Pulsing animation (3s infinite)
@@ -148,6 +165,7 @@ Body Text      text-sm   text-sm   text-base
 ### 🎴 Service Card Deep Dive
 
 #### Card Anatomy:
+
 ```
 ┌────────────────────────────┐
 │ ┌────────────────────────┐ │ ← Image Container
@@ -165,6 +183,7 @@ Body Text      text-sm   text-sm   text-base
 ```
 
 #### Layer Breakdown:
+
 1. **Base Card**: Gradient background, rounded corners, ring border
 2. **Image Layer**: Service image with overlay
 3. **Icon Badge**: Positioned absolute (top-4 right-4)
@@ -175,20 +194,24 @@ Body Text      text-sm   text-sm   text-base
 ### 🎪 CTA Section Design
 
 #### Purpose:
+
 Convert visitors by providing clear next steps
 
 #### Visual Strategy:
+
 - **Contrast**: Subtle gradient background sets it apart
 - **Hierarchy**: Large headline → supporting text → actions
 - **Action-Oriented**: Two clear CTAs for different user intents
 
 #### Button Hierarchy:
+
 1. **Primary** (Get in Touch): Direct email contact
 2. **Secondary** (View Contact): More options
 
 ### 📊 Visual Metrics
 
 #### Measurements:
+
 - **Card Gap**: 8px (2rem) on desktop, 6px (1.5rem) mobile
 - **Border Radius**: 2xl (1rem) for cards
 - **Ring Width**: 1px with varying opacity
@@ -196,6 +219,7 @@ Convert visitors by providing clear next steps
 - **Backdrop Blur**: sm/md (4px/12px)
 
 #### Z-Index Layers:
+
 ```
 50: Scroll progress bar
 40: Scroll to top button
@@ -208,17 +232,20 @@ Convert visitors by providing clear next steps
 ### 🎨 Design Tokens
 
 #### Border Radius:
+
 - `rounded-lg`: 8px - Small elements
 - `rounded-xl`: 12px - Images, containers
 - `rounded-2xl`: 16px - Cards
 - `rounded-full`: 999px - Badges, buttons
 
 #### Shadows:
+
 - **Soft**: `0 10px 30px -10px rgba(0,0,0,0.35)`
 - **Medium**: `0 20px 60px -15px rgba(0,0,0,0.5)`
 - **Glow**: `0 0 20px rgba(34,211,238,0.3)`
 
 #### Backdrop Effects:
+
 - **Glass Light**: `bg-white/5 backdrop-blur-sm`
 - **Glass Medium**: `bg-white/10 backdrop-blur-md`
 - **Ring**: `ring-1 ring-white/10`
@@ -226,23 +253,27 @@ Convert visitors by providing clear next steps
 ## Design Patterns Used
 
 ### 1. Glassmorphism
+
 - Translucent backgrounds
 - Backdrop blur filters
 - Subtle borders
 - Used for: Badges, buttons, overlays
 
 ### 2. Neumorphism (Soft)
+
 - Subtle shadows
 - Minimal depth
 - Clean surfaces
 - Used for: Card base styles
 
 ### 3. Gradient Mesh
+
 - Multi-direction gradients
 - Soft color transitions
 - Used for: Backgrounds, text, borders
 
 ### 4. Progressive Disclosure
+
 - Information revealed on interaction
 - "Learn more" text on hover
 - Icon badges appear on hover
@@ -251,6 +282,7 @@ Convert visitors by providing clear next steps
 ## Accessibility Considerations
 
 ### Visual Accessibility:
+
 - ✅ High contrast text (AAA level)
 - ✅ Clear focus indicators
 - ✅ Icon + text labels
@@ -258,10 +290,12 @@ Convert visitors by providing clear next steps
 - ✅ Readable font sizes (minimum 14px)
 
 ### Motion Accessibility:
+
 - 🔄 Consider adding `@media (prefers-reduced-motion: reduce)`
 - Would disable or reduce animations for sensitive users
 
 ### Color Accessibility:
+
 - ✅ Not relying on color alone for information
 - ✅ Icons supplement color coding
 - ✅ Text has sufficient contrast against backgrounds
@@ -269,6 +303,7 @@ Convert visitors by providing clear next steps
 ## Brand Consistency
 
 All visual elements maintain consistency with:
+
 - Main portfolio page design
 - Color scheme (cyan-violet-emerald)
 - Typography hierarchy
@@ -278,7 +313,7 @@ All visual elements maintain consistency with:
 
 ## Future Design Enhancements
 
-1. **Micro-interactions**: 
+1. **Micro-interactions**:
    - Particle effects on card hover
    - Animated service icons
    - Number counters in stats section
@@ -302,4 +337,3 @@ All visual elements maintain consistency with:
    - Case study previews
    - Client testimonials
    - Process timeline visualization
-

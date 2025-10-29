@@ -3,6 +3,7 @@
 ## Date: October 26, 2025
 
 ## Overview
+
 This document outlines the enhancements made to the Projects page to improve UI/UX, matching the design improvements made to the Services page.
 
 ## Changes Made
@@ -10,6 +11,7 @@ This document outlines the enhancements made to the Projects page to improve UI/
 ### 1. Enhanced Projects Component (`/src/components/Projects.tsx`)
 
 #### New Features:
+
 - **Project Category Icons**: Automatically categorized projects with matching SVG icons:
   - Framework (for Framework X)
   - Package (for Laravel packages)
@@ -46,14 +48,14 @@ This document outlines the enhancements made to the Projects page to improve UI/
 ### 2. Enhanced OpenSource Component (`/src/components/OpenSource.tsx`)
 
 #### New Features:
+
 - **Custom Icons**: Unique icons for each package type
   - Shield icon for Laravel Env Keys Checker
   - Extension icon for Laravel Pint VS Code Extension
 
-- **Download Badges**: 
+- **Download Badges**:
   - Shows download counts (15K+, 6K+)
   - Download icon with emerald color
-  
 - **Type Badges**:
   - "Package" badge for npm/composer packages
   - "Extension" badge for VS Code extensions
@@ -76,6 +78,7 @@ This document outlines the enhancements made to the Projects page to improve UI/
 ### 3. Enhanced ProjectsPage (`/src/pages/ProjectsPage.tsx`)
 
 #### Improvements:
+
 - **Better Hero Section**:
   - Third animated background blob
   - Enhanced description text
@@ -96,6 +99,7 @@ This document outlines the enhancements made to the Projects page to improve UI/
 ## Design Consistency
 
 All changes follow the existing theme:
+
 - **Color Palette**: Cyan, Violet, Emerald
 - **Animations**: Same timing functions (300ms, 500ms, 700ms)
 - **Spacing**: Consistent padding (gap-8, mb-5, pt-2)
@@ -103,6 +107,7 @@ All changes follow the existing theme:
 - **Effects**: Same glassmorphism and gradient styles
 
 ## File Structure
+
 ```
 src/
 ├── components/
@@ -118,6 +123,7 @@ src/
 ### Projects Component
 
 #### Category Detection Logic:
+
 ```typescript
 - 'framework' → Contains "framework" or "framework x"
 - 'extension' → Contains "extension", "vscode", or "pint"
@@ -127,6 +133,7 @@ src/
 ```
 
 #### Visual Elements per Card:
+
 1. **Image Container** with project screenshot
 2. **Category Badge** (top-left, appears on hover)
 3. **External Link Icon** (top-right, appears on hover)
@@ -139,6 +146,7 @@ src/
 ### OpenSource Component
 
 #### Card Structure:
+
 1. **Header Row**:
    - Icon in gradient container
    - Type badge (Package/Extension)
@@ -151,6 +159,7 @@ src/
    - "View Project" text with arrow
 
 #### GitHub Section:
+
 - Full-width promotional banner
 - Flexbox layout (icon + text | button)
 - Links to GitHub profile
@@ -194,19 +203,20 @@ src/
 
 ## Animation Timings
 
-| Element | Duration | Easing | Trigger |
-|---------|----------|--------|---------|
-| Card hover scale | 500ms | ease | Hover |
-| Image zoom | 700ms | ease | Hover |
-| Badge appearance | 300ms | ease | Hover |
-| Progress bar expand | 500ms | ease | Hover |
-| Text slide-in | 300ms | ease | Hover |
-| Card fade-in | 600ms | ease-out | Page load |
-| Icon scale | 300ms | ease | Hover |
+| Element             | Duration | Easing   | Trigger   |
+| ------------------- | -------- | -------- | --------- |
+| Card hover scale    | 500ms    | ease     | Hover     |
+| Image zoom          | 700ms    | ease     | Hover     |
+| Badge appearance    | 300ms    | ease     | Hover     |
+| Progress bar expand | 500ms    | ease     | Hover     |
+| Text slide-in       | 300ms    | ease     | Hover     |
+| Card fade-in        | 600ms    | ease-out | Page load |
+| Icon scale          | 300ms    | ease     | Hover     |
 
 ## Stats & Metrics
 
 ### Open Source Impact:
+
 - **Total Downloads**: 21,000+
 - **Laravel Env Keys Checker**: 15,000+ downloads
 - **Laravel Pint Extension**: 6,000+ downloads
@@ -214,6 +224,7 @@ src/
 - **Open Source**: 100% commitment
 
 ### Project Categories:
+
 - Laravel Packages: 2 projects
 - VS Code Extensions: 1 project
 - Frameworks: 1 project
@@ -233,10 +244,10 @@ src/
 10. **Latest Commit**: Show last update date
 
 ## Notes
+
 - All category detection is automatic based on project name
 - Download counts are manually specified (consider API integration)
 - GitHub buttons only show when repo URL exists
 - External links all open in new tabs
 - All images support both local and remote URLs
 - Design 100% consistent with Services page enhancements
-

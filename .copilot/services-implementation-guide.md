@@ -48,6 +48,7 @@ ServicesPage Component
 ## CSS Classes Used
 
 ### Custom Classes from App.css
+
 - `.card` - Base card styling with gradient background
 - `.btn` - Base button styling
 - `.btn-primary` - Primary button with cyan gradient
@@ -57,7 +58,9 @@ ServicesPage Component
 - `.animate-fade-in-up` - Fade in from bottom animation
 
 ### Tailwind Utility Classes
+
 Key patterns used throughout:
+
 - `group` and `group-hover:` for parent-child hover effects
 - `transition-all duration-XXX` for smooth animations
 - `bg-gradient-to-r/br/t` for gradient backgrounds
@@ -68,39 +71,38 @@ Key patterns used throughout:
 
 ## Animation Timings
 
-| Element | Duration | Easing | Delay |
-|---------|----------|--------|-------|
-| Card hover scale | 500ms | ease | - |
-| Image zoom | 700ms | ease | - |
-| Icon badge appearance | 300ms | ease | - |
-| Gradient overlay | 500ms | ease | - |
-| "Learn more" slide | 300ms | ease | - |
-| Progress bar expand | 500ms | ease | - |
-| Card fade-in | 600ms | ease-out | index * 100ms |
-| Background blobs | 3s | ease-in-out | 0s / 1s |
+| Element               | Duration | Easing      | Delay          |
+| --------------------- | -------- | ----------- | -------------- |
+| Card hover scale      | 500ms    | ease        | -              |
+| Image zoom            | 700ms    | ease        | -              |
+| Icon badge appearance | 300ms    | ease        | -              |
+| Gradient overlay      | 500ms    | ease        | -              |
+| "Learn more" slide    | 300ms    | ease        | -              |
+| Progress bar expand   | 500ms    | ease        | -              |
+| Card fade-in          | 600ms    | ease-out    | index \* 100ms |
+| Background blobs      | 3s       | ease-in-out | 0s / 1s        |
 
 ## Color Variables
 
 All colors use CSS custom properties from theme:
+
 ```css
---color-bg: #0a0e1a
---color-surface: #0f172a
---color-text: #f1f5f9
---color-muted: #94a3b8
---color-primary: #22d3ee (cyan-400)
---color-secondary: #a78bfa (violet-400)
---color-accent: #34d399 (emerald-400)
+--color-bg: #0a0e1a --color-surface: #0f172a --color-text: #f1f5f9
+  --color-muted: #94a3b8 --color-primary: #22d3ee (cyan-400)
+  --color-secondary: #a78bfa (violet-400) --color-accent: #34d399 (emerald-400);
 ```
 
 ## Responsive Breakpoints
 
 Grid layout changes:
+
 - Mobile (< 640px): 1 column
 - Tablet (640px - 1024px): 2 columns
 - Desktop (> 1024px): 3 columns
 
 Text sizing:
-- Hero heading: 
+
+- Hero heading:
   - Mobile: text-5xl
   - Medium: text-6xl
   - Large: text-7xl
@@ -108,6 +110,7 @@ Text sizing:
 ## Image Specifications
 
 Service images should be:
+
 - Format: PNG with transparency
 - Dimensions: Minimum 800x450px (16:9 aspect ratio)
 - Optimization: Compressed for web
@@ -115,6 +118,7 @@ Service images should be:
 - Naming: PascalCase matching service name
 
 Current images:
+
 1. WebDevelopment.png
 2. MobileDevelopment.png
 3. APIDevelopment.png
@@ -127,6 +131,7 @@ Current images:
 ## Icon Mapping
 
 Each service has a unique icon from Heroicons:
+
 - **Web Development**: Globe icon
 - **Mobile Development**: Device mobile icon
 - **API Development**: Code icon
@@ -139,17 +144,20 @@ Each service has a unique icon from Heroicons:
 ## State Management
 
 ### ServicesPage Component State
+
 ```typescript
-const [scrollProgress, setScrollProgress] = useState(0)
+const [scrollProgress, setScrollProgress] = useState(0);
 ```
 
 ### Effects
+
 - Scroll listener: Updates progress bar width (0-100%)
 - Cleanup: Removes scroll listener on unmount
 
 ## Performance Considerations
 
 ### Optimizations Applied:
+
 1. **Image Loading**: All images imported at build time (no runtime fetching)
 2. **CSS Transforms**: Uses transform for animations (GPU accelerated)
 3. **Conditional Rendering**: Scroll button only renders when needed
@@ -157,6 +165,7 @@ const [scrollProgress, setScrollProgress] = useState(0)
 5. **Efficient Selectors**: No deep nesting, minimal specificity
 
 ### Bundle Size Impact:
+
 - 8 service images: ~200-400KB total (depends on optimization)
 - Additional code: ~5KB (minified)
 - No external dependencies added
@@ -164,6 +173,7 @@ const [scrollProgress, setScrollProgress] = useState(0)
 ## Browser Compatibility
 
 Tested features:
+
 - ✅ CSS Grid
 - ✅ CSS Gradients
 - ✅ CSS Transforms
@@ -172,6 +182,7 @@ Tested features:
 - ✅ Custom properties (CSS variables)
 
 Minimum browser requirements:
+
 - Chrome 88+
 - Firefox 85+
 - Safari 14+
@@ -190,6 +201,7 @@ Minimum browser requirements:
 ## Data Structure
 
 Services are defined in `data.json`:
+
 ```json
 {
   "services": [
@@ -220,6 +232,7 @@ Services are defined in `data.json`:
 ## Maintenance Notes
 
 When adding a new service:
+
 1. Add image to `/src/assets/services/`
 2. Import image in `Services.tsx`
 3. Add to `localImages` mapping
@@ -228,9 +241,9 @@ When adding a new service:
 6. Test image loading and hover effects
 
 When modifying styles:
+
 1. Maintain consistency with App.css theme
 2. Use existing CSS custom properties
 3. Keep animation timings consistent
 4. Test responsive behavior
 5. Verify accessibility is maintained
-

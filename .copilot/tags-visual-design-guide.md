@@ -3,6 +3,7 @@
 ## Design Philosophy
 
 The enhanced Tags page emphasizes:
+
 - **Discoverability**: Easy search and filter to find specific tags
 - **Visual Hierarchy**: Clear progression from hero → search → tags → CTA
 - **Interactivity**: Engaging hover effects that reward exploration
@@ -13,6 +14,7 @@ The enhanced Tags page emphasizes:
 ## Layout Structure
 
 ### Full Page Anatomy
+
 ```
 ┌─────────────────────────────────────────────────┐
 │ [Scroll Progress Bar] (z-50, h-1)              │ ← Fixed top
@@ -52,6 +54,7 @@ The enhanced Tags page emphasizes:
 ## Component Specifications
 
 ### 1. Scroll Progress Bar
+
 ```
 Position: fixed, top-0, z-50
 Height: 4px (h-1)
@@ -61,6 +64,7 @@ Transition: width 0.1s ease
 ```
 
 ### 2. Hero Section
+
 ```
 Container:
 ├── Position: relative
@@ -103,6 +107,7 @@ Content:
 ```
 
 ### 3. Search & Filter Controls Card
+
 ```
 Container:
 ├── Class: card p-6 space-y-4
@@ -125,6 +130,7 @@ Controls Row:
 ```
 
 ### 4. Tag Card
+
 ```
 Base Card:
 ├── Class: group relative card
@@ -181,6 +187,7 @@ Hover States Timeline:
 ```
 
 ### 5. Tags Grid
+
 ```
 Display: grid
 Columns:
@@ -193,6 +200,7 @@ Animation: Each card with stagger delay (index * 50ms, max 1s)
 ```
 
 ### 6. Loading Skeleton
+
 ```
 Search/Filter Skeleton:
 ├── Card with p-6
@@ -209,6 +217,7 @@ Tag Skeletons (15 cards):
 ```
 
 ### 7. Error State
+
 ```
 Container: card p-6, border-red-500/30, bg-red-500/10
 
@@ -223,6 +232,7 @@ Content:
 ```
 
 ### 8. Empty State
+
 ```
 Container: card p-12, text-center
 
@@ -236,6 +246,7 @@ Content:
 ```
 
 ### 9. CTA Section
+
 ```
 Container:
 ├── Position: relative
@@ -268,6 +279,7 @@ Content:
 ```
 
 ### 10. Scroll to Top Button
+
 ```
 Appearance: scrollProgress > 20%
 
@@ -290,13 +302,14 @@ Behavior:
 ## Color Specifications
 
 ### Primary Colors
+
 ```css
---cyan-500: #06b6d4     /* Icons, accents */
---violet-500: #8b5cf6   /* Accents, gradients */
---emerald-500: #10b981  /* Tertiary accent */
+--cyan-500: #06b6d4 /* Icons, accents */ --violet-500: #8b5cf6
+  /* Accents, gradients */ --emerald-500: #10b981 /* Tertiary accent */;
 ```
 
 ### Opacity Levels
+
 ```css
 /5   → 5%   /* Subtle backgrounds */
 /10  → 10%  /* Hover states, badges */
@@ -309,6 +322,7 @@ Behavior:
 ```
 
 ### Gradients
+
 ```css
 /* Text Gradient (Headlines) */
 from-white via-cyan-100 to-violet-200
@@ -385,6 +399,7 @@ Margins:
 ## Animation Specifications
 
 ### Timing Functions
+
 ```css
 ease: Default for most transitions
 ease-out: Fade-ins, slide-ins
@@ -392,6 +407,7 @@ ease-in-out: Infinite animations (blobs)
 ```
 
 ### Duration Scale
+
 ```
 Fast: 300ms
 ├── Icon scale
@@ -412,8 +428,9 @@ Infinite: 3s
 ```
 
 ### Stagger Pattern
+
 ```javascript
-animationDelay: `${Math.min(index * 0.05, 1)}s`
+animationDelay: `${Math.min(index * 0.05, 1)}s`;
 // Result: 0s, 0.05s, 0.1s ... max 1s
 ```
 
@@ -456,6 +473,7 @@ Layer Stack (bottom to top):
 ## Accessibility Features
 
 ### Focus States
+
 ```css
 Focus Ring:
 ├── ring-2
@@ -464,21 +482,32 @@ Focus Ring:
 ```
 
 ### ARIA Labels
+
 ```html
 <button aria-label="Scroll to top">...</button>
-<input placeholder="Search tags..." aria-label="Search tags">
+<input placeholder="Search tags..." aria-label="Search tags" />
 <button aria-label="Clear search">...</button>
 ```
 
 ### Semantic HTML
+
 ```html
-<main> for main content
-<section> for distinct sections
-<h1>, <h2> for proper heading hierarchy
-<button> for interactive elements
+<main>
+  for main content
+  <section>
+    for distinct sections
+    <h1>
+      ,
+      <h2>
+        for proper heading hierarchy <button>for interactive elements</button>
+      </h2>
+    </h1>
+  </section>
+</main>
 ```
 
 ### Keyboard Navigation
+
 - Tab through interactive elements
 - Enter/Space to activate buttons
 - Escape to clear search (future)
@@ -488,6 +517,7 @@ Focus Ring:
 ## Performance Optimizations
 
 ### GPU Acceleration
+
 ```css
 /* Use these properties for animations */
 transform: scale() translateX() translateY()
@@ -498,6 +528,7 @@ width, height, left, right, top, bottom
 ```
 
 ### Will-change (if needed)
+
 ```css
 .tag-card:hover {
   will-change: transform;
@@ -505,11 +536,12 @@ width, height, left, right, top, bottom
 ```
 
 ### Lazy Evaluation
+
 ```typescript
 // useMemo prevents unnecessary recalculation
 const filteredTags = useMemo(() => {
   // Only recalc when dependencies change
-}, [tags, searchQuery, sortBy])
+}, [tags, searchQuery, sortBy]);
 ```
 
 ---
@@ -517,4 +549,3 @@ const filteredTags = useMemo(() => {
 **Last Updated:** October 28, 2025
 **Design System Version:** 2.0
 **Status:** Production Ready
-
