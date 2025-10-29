@@ -16,6 +16,7 @@ import ToolsPage from './pages/ToolsPage';
 import TagsPage from './pages/TagsPage';
 import TagPostsPage from './pages/TagPostsPage';
 import DocumentationPage from './pages/DocumentationPage';
+import DocsPage from './pages/DocsPage';
 
 function App() {
     const [scrollProgress, setScrollProgress] = useState(0);
@@ -69,6 +70,12 @@ function App() {
 
     if (path === '/tags') {
         return <TagsPage />;
+    }
+
+    // Docs route
+    if (path.startsWith('/docs/')) {
+        const slug = decodeURIComponent(path.replace(/^\/docs\//, ''));
+        return <DocsPage slug={slug} />;
     }
 
     // Tag posts route
