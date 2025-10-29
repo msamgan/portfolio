@@ -25,11 +25,12 @@ interface ApiResponse {
     };
 }
 
-export default function TagPostsPage({ slug }: { slug: string }) {
-    const [scrollProgress, setScrollProgress] = useState(0);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-    const [posts, setPosts] = useState<ApiPost[]>([]);
+export default function TagPostsPage({slug}: { slug: string }) {
+    const [scrollProgress, setScrollProgress] = useState(0)
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState<string | null>(null)
+    const [posts, setPosts] = useState<ApiPost[]>([])
+    const [searchQuery, setSearchQuery] = useState('')
 
     // Scroll progress bar
     useEffect(() => {
@@ -78,6 +79,19 @@ export default function TagPostsPage({ slug }: { slug: string }) {
         () => slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
         [slug]
     );
+
+    // Filter posts based on search query
+    const filteredPosts = useMemo(() => {
+        if (!searchQuery.trim()) return posts
+
+        const query = searchQuery.toLowerCase()
+        return posts.filter(post => {
+            const title = (post.title || '').toLowerCase()
+            const excerpt = (post.excerpt || '').toLowerCase()
+            const author = (post.author || '').toLowerCase()
+            return title.includes(query) || excerpt.includes(query) || author.includes(query)
+        })
+    }, [posts, searchQuery])
 
     return (
         <>
@@ -146,6 +160,50 @@ export default function TagPostsPage({ slug }: { slug: string }) {
                                         {posts.length === 1 ? 'Article' : 'Articles'}
                                     </div>
                                 </div>
+                            </div>
+                        )}
+
+                        {/* Search Bar */}
+                        {!loading && !error && posts.length > 0 && (
+                            <div className="max-w-2xl mx-auto mt-8 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
+                                <div className="relative group">
+                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                        <svg
+                                            className="w-5 h-5 text-[var(--color-muted)] group-focus-within:text-cyan-400 transition-colors duration-300"
+                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                        </svg>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                        placeholder="Search articles in this tag..."
+                                        className="w-full pl-12 pr-12 py-4 rounded-full bg-white/5 border border-white/10 text-white placeholder-[var(--color-muted)] focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all duration-300 backdrop-blur-sm hover:bg-white/10"
+                                    />
+                                    {searchQuery && (
+                                        <button
+                                            onClick={() => setSearchQuery('')}
+                                            className="absolute inset-y-0 right-0 pr-4 flex items-center text-[var(--color-muted)] hover:text-white transition-colors duration-300"
+                                            aria-label="Clear search"
+                                        >
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                                      d="M6 18L18 6M6 6l12 12"/>
+                                            </svg>
+                                        </button>
+                                    )}
+                                </div>
+                                {searchQuery && (
+                                    <div className="mt-3 text-sm text-[var(--color-muted)] text-center animate-fade-in-up">
+                                        {filteredPosts.length > 0 ? (
+                                            <>Found <span className="text-cyan-300 font-medium">{filteredPosts.length}</span> {filteredPosts.length === 1 ? 'article' : 'articles'} matching "<span className="text-cyan-300 font-medium">{searchQuery}</span>"</>
+                                        ) : (
+                                            <>No articles found matching "<span className="text-cyan-300 font-medium">{searchQuery}</span>"</>
+                                        )}
+                                    </div>
+                                )}
                             </div>
                         )}
                     </div>
@@ -250,9 +308,39 @@ export default function TagPostsPage({ slug }: { slug: string }) {
                             </div>
                         )}
 
-                        {!loading && !error && posts.length > 0 && (
+                        {!loading && !error && posts.length > 0 && filteredPosts.length === 0 && (
+                            <div className="card p-12 text-center">
+                                <svg
+                                    className="w-16 h-16 mx-auto mb-4 text-[var(--color-muted)]"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                    />
+                                </svg>
+                                <h3 className="text-xl font-semibold mb-2">No matches found</h3>
+                                <p className="text-[var(--color-muted)] mb-6">
+                                    No articles match your search for{' '}
+                                    <span className="text-cyan-300 font-medium">"{searchQuery}"</span> in{' '}
+                                    <span className="text-cyan-300 font-medium">{prettyTag}</span>.
+                                </p>
+                                <button
+                                    onClick={() => setSearchQuery('')}
+                                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white text-sm transition-all"
+                                >
+                                    Clear search
+                                </button>
+                            </div>
+                        )}
+
+                        {!loading && !error && filteredPosts.length > 0 && (
                             <div className="space-y-6">
-                                {posts.map((post, idx) => {
+                                {filteredPosts.map((post, idx) => {
                                     const date =
                                         post.published_at || post.created_at || post.updated_at;
                                     const dateStr = date
