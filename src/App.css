@@ -438,16 +438,34 @@ html {
     }
 
     /* Inline badge images (Packagist, tests, downloads, etc.) - only SVG badges */
+    /* Override paragraph styling for badge containers */
+    .post-content p:has(img[src*="shields.io"]),
+    .post-content p:has(img[src*="badge"]),
+    .post-content p:has(img[src*="svg"]) {
+        display: inline-flex !important;
+        flex-wrap: wrap !important;
+        gap: 4px !important;
+        align-items: center !important;
+        margin-bottom: 1rem !important;
+        line-height: 1 !important;
+    }
+
     .post-content p img[src*="shields.io"],
     .post-content p img[src*="badge"],
     .post-content p img[src*="svg"],
     .post-content a img[src*="shields.io"],
     .post-content a img[src*="badge"],
     .post-content a img[src*="svg"] {
-        @apply inline-block my-0 mx-1 align-middle border-0 shadow-none rounded;
-        max-height: 20px;
-        width: auto;
-        transition: opacity 0.2s;
+        display: inline-block !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        border-radius: 4px !important;
+        max-height: 20px !important;
+        width: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        vertical-align: middle !important;
+        transition: opacity 0.2s !important;
     }
 
     .post-content p img[src*="shields.io"]:hover,
@@ -456,8 +474,8 @@ html {
     .post-content a img[src*="shields.io"]:hover,
     .post-content a img[src*="badge"]:hover,
     .post-content a img[src*="svg"]:hover {
-        transform: none;
-        box-shadow: none;
+        transform: none !important;
+        box-shadow: none !important;
         opacity: 0.8;
     }
 
