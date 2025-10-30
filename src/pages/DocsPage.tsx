@@ -46,7 +46,10 @@ function renderMarkdown(md: string): string {
         // Images ![alt](src)
         text = text.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img alt="$1" src="$2" />');
         // Links [text](url)
-        text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+        text = text.replace(
+            /\[([^\]]+)\]\(([^)]+)\)/g,
+            '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
+        );
         // Bold **text** or __text__
         text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
         text = text.replace(/__([^_]+)__/g, '<strong>$1</strong>');
@@ -135,7 +138,10 @@ export default function DocsPage({ slug }: DocsPageProps) {
     // Grab all docs markdown files as raw strings at build-time
     const docsMap = useMemo(() => {
         // Vite's import.meta.glob to import as raw strings
-        const modules = import.meta.glob('/src/assets/docs/**/index.md', { as: 'raw', eager: true }) as Record<string, string>;
+        const modules = import.meta.glob('/src/assets/docs/**/index.md', {
+            as: 'raw',
+            eager: true,
+        }) as Record<string, string>;
         return modules;
     }, []);
 
@@ -367,7 +373,8 @@ export default function DocsPage({ slug }: DocsPageProps) {
                                         Documentation Not Found
                                     </h3>
                                     <p className="text-red-200/80">
-                                        {error} Please check the URL or return to the documentation index.
+                                        {error} Please check the URL or return to the documentation
+                                        index.
                                     </p>
                                     <a
                                         href="/documentation"
@@ -426,7 +433,8 @@ export default function DocsPage({ slug }: DocsPageProps) {
                                                     Was this helpful?
                                                 </h3>
                                                 <p className="text-sm text-[var(--color-muted)]">
-                                                    Let us know if you have feedback or need more information.
+                                                    Let us know if you have feedback or need more
+                                                    information.
                                                 </p>
                                             </div>
                                         </div>

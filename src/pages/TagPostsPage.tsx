@@ -25,12 +25,12 @@ interface ApiResponse {
     };
 }
 
-export default function TagPostsPage({slug}: { slug: string }) {
-    const [scrollProgress, setScrollProgress] = useState(0)
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState<string | null>(null)
-    const [posts, setPosts] = useState<ApiPost[]>([])
-    const [searchQuery, setSearchQuery] = useState('')
+export default function TagPostsPage({ slug }: { slug: string }) {
+    const [scrollProgress, setScrollProgress] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [posts, setPosts] = useState<ApiPost[]>([]);
+    const [searchQuery, setSearchQuery] = useState('');
 
     // Scroll progress bar
     useEffect(() => {
@@ -82,16 +82,16 @@ export default function TagPostsPage({slug}: { slug: string }) {
 
     // Filter posts based on search query
     const filteredPosts = useMemo(() => {
-        if (!searchQuery.trim()) return posts
+        if (!searchQuery.trim()) return posts;
 
-        const query = searchQuery.toLowerCase()
-        return posts.filter(post => {
-            const title = (post.title || '').toLowerCase()
-            const excerpt = (post.excerpt || '').toLowerCase()
-            const author = (post.author || '').toLowerCase()
-            return title.includes(query) || excerpt.includes(query) || author.includes(query)
-        })
-    }, [posts, searchQuery])
+        const query = searchQuery.toLowerCase();
+        return posts.filter((post) => {
+            const title = (post.title || '').toLowerCase();
+            const excerpt = (post.excerpt || '').toLowerCase();
+            const author = (post.author || '').toLowerCase();
+            return title.includes(query) || excerpt.includes(query) || author.includes(query);
+        });
+    }, [posts, searchQuery]);
 
     return (
         <>
@@ -165,14 +165,24 @@ export default function TagPostsPage({slug}: { slug: string }) {
 
                         {/* Search Bar */}
                         {!loading && !error && posts.length > 0 && (
-                            <div className="max-w-2xl mx-auto mt-8 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
+                            <div
+                                className="max-w-2xl mx-auto mt-8 animate-fade-in-up"
+                                style={{ animationDelay: '0.3s' }}
+                            >
                                 <div className="relative group">
                                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                         <svg
                                             className="w-5 h-5 text-[var(--color-muted)] group-focus-within:text-cyan-400 transition-colors duration-300"
-                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                                                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                            />
                                         </svg>
                                     </div>
                                     <input
@@ -188,9 +198,18 @@ export default function TagPostsPage({slug}: { slug: string }) {
                                             className="absolute inset-y-0 right-0 pr-4 flex items-center text-[var(--color-muted)] hover:text-white transition-colors duration-300"
                                             aria-label="Clear search"
                                         >
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                                                      d="M6 18L18 6M6 6l12 12"/>
+                                            <svg
+                                                className="w-5 h-5"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth={2}
+                                                    d="M6 18L18 6M6 6l12 12"
+                                                />
                                             </svg>
                                         </button>
                                     )}
@@ -198,9 +217,28 @@ export default function TagPostsPage({slug}: { slug: string }) {
                                 {searchQuery && (
                                     <div className="mt-3 text-sm text-[var(--color-muted)] text-center animate-fade-in-up">
                                         {filteredPosts.length > 0 ? (
-                                            <>Found <span className="text-cyan-300 font-medium">{filteredPosts.length}</span> {filteredPosts.length === 1 ? 'article' : 'articles'} matching "<span className="text-cyan-300 font-medium">{searchQuery}</span>"</>
+                                            <>
+                                                Found{' '}
+                                                <span className="text-cyan-300 font-medium">
+                                                    {filteredPosts.length}
+                                                </span>{' '}
+                                                {filteredPosts.length === 1
+                                                    ? 'article'
+                                                    : 'articles'}{' '}
+                                                matching "
+                                                <span className="text-cyan-300 font-medium">
+                                                    {searchQuery}
+                                                </span>
+                                                "
+                                            </>
                                         ) : (
-                                            <>No articles found matching "<span className="text-cyan-300 font-medium">{searchQuery}</span>"</>
+                                            <>
+                                                No articles found matching "
+                                                <span className="text-cyan-300 font-medium">
+                                                    {searchQuery}
+                                                </span>
+                                                "
+                                            </>
                                         )}
                                     </div>
                                 )}
@@ -326,7 +364,10 @@ export default function TagPostsPage({slug}: { slug: string }) {
                                 <h3 className="text-xl font-semibold mb-2">No matches found</h3>
                                 <p className="text-[var(--color-muted)] mb-6">
                                     No articles match your search for{' '}
-                                    <span className="text-cyan-300 font-medium">"{searchQuery}"</span> in{' '}
+                                    <span className="text-cyan-300 font-medium">
+                                        "{searchQuery}"
+                                    </span>{' '}
+                                    in{' '}
                                     <span className="text-cyan-300 font-medium">{prettyTag}</span>.
                                 </p>
                                 <button

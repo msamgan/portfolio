@@ -3,6 +3,7 @@
 ## Date: October 29, 2025
 
 ## Overview
+
 Added a search bar to the TagPostsPage to allow users to search through posts within a specific tag, matching the BlogPage design and functionality.
 
 ---
@@ -10,43 +11,48 @@ Added a search bar to the TagPostsPage to allow users to search through posts wi
 ## What Was Added
 
 ### 1. Search State Management
+
 ```typescript
-const [searchQuery, setSearchQuery] = useState('')
+const [searchQuery, setSearchQuery] = useState('');
 ```
 
 ### 2. Filtered Posts with useMemo
+
 ```typescript
 const filteredPosts = useMemo(() => {
-    if (!searchQuery.trim()) return posts
-    
-    const query = searchQuery.toLowerCase()
-    return posts.filter(post => {
-        const title = (post.title || '').toLowerCase()
-        const excerpt = (post.excerpt || '').toLowerCase()
-        const author = (post.author || '').toLowerCase()
-        return title.includes(query) || excerpt.includes(query) || author.includes(query)
-    })
-}, [posts, searchQuery])
+    if (!searchQuery.trim()) return posts;
+
+    const query = searchQuery.toLowerCase();
+    return posts.filter((post) => {
+        const title = (post.title || '').toLowerCase();
+        const excerpt = (post.excerpt || '').toLowerCase();
+        const author = (post.author || '').toLowerCase();
+        return title.includes(query) || excerpt.includes(query) || author.includes(query);
+    });
+}, [posts, searchQuery]);
 ```
 
 ### 3. Search Bar UI (in Hero Section)
+
 - Appears below stats when posts are loaded
 - Same design as BlogPage search bar
 - Features:
-  - Magnifying glass icon (left)
-  - Rounded full input field
-  - Clear button (X) when typing (right)
-  - Focus states with cyan ring
-  - Hover effects
-  - Backdrop blur effect
+    - Magnifying glass icon (left)
+    - Rounded full input field
+    - Clear button (X) when typing (right)
+    - Focus states with cyan ring
+    - Hover effects
+    - Backdrop blur effect
 
 ### 4. Search Results Counter
+
 - Shows count of matching articles
 - Displays search query in cyan
 - Updates in real-time as user types
 - Example: "Found 3 articles matching 'laravel'"
 
 ### 5. Empty Search State
+
 - Appears when search returns no results
 - Shows magnifying glass icon
 - Clear message: "No matches found"
@@ -58,11 +64,13 @@ const filteredPosts = useMemo(() => {
 ## Search Behavior
 
 ### What It Searches
+
 - **Post Title** - Main heading
 - **Post Excerpt** - Description/summary
 - **Post Author** - Author name
 
 ### Features
+
 - **Real-time filtering** - Updates as you type
 - **Case-insensitive** - Matches regardless of case
 - **Instant feedback** - No submit button needed
@@ -74,6 +82,7 @@ const filteredPosts = useMemo(() => {
 ## UI/UX Design
 
 ### Search Bar Location
+
 ```
 ┌─────────────────────────────────┐
 │         Tag Name (Hero)         │
@@ -85,6 +94,7 @@ const filteredPosts = useMemo(() => {
 ```
 
 ### Search Bar Features
+
 - **Icon:** Magnifying glass (left, changes color on focus)
 - **Placeholder:** "Search articles in this tag..."
 - **Clear Button:** X icon (right, appears when typing)
@@ -95,17 +105,20 @@ const filteredPosts = useMemo(() => {
 ### States
 
 #### 1. Default (No Search)
+
 - Shows all posts (filteredPosts === posts)
 - Search bar visible, empty
 - No results counter
 
 #### 2. Searching (Has Query)
+
 - Shows filtered posts
 - Clear button (X) visible
 - Results counter visible below search bar
 - Example: "Found 5 articles matching 'laravel'"
 
 #### 3. No Results Found
+
 - Empty state card with search icon
 - Message: "No matches found"
 - Shows what was searched and in which tag
@@ -116,11 +129,13 @@ const filteredPosts = useMemo(() => {
 ## Responsive Design
 
 ### Desktop (≥640px)
+
 - Search bar: max-w-2xl centered
 - Full padding: pl-12 pr-12 py-4
 - Icons and clear button properly positioned
 
 ### Mobile (<640px)
+
 - Search bar: full width with px-6
 - Same functionality
 - Touch-friendly clear button
@@ -130,6 +145,7 @@ const filteredPosts = useMemo(() => {
 ## Performance
 
 ### Optimizations
+
 - **useMemo** prevents unnecessary re-filtering
 - Only recalculates when `posts` or `searchQuery` changes
 - No debouncing needed (filtering is instant for tag posts)
@@ -139,29 +155,30 @@ const filteredPosts = useMemo(() => {
 ## Code Changes
 
 ### Files Modified
+
 1. `/src/pages/TagPostsPage.tsx`
-   - Added `searchQuery` state
-   - Added `filteredPosts` useMemo
-   - Added search bar in hero section
-   - Added search results counter
-   - Added empty search state
-   - Updated rendering to use `filteredPosts`
+    - Added `searchQuery` state
+    - Added `filteredPosts` useMemo
+    - Added search bar in hero section
+    - Added search results counter
+    - Added empty search state
+    - Updated rendering to use `filteredPosts`
 
 ---
 
 ## Feature Comparison with BlogPage
 
-| Feature | BlogPage | TagPostsPage |
-|---------|----------|--------------|
-| **Search Bar** | ✅ Yes | ✅ Yes (NEW!) |
-| **Location** | Hero section | Hero section |
-| **Design** | Rounded full | Rounded full (same) |
-| **Clear Button** | ✅ Yes | ✅ Yes |
-| **Results Counter** | ✅ Yes | ✅ Yes |
-| **Empty State** | ✅ Yes | ✅ Yes |
-| **Search Fields** | Title, excerpt, author | Title, excerpt, author |
-| **Real-time** | ✅ Yes | ✅ Yes |
-| **Debouncing** | ✅ 500ms | ❌ No (instant) |
+| Feature             | BlogPage               | TagPostsPage           |
+| ------------------- | ---------------------- | ---------------------- |
+| **Search Bar**      | ✅ Yes                 | ✅ Yes (NEW!)          |
+| **Location**        | Hero section           | Hero section           |
+| **Design**          | Rounded full           | Rounded full (same)    |
+| **Clear Button**    | ✅ Yes                 | ✅ Yes                 |
+| **Results Counter** | ✅ Yes                 | ✅ Yes                 |
+| **Empty State**     | ✅ Yes                 | ✅ Yes                 |
+| **Search Fields**   | Title, excerpt, author | Title, excerpt, author |
+| **Real-time**       | ✅ Yes                 | ✅ Yes                 |
+| **Debouncing**      | ✅ 500ms               | ❌ No (instant)        |
 
 **Note:** TagPostsPage doesn't use debouncing because tag-filtered posts are typically fewer in number, so instant filtering is performant.
 
@@ -193,6 +210,7 @@ const filteredPosts = useMemo(() => {
 ## User Flow Examples
 
 ### Example 1: Successful Search
+
 1. User lands on `/tag/laravel`
 2. Sees 10 articles tagged with "laravel"
 3. Types "api" in search bar
@@ -202,6 +220,7 @@ const filteredPosts = useMemo(() => {
 7. All 10 articles shown again
 
 ### Example 2: No Results
+
 1. User lands on `/tag/react`
 2. Sees 5 articles tagged with "react"
 3. Types "python" in search bar
@@ -211,6 +230,7 @@ const filteredPosts = useMemo(() => {
 7. All 5 articles shown again
 
 ### Example 3: Progressive Search
+
 1. User types "l"
 2. Sees 8 matching articles
 3. Types "la"
@@ -224,21 +244,25 @@ const filteredPosts = useMemo(() => {
 ## Benefits
 
 ### 1. **Better User Experience**
+
 - Users can quickly find specific articles within a tag
 - No need to scroll through all posts
 - Instant feedback
 
 ### 2. **Consistency**
+
 - Matches BlogPage design and functionality
 - Same search behavior across all blog-related pages
 - Familiar UX for users
 
 ### 3. **Performance**
+
 - useMemo optimization
 - No unnecessary re-renders
 - Fast filtering for tag-specific posts
 
 ### 4. **Accessibility**
+
 - Clear button with aria-label
 - Focus states visible
 - Keyboard accessible
@@ -248,6 +272,7 @@ const filteredPosts = useMemo(() => {
 ## Future Enhancements
 
 Potential improvements:
+
 1. **Highlight matches** - Highlight search terms in results
 2. **Search history** - Remember recent searches
 3. **Keyboard shortcuts** - "/" to focus search
@@ -261,4 +286,3 @@ Potential improvements:
 **Last Updated:** October 29, 2025
 **Design Consistency:** Fully matches BlogPage search
 **Performance:** Optimized with useMemo
-

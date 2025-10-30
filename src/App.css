@@ -439,9 +439,9 @@ html {
 
     /* Inline badge images (Packagist, tests, downloads, etc.) - only SVG badges */
     /* Override paragraph styling for badge containers */
-    .post-content p:has(img[src*="shields.io"]),
-    .post-content p:has(img[src*="badge"]),
-    .post-content p:has(img[src*="svg"]) {
+    .post-content p:has(img[src*='shields.io']),
+    .post-content p:has(img[src*='badge']),
+    .post-content p:has(img[src*='svg']) {
         display: inline-flex !important;
         flex-wrap: wrap !important;
         gap: 4px !important;
@@ -450,12 +450,12 @@ html {
         line-height: 1 !important;
     }
 
-    .post-content p img[src*="shields.io"],
-    .post-content p img[src*="badge"],
-    .post-content p img[src*="svg"],
-    .post-content a img[src*="shields.io"],
-    .post-content a img[src*="badge"],
-    .post-content a img[src*="svg"] {
+    .post-content p img[src*='shields.io'],
+    .post-content p img[src*='badge'],
+    .post-content p img[src*='svg'],
+    .post-content a img[src*='shields.io'],
+    .post-content a img[src*='badge'],
+    .post-content a img[src*='svg'] {
         display: inline-block !important;
         border: 0 !important;
         box-shadow: none !important;
@@ -468,12 +468,12 @@ html {
         transition: opacity 0.2s !important;
     }
 
-    .post-content p img[src*="shields.io"]:hover,
-    .post-content p img[src*="badge"]:hover,
-    .post-content p img[src*="svg"]:hover,
-    .post-content a img[src*="shields.io"]:hover,
-    .post-content a img[src*="badge"]:hover,
-    .post-content a img[src*="svg"]:hover {
+    .post-content p img[src*='shields.io']:hover,
+    .post-content p img[src*='badge']:hover,
+    .post-content p img[src*='svg']:hover,
+    .post-content a img[src*='shields.io']:hover,
+    .post-content a img[src*='badge']:hover,
+    .post-content a img[src*='svg']:hover {
         transform: none !important;
         box-shadow: none !important;
         opacity: 0.8;

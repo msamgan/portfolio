@@ -13,25 +13,25 @@ Added a **search bar** to the Projects component to allow users to filter projec
 ### Search Functionality
 
 1. **Real-time Filtering**
-   - Projects filter as you type
-   - No need to press "Enter" or click a button
-   - Uses `useMemo` for optimized performance
+    - Projects filter as you type
+    - No need to press "Enter" or click a button
+    - Uses `useMemo` for optimized performance
 
 2. **Search Scope**
-   - Project name
-   - Project description
-   - Project category (framework, package, extension, tool)
+    - Project name
+    - Project description
+    - Project category (framework, package, extension, tool)
 
 3. **Visual Feedback**
-   - Search icon on the left
-   - Search icon changes to cyan when input is focused
-   - Clear button (X) appears on the right when there's text
-   - Results count shown below search bar
+    - Search icon on the left
+    - Search icon changes to cyan when input is focused
+    - Clear button (X) appears on the right when there's text
+    - Results count shown below search bar
 
 4. **Empty State**
-   - Friendly message when no results found
-   - Sad face icon
-   - "Clear search" button to reset
+    - Friendly message when no results found
+    - Sad face icon
+    - "Clear search" button to reset
 
 ---
 
@@ -66,7 +66,7 @@ const filteredProjects = useMemo(() => {
         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
             <svg>...</svg>
         </div>
-        
+
         {/* Input field */}
         <input
             type="text"
@@ -75,7 +75,7 @@ const filteredProjects = useMemo(() => {
             placeholder="Search projects by name, description, or category..."
             className="w-full pl-12 pr-12 py-4 rounded-full ..."
         />
-        
+
         {/* Clear button */}
         {searchQuery && (
             <button onClick={() => setSearchQuery('')}>
@@ -83,7 +83,7 @@ const filteredProjects = useMemo(() => {
             </button>
         )}
     </div>
-    
+
     {/* Results count */}
     {searchQuery && (
         <div className="mt-4 text-center text-sm">
@@ -178,6 +178,7 @@ const filteredProjects = useMemo(() => {
 ## Comparison with Blog Search
 
 ### Similarities
+
 - Same visual design and styling
 - Same search icon and clear button
 - Same glassmorphism effect
@@ -185,13 +186,13 @@ const filteredProjects = useMemo(() => {
 
 ### Differences
 
-| Feature | Blog Search | Projects Search |
-|---------|------------|-----------------|
-| **Scope** | Remote API search | Local data filtering |
-| **Debouncing** | Yes (500ms) | No (instant) |
-| **Backend** | Server-side | Client-side |
-| **State** | Debounced state | Direct state |
-| **Performance** | Network requests | Memory filtering |
+| Feature         | Blog Search       | Projects Search      |
+| --------------- | ----------------- | -------------------- |
+| **Scope**       | Remote API search | Local data filtering |
+| **Debouncing**  | Yes (500ms)       | No (instant)         |
+| **Backend**     | Server-side       | Client-side          |
+| **State**       | Debounced state   | Direct state         |
+| **Performance** | Network requests  | Memory filtering     |
 
 ---
 
@@ -204,22 +205,22 @@ const filteredProjects = useMemo(() => {
 ## Future Improvements
 
 1. **Search Highlighting**
-   - Highlight matching text in results
-   - Use `<mark>` or custom styling
+    - Highlight matching text in results
+    - Use `<mark>` or custom styling
 
 2. **Advanced Filtering**
-   - Filter by category chips
-   - Multiple filters at once
-   - Sort options (name, date, popularity)
+    - Filter by category chips
+    - Multiple filters at once
+    - Sort options (name, date, popularity)
 
 3. **Search History**
-   - Remember recent searches
-   - Quick access to popular searches
+    - Remember recent searches
+    - Quick access to popular searches
 
 4. **Keyboard Shortcuts**
-   - `/` to focus search
-   - `Esc` to clear search
-   - Arrow keys for result navigation
+    - `/` to focus search
+    - `Esc` to clear search
+    - Arrow keys for result navigation
 
 ---
 
@@ -246,4 +247,3 @@ const filteredProjects = useMemo(() => {
 - Small dataset means performance is not a concern
 - Can easily add debouncing later if needed
 - Matches the design pattern from BlogPage for consistency
-

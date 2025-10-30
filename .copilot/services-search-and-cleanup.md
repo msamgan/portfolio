@@ -13,6 +13,7 @@ Enhanced the Services component with search functionality and cleaned up the UI 
 ### 1. ✅ Added Search Functionality
 
 **New Features:**
+
 - Full-text search across service names and descriptions
 - Real-time filtering using `useMemo` for performance
 - Clear button to reset search
@@ -20,22 +21,22 @@ Enhanced the Services component with search functionality and cleaned up the UI 
 - "No Services Found" empty state with clear search option
 
 **Implementation:**
+
 ```tsx
 const [searchQuery, setSearchQuery] = useState('');
 
 const filteredServices = useMemo(() => {
     if (!searchQuery.trim()) return data.services;
-    
+
     const query = searchQuery.toLowerCase();
     return data.services.filter(
-        (s) =>
-            s.name.toLowerCase().includes(query) ||
-            s.description.toLowerCase().includes(query)
+        (s) => s.name.toLowerCase().includes(query) || s.description.toLowerCase().includes(query)
     );
 }, [searchQuery]);
 ```
 
 **Search UI:**
+
 - Magnifying glass icon (left side)
 - Clear button with X icon (right side, appears when typing)
 - Rounded full-width input with glassmorphism effect
@@ -45,6 +46,7 @@ const filteredServices = useMemo(() => {
 ### 2. ✅ Removed "Expert Level" and "Learn More" Sections
 
 **Before:**
+
 ```tsx
 <div className="mt-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
     {/* Icon badge */}
@@ -52,9 +54,7 @@ const filteredServices = useMemo(() => {
         <div className="p-2 rounded-lg bg-gradient-to-br from-cyan-500/20 to-violet-500/20 text-cyan-300 border border-cyan-500/30">
             {serviceIcons[s.name]}
         </div>
-        <span className="text-sm text-[var(--color-muted)]">
-            Expert Level
-        </span>
+        <span className="text-sm text-[var(--color-muted)]">Expert Level</span>
     </div>
 
     {/* Learn more link */}
@@ -66,6 +66,7 @@ const filteredServices = useMemo(() => {
 ```
 
 **After:**
+
 - Removed entire CTA section
 - Cleaner, more focused card design
 - Content section now only shows: Badge → Title → Description
@@ -75,6 +76,7 @@ const filteredServices = useMemo(() => {
 **Matches BlogPage Layout:**
 
 **Before:**
+
 ```tsx
 <div className="space-y-6">
     {data.services.map((s, index) => (
@@ -84,6 +86,7 @@ const filteredServices = useMemo(() => {
 ```
 
 **After:**
+
 ```tsx
 <div className="relative px-6 py-6 -mx-6">
     <div className="max-w-5xl mx-auto">
@@ -101,6 +104,7 @@ const filteredServices = useMemo(() => {
 ```
 
 **Styling Details:**
+
 - `relative px-6 py-6 -mx-6` - Creates contained background area
 - `max-w-5xl mx-auto` - Centers content with max width (same as blog)
 - Provides visual separation from surrounding content
@@ -124,15 +128,15 @@ const filteredServices = useMemo(() => {
 ### Card Contents (Left to Right)
 
 1. **Image Section (Left)**
-   - 320px width on desktop
-   - Aspect ratio 4:3
-   - Hover: Scale 110%
-   - Icon badge appears on hover (top-right)
+    - 320px width on desktop
+    - Aspect ratio 4:3
+    - Hover: Scale 110%
+    - Icon badge appears on hover (top-right)
 
 2. **Content Section (Right)**
-   - Professional Service badge
-   - Large bold title (gradient on hover)
-   - Description (line-clamp 2-3 lines)
+    - Professional Service badge
+    - Large bold title (gradient on hover)
+    - Description (line-clamp 2-3 lines)
 
 ---
 
@@ -141,6 +145,7 @@ const filteredServices = useMemo(() => {
 ### Search Input
 
 **Appearance:**
+
 - Full-width rounded input
 - Glassmorphism effect (`bg-white/5`)
 - Border with `border-white/10`
@@ -148,6 +153,7 @@ const filteredServices = useMemo(() => {
 - Clear button on right (when typing)
 
 **States:**
+
 - Default: Subtle white border
 - Focus: Cyan ring (`ring-cyan-400/50`)
 - Hover: Lighter background (`hover:bg-white/10`)
@@ -156,12 +162,14 @@ const filteredServices = useMemo(() => {
 ### Search Behavior
 
 **Filtering Logic:**
+
 - Case-insensitive search
 - Searches in service name
 - Searches in service description
 - Real-time filtering (instant results)
 
 **Performance:**
+
 - Uses `useMemo` to prevent unnecessary re-renders
 - Only recalculates when `searchQuery` changes
 - Efficient filtering on small dataset
@@ -169,6 +177,7 @@ const filteredServices = useMemo(() => {
 ### Empty State
 
 **When No Results:**
+
 ```
 ┌─────────────────────────────────┐
 │        [Icon]                   │
@@ -179,6 +188,7 @@ const filteredServices = useMemo(() => {
 ```
 
 **Features:**
+
 - Large icon placeholder
 - Clear message
 - Shows current search query
@@ -189,23 +199,27 @@ const filteredServices = useMemo(() => {
 ## Benefits
 
 ### 1. **Improved Usability**
+
 - Quick service discovery via search
 - Easier to find specific services
 - Clear visual feedback
 
 ### 2. **Cleaner Design**
+
 - Removed redundant "Expert Level" label
 - Removed unnecessary "Learn more" CTA
 - Focus on service name and description
 - Less visual clutter
 
 ### 3. **Consistent Layout**
+
 - Matches blog page styling exactly
 - Same max-width container
 - Same spacing and padding
 - Unified design language
 
 ### 4. **Better UX**
+
 - Search provides value for users with specific needs
 - Empty state guides users when no results
 - Clear button makes it easy to reset
@@ -215,16 +229,19 @@ const filteredServices = useMemo(() => {
 ## Technical Details
 
 ### Dependencies Added
+
 ```tsx
 import React, { useState, useMemo } from 'react';
 ```
 
 ### State Management
+
 ```tsx
 const [searchQuery, setSearchQuery] = useState('');
 ```
 
 ### Computed Values
+
 ```tsx
 const filteredServices = useMemo(() => {
     // filtering logic
@@ -232,6 +249,7 @@ const filteredServices = useMemo(() => {
 ```
 
 ### Conditional Rendering
+
 - Empty state when `filteredServices.length === 0`
 - Service cards when results exist
 - Search indicator when query is active
@@ -241,12 +259,14 @@ const filteredServices = useMemo(() => {
 ## Accessibility
 
 ### Search Input
+
 - Proper `placeholder` text
 - `aria-label` on clear button
 - Focus states with visible ring
 - Keyboard accessible
 
 ### Cards
+
 - Semantic `<article>` tags
 - Proper heading hierarchy
 - Alt text on images
@@ -257,12 +277,14 @@ const filteredServices = useMemo(() => {
 ## Responsive Design
 
 ### Mobile (< 1024px)
+
 - Search bar: Full width
 - Cards: Stacked (image top, content bottom)
 - Single column layout
 - Touch-friendly targets
 
 ### Desktop (>= 1024px)
+
 - Search bar: Centered, max-width
 - Cards: Horizontal (image left, content right)
 - Image: Fixed 320px width
@@ -281,23 +303,23 @@ const filteredServices = useMemo(() => {
 Possible improvements:
 
 1. **Advanced Search**
-   - Filter by category
-   - Sort options
-   - Tag-based filtering
+    - Filter by category
+    - Sort options
+    - Tag-based filtering
 
 2. **Debounced Search**
-   - Add debounce for API calls (if needed)
-   - Reduce re-renders on fast typing
+    - Add debounce for API calls (if needed)
+    - Reduce re-renders on fast typing
 
 3. **Search Analytics**
-   - Track popular searches
-   - Suggest related services
-   - Auto-complete
+    - Track popular searches
+    - Suggest related services
+    - Auto-complete
 
 4. **URL Integration**
-   - Add search query to URL
-   - Share search results
-   - Browser back/forward support
+    - Add search query to URL
+    - Share search results
+    - Browser back/forward support
 
 ---
 
@@ -308,4 +330,3 @@ Possible improvements:
 - Cleaner card design without CTA section
 - Better focus on service information
 - Improved user experience with search functionality
-

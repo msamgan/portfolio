@@ -67,7 +67,8 @@ export default function DocumentationPage() {
                     </h1>
 
                     <p className="text-lg md:text-xl text-[var(--color-muted)] max-w-2xl mx-auto leading-relaxed">
-                        Comprehensive documentation and guides for my open-source packages and projects. Everything you need to get started.
+                        Comprehensive documentation and guides for my open-source packages and
+                        projects. Everything you need to get started.
                     </p>
 
                     {/* Stats */}
@@ -310,7 +311,8 @@ export default function DocumentationPage() {
                                 Want to Contribute?
                             </h3>
                             <p className="text-[var(--color-muted)] text-lg">
-                                All packages are open source. Feel free to contribute, report issues, or suggest new features.
+                                All packages are open source. Feel free to contribute, report
+                                issues, or suggest new features.
                             </p>
                             <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
                                 <a
@@ -332,7 +334,10 @@ export default function DocumentationPage() {
                                     </svg>
                                     Visit GitHub
                                 </a>
-                                <a href="/projects" className="btn btn-secondary">
+                                <a
+                                    href="/projects"
+                                    className="btn btn-secondary"
+                                >
                                     <svg
                                         className="w-5 h-5"
                                         fill="none"
@@ -363,8 +368,18 @@ export default function DocumentationPage() {
                     className="fixed bottom-8 right-8 z-40 p-3 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 glow"
                     aria-label="Scroll to top"
                 >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                    <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 10l7-7m0 0l7 7m-7-7v18"
+                        />
                     </svg>
                 </button>
             )}
