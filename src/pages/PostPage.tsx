@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Container from '../components/Container';
+import DisqusThread from '../components/DisqusThread';
 
 interface ApiPost {
     id?: number | string;
@@ -1120,6 +1121,14 @@ export default function PostPage({ slug }: PostPageProps) {
                                             })}
                                         </div>
                                     </div>
+                                )}
+
+                                {/* Comments */}
+                                {post && (
+                                    <DisqusThread
+                                        identifier={post.slug || String(post.id || '')}
+                                        url={typeof window !== 'undefined' ? window.location.href : undefined}
+                                    />
                                 )}
 
                                 {/* Share Section */}
