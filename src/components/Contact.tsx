@@ -273,6 +273,7 @@ export default function Contact() {
                                             kind="github"
                                             href={socials.github}
                                             className="!text-white/90 group-hover:!text-cyan-300"
+                                            asChild
                                         />
                                         <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">
                                             GitHub
@@ -290,6 +291,7 @@ export default function Contact() {
                                             kind="linkedin"
                                             href={socials.linkedin}
                                             className="!text-white/90 group-hover:!text-cyan-300"
+                                            asChild
                                         />
                                         <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">
                                             LinkedIn
@@ -307,6 +309,7 @@ export default function Contact() {
                                             kind="twitter"
                                             href={socials.twitter}
                                             className="!text-white/90 group-hover:!text-cyan-300"
+                                            asChild
                                         />
                                         <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">
                                             Twitter
@@ -324,6 +327,7 @@ export default function Contact() {
                                             kind="youtube"
                                             href={socials.youtube}
                                             className="!text-white/90 group-hover:!text-cyan-300"
+                                            asChild
                                         />
                                         <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">
                                             YouTube

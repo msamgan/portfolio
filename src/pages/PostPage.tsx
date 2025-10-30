@@ -179,6 +179,7 @@ function ShareSection({ post }: { post: ApiPost }) {
             `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
             '_blank'
         );
+
         showNotification('Opening LinkedIn...');
     };
 
@@ -685,6 +686,134 @@ export default function PostPage({ slug }: PostPageProps) {
         const words = text.trim().split(/\s+/).length;
         return Math.ceil(words / 200); // Average reading speed: 200 words per minute
     };
+
+    // SEO: Upsert or override meta/link/script tags for the Post page
+    useEffect(() => {
+        if (!post) return;
+
+        const doc = document;
+        const head = doc.head;
+        const pageUrl = window.location.href;
+
+        const plainText = (post.content || '')
+            .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
+            .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
+            .replace(/<[^>]+>/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+
+        const description = (post.excerpt || plainText.slice(0, 200)).trim();
+        const title = post.title || post.slug || 'Post';
+        const image = post.featured_image || '';
+        const author = post.author || 'Mohammed Samgan Khan';
+        const publishedTime = post.published_at || post.created_at || '';
+        const modifiedTime = post.updated_at || publishedTime;
+        const tags = Array.isArray(post.tags)
+            ? post.tags
+                  .map((t) => (typeof t === 'string' ? t : t?.name))
+                  .filter(Boolean)
+                  .join(', ')
+            : '';
+
+        // Helper to upsert a meta tag by name
+        const upsertMetaByName = (name: string, content: string) => {
+            if (!content) return;
+            let el = head.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
+            if (!el) {
+                el = doc.createElement('meta');
+                el.setAttribute('name', name);
+                head.appendChild(el);
+            }
+            el.setAttribute('content', content);
+        };
+
+        // Helper to upsert a meta tag by property (for OpenGraph)
+        const upsertMetaByProperty = (property: string, content: string) => {
+            if (!content) return;
+            let el = head.querySelector(`meta[property="${property}"]`) as HTMLMetaElement | null;
+            if (!el) {
+                el = doc.createElement('meta');
+                el.setAttribute('property', property);
+                head.appendChild(el);
+            }
+            el.setAttribute('content', content);
+        };
+
+        const upsertLink = (rel: string, href: string) => {
+            if (!href) return;
+            let el = head.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement | null;
+            if (!el) {
+                el = doc.createElement('link');
+                el.setAttribute('rel', rel);
+                head.appendChild(el);
+            }
+            el.setAttribute('href', href);
+        };
+
+        const upsertJsonLd = (id: string, data: Record<string, any>) => {
+            let script = doc.getElementById(id) as HTMLScriptElement | null;
+            if (!script) {
+                script = doc.createElement('script');
+                script.type = 'application/ld+json';
+                script.id = id;
+                head.appendChild(script);
+            }
+            script.textContent = JSON.stringify(data);
+        };
+
+        // Title
+        doc.title = `${title} — msamgan`;
+
+        // Description
+        upsertMetaByName('description', description);
+
+        // Robots (allow indexing for posts)
+        upsertMetaByName('robots', 'index, follow');
+
+        // Keywords from tags (optional)
+        if (tags) upsertMetaByName('keywords', tags);
+
+        // Author
+        if (author) upsertMetaByName('author', author);
+
+        // Canonical URL
+        upsertLink('canonical', pageUrl);
+
+        // OpenGraph
+        upsertMetaByProperty('og:title', title);
+        upsertMetaByProperty('og:description', description);
+        upsertMetaByProperty('og:type', 'article');
+        upsertMetaByProperty('og:url', pageUrl);
+        upsertMetaByProperty('og:site_name', 'msamgan');
+        if (image) upsertMetaByProperty('og:image', image);
+        if (publishedTime) upsertMetaByProperty('article:published_time', publishedTime);
+        if (modifiedTime) upsertMetaByProperty('article:modified_time', modifiedTime);
+        if (author) upsertMetaByProperty('article:author', author);
+
+        // Twitter
+        upsertMetaByName('twitter:card', image ? 'summary_large_image' : 'summary');
+        upsertMetaByName('twitter:title', title);
+        upsertMetaByName('twitter:description', description);
+        if (image) upsertMetaByName('twitter:image', image);
+        upsertMetaByName('twitter:url', pageUrl);
+
+        // JSON-LD structured data for BlogPosting
+        const jsonLd: Record<string, any> = {
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            headline: title,
+            description: description,
+            datePublished: publishedTime || undefined,
+            dateModified: modifiedTime || undefined,
+            author: author ? { '@type': 'Person', name: author } : undefined,
+            mainEntityOfPage: {
+                '@type': 'WebPage',
+                '@id': pageUrl,
+            },
+            image: image || undefined,
+        };
+        upsertJsonLd('post-structured-data', jsonLd);
+    }, [post]);
 
     return (
         <div className="min-h-screen bg-[var(--color-bg)] text-white relative overflow-hidden">

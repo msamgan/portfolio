@@ -7,6 +7,7 @@ type IconLinkProps = {
     href: string;
     className?: string;
     label?: string;
+    asChild?: boolean;
 };
 
 const icons: Record<SocialKind, (props: { className?: string }) => ReactElement> = {
@@ -84,8 +85,13 @@ const icons: Record<SocialKind, (props: { className?: string }) => ReactElement>
     ),
 };
 
-export default function IconLink({ kind, href, className = '', label }: IconLinkProps) {
+export default function IconLink({ kind, href, className = '', label, asChild = false }: IconLinkProps) {
     const Icon = icons[kind];
+
+    if (asChild) {
+        return <Icon className={`size-5 ${className}`} />;
+    }
+
     return (
         <a
             href={href}
