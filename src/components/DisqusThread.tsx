@@ -4,10 +4,7 @@ import { useEffect, useRef } from 'react';
 declare global {
     interface Window {
         DISQUS?: {
-            reset: (options: {
-                reload: boolean;
-                config: () => void;
-            }) => void;
+            reset: (options: { reload: boolean; config: () => void }) => void;
         };
         disqus_config?: () => void;
     }
@@ -73,7 +70,10 @@ export default function DisqusThread({
             <h3 className="text-sm font-semibold uppercase tracking-wider text-[var(--color-muted)] mb-4">
                 Comments
             </h3>
-            <div ref={threadRef} id="disqus_thread" />
+            <div
+                ref={threadRef}
+                id="disqus_thread"
+            />
             <noscript>
                 Please enable JavaScript to view the{' '}
                 <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>

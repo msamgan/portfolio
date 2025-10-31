@@ -39,32 +39,35 @@ This portfolio embraces a **modern, tech-forward aesthetic** with the following 
 ### CSS Variables (Defined in `:root`)
 
 ```css
---color-bg: #0a0e1a;           /* Primary background - deep navy */
---color-surface: #0f172a;       /* Secondary surface - slate */
---color-text: #f1f5f9;          /* Primary text - off-white */
---color-muted: #94a3b8;         /* Secondary text - slate-400 */
---color-primary: #22d3ee;       /* Cyan-400 - primary actions */
---color-secondary: #a78bfa;     /* Violet-400 - secondary accents */
---color-accent: #34d399;        /* Emerald-400 - success/highlights */
---color-warning: #fbbf24;       /* Amber-400 - warnings/alerts */
+--color-bg: #0a0e1a; /* Primary background - deep navy */
+--color-surface: #0f172a; /* Secondary surface - slate */
+--color-text: #f1f5f9; /* Primary text - off-white */
+--color-muted: #94a3b8; /* Secondary text - slate-400 */
+--color-primary: #22d3ee; /* Cyan-400 - primary actions */
+--color-secondary: #a78bfa; /* Violet-400 - secondary accents */
+--color-accent: #34d399; /* Emerald-400 - success/highlights */
+--color-warning: #fbbf24; /* Amber-400 - warnings/alerts */
 --color-ring: color-mix(in oklab, var(--color-primary), white 20%);
 ```
 
 ### Gradient Combinations
 
 **Primary Gradient** (Headers, CTAs):
+
 ```css
-background: linear-gradient(to right, #22d3ee, #a78bfa)
+background: linear-gradient(to right, #22d3ee, #a78bfa);
 ```
 
 **Text Gradient** (H1 headings):
+
 ```css
-background: linear-gradient(135deg, white, #a5f3fc, #ddd6fe)
+background: linear-gradient(135deg, white, #a5f3fc, #ddd6fe);
 ```
 
 **Multi-Color Gradient** (Accents):
+
 ```css
-background: linear-gradient(90deg, #22d3ee, #a78bfa, #34d399)
+background: linear-gradient(90deg, #22d3ee, #a78bfa, #34d399);
 ```
 
 ### Background Effects
@@ -73,10 +76,10 @@ The design uses **layered radial gradients** over the base background:
 
 ```css
 background:
-  radial-gradient(ellipse 1400px 800px at 10% 0%, rgba(34, 211, 238, 0.08), transparent 50%),
-  radial-gradient(ellipse 1200px 700px at 90% 30%, rgba(167, 139, 250, 0.06), transparent 50%),
-  radial-gradient(ellipse 1000px 600px at 50% 100%, rgba(52, 211, 153, 0.04), transparent 50%),
-  linear-gradient(180deg, var(--color-bg) 0%, #05070f 100%);
+    radial-gradient(ellipse 1400px 800px at 10% 0%, rgba(34, 211, 238, 0.08), transparent 50%),
+    radial-gradient(ellipse 1200px 700px at 90% 30%, rgba(167, 139, 250, 0.06), transparent 50%),
+    radial-gradient(ellipse 1000px 600px at 50% 100%, rgba(52, 211, 153, 0.04), transparent 50%),
+    linear-gradient(180deg, var(--color-bg) 0%, #05070f 100%);
 ```
 
 This creates subtle ambient lighting effects across the page.
@@ -88,10 +91,21 @@ This creates subtle ambient lighting effects across the page.
 ### Font Stack
 
 **Primary Font**: [Inter](https://fonts.google.com/specimen/Inter) from Google Fonts
+
 ```css
-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 
-             'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 
-             'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
 ```
 
 ### Font Sizes
@@ -106,17 +120,19 @@ font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
 ### Text Styles
 
 **Gradient Text** (for headings):
+
 ```css
 .gradient-text {
-  @apply text-transparent bg-clip-text bg-gradient-to-r 
+    @apply text-transparent bg-clip-text bg-gradient-to-r 
          from-cyan-400 via-violet-400 to-emerald-400;
 }
 ```
 
 **H1 Headings** (automatic gradient):
+
 ```css
 h1 {
-  @apply text-transparent bg-clip-text bg-gradient-to-r 
+    @apply text-transparent bg-clip-text bg-gradient-to-r 
          from-white via-cyan-100 to-violet-200;
 }
 ```
@@ -133,8 +149,8 @@ h1 {
 ### System Variables
 
 ```css
---nav-height: 4rem;              /* Navbar height */
---section-spacing: 6rem;         /* Section vertical spacing */
+--nav-height: 4rem; /* Navbar height */
+--section-spacing: 6rem; /* Section vertical spacing */
 ```
 
 ### Padding Scale (Tailwind)
@@ -158,16 +174,19 @@ Standard sections use: `py-16 sm:py-24` (4rem - 6rem vertical padding)
 ### Grid Layouts
 
 **Skills Grid**:
+
 ```tsx
 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
 ```
 
 **Services Grid**:
+
 ```tsx
 <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 ```
 
 **Stats Grid**:
+
 ```tsx
 <div className="grid grid-cols-3 gap-6">
 ```
@@ -179,13 +198,18 @@ Standard sections use: `py-16 sm:py-24` (4rem - 6rem vertical padding)
 ### 1. Buttons
 
 #### Primary Button
+
 ```tsx
-<LinkButton variant="primary" href="/contact">
-  Contact Me
+<LinkButton
+    variant="primary"
+    href="/contact"
+>
+    Contact Me
 </LinkButton>
 ```
 
 **Styles**:
+
 - Gradient background: `from-cyan-500 to-cyan-400`
 - Rounded: `rounded-full`
 - Padding: `px-6 py-3`
@@ -193,37 +217,42 @@ Standard sections use: `py-16 sm:py-24` (4rem - 6rem vertical padding)
 - Ripple animation via `::before` pseudo-element
 
 **Classes**:
+
 ```css
 .btn-primary {
-  @apply bg-gradient-to-r from-cyan-500 to-cyan-400 
+    @apply bg-gradient-to-r from-cyan-500 to-cyan-400 
          text-black hover:from-cyan-400 hover:to-cyan-300 
          focus:outline-none focus:ring-2 focus:ring-cyan-400/50;
-  box-shadow: 0 0 20px rgba(34, 211, 238, 0.3),
-              0 10px 30px -10px rgba(0, 0, 0, 0.4);
+    box-shadow:
+        0 0 20px rgba(34, 211, 238, 0.3),
+        0 10px 30px -10px rgba(0, 0, 0, 0.4);
 }
 ```
 
 #### Secondary Button
+
 ```css
 .btn-secondary {
-  @apply bg-white/5 text-violet-200 hover:bg-white/10 
+    @apply bg-white/5 text-violet-200 hover:bg-white/10 
          ring-1 ring-white/10 hover:ring-white/20;
 }
 ```
 
 #### Small Button
+
 ```css
 .btn-sm {
-  @apply px-4 py-2 text-sm;
+    @apply px-4 py-2 text-sm;
 }
 ```
 
 ### 2. Cards
 
 **Standard Card**:
+
 ```css
 .card {
-  @apply rounded-2xl bg-gradient-to-br 
+    @apply rounded-2xl bg-gradient-to-br 
          from-[var(--color-surface)]/60 to-[var(--color-surface)]/40 
          ring-1 ring-white/5 backdrop-blur-sm p-6 
          transition-all duration-300;
@@ -231,6 +260,7 @@ Standard sections use: `py-16 sm:py-24` (4rem - 6rem vertical padding)
 ```
 
 **Features**:
+
 - Glassmorphic background
 - Subtle ring border
 - Top gradient bar on hover (via `::before`)
@@ -241,7 +271,7 @@ Standard sections use: `py-16 sm:py-24` (4rem - 6rem vertical padding)
 
 ```css
 .badge {
-  @apply inline-flex items-center gap-1 rounded-full 
+    @apply inline-flex items-center gap-1 rounded-full 
          bg-white/5 px-3 py-1.5 text-xs text-[var(--color-muted)] 
          ring-1 ring-white/10 transition-all duration-200;
 }
@@ -252,39 +282,49 @@ Standard sections use: `py-16 sm:py-24` (4rem - 6rem vertical padding)
 ### 4. Navigation (Navbar)
 
 **States**:
+
 - **Scrolled**: `backdrop-blur-xl bg-[var(--color-bg)]/90` with top gradient border
 - **Normal**: `backdrop-blur-md bg-[var(--color-bg)]/60`
 
 **Links**:
+
 - Active state: `bg-white/10` with pulse indicator dot
 - Hover: Gradient underline animation
 - Mobile: Hamburger menu with slide-in animation
 
 **Logo**:
+
 - Gradient text with hover color shift
 - Animated underline on hover
 
 ### 5. Footer
 
 **Structure**:
+
 - Grid layout: `md:grid-cols-2 lg:grid-cols-4`
 - Sponsor section above main content
 - Social links with hover effects
 - Decorative gradient backgrounds
 
 **Social Icons**:
+
 - Hover: `text-cyan-400` with scale transform
 - Smooth transitions
 
 ### 6. Section Component
 
 ```tsx
-<Section id="skills" title="Skills & Tech" subtitle="...">
-  {children}
+<Section
+    id="skills"
+    title="Skills & Tech"
+    subtitle="..."
+>
+    {children}
 </Section>
 ```
 
 **Header**:
+
 - Centered text
 - Max width subtitle: `max-w-3xl mx-auto`
 - Spacing: `mb-12`
@@ -292,6 +332,7 @@ Standard sections use: `py-16 sm:py-24` (4rem - 6rem vertical padding)
 ### 7. Hero Section
 
 **Features**:
+
 - Animated floating geometric shapes (SVG)
 - Profile image with gradient border
 - Social icon links
@@ -299,6 +340,7 @@ Standard sections use: `py-16 sm:py-24` (4rem - 6rem vertical padding)
 - Pulsing gradient orbs in background
 
 **Geometric Shapes**:
+
 - Hexagon, triangle, diamond, circles
 - Different animation durations (6s-9s)
 - Staggered animation delays
@@ -307,26 +349,39 @@ Standard sections use: `py-16 sm:py-24` (4rem - 6rem vertical padding)
 ### 8. Post Content Styling
 
 **Typography Hierarchy**:
+
 ```css
-.post-content h1 { @apply text-4xl mb-6 mt-12; /* cyan-violet gradient */ }
-.post-content h2 { @apply text-3xl mb-5 mt-10; /* tri-color gradient */ }
-.post-content h3 { @apply text-2xl mb-4 mt-8 text-cyan-300; }
-.post-content h4 { @apply text-xl mb-3 mt-6 text-violet-300; }
+.post-content h1 {
+    @apply text-4xl mb-6 mt-12; /* cyan-violet gradient */
+}
+.post-content h2 {
+    @apply text-3xl mb-5 mt-10; /* tri-color gradient */
+}
+.post-content h3 {
+    @apply text-2xl mb-4 mt-8 text-cyan-300;
+}
+.post-content h4 {
+    @apply text-xl mb-3 mt-6 text-violet-300;
+}
 ```
 
 **Links**:
+
 - Cyan color with gradient underline animation
 - Underline expands from right to left on hover
 
 **Lists**:
+
 - Adequate spacing: `space-y-3`
 - Left margin: `ml-6`
 
 **Blockquotes**:
+
 - Border-left accent with gradient
 - Italic text, cyan color
 
 **Code Blocks**:
+
 - Dark background with syntax highlighting
 - Copy button on hover
 - Monospace font
@@ -338,40 +393,50 @@ Standard sections use: `py-16 sm:py-24` (4rem - 6rem vertical padding)
 ### Keyframe Animations
 
 #### 1. Fade In Up
+
 ```css
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 ```
+
 **Usage**: `.animate-fade-in-up` with staggered delays
 
 #### 2. Float
+
 ```css
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
 }
 ```
+
 **Usage**: Floating geometric shapes, duration varies (3s-9s)
 
 #### 3. Slide In (Mobile Menu)
+
 ```css
 @keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 ```
 
@@ -386,22 +451,27 @@ Standard sections use: `py-16 sm:py-24` (4rem - 6rem vertical padding)
 ### Hover Effects
 
 **Button Ripple**:
+
 - Circular expansion from center
 - `transition: width 0.6s, height 0.6s`
 
 **Link Underline**:
+
 - Scale from right to left (or vice versa)
 - `transition: transform 0.3s ease`
 
 **Card Lift**:
+
 - `transform: scale(1.02)` or `translateY(-2px)`
 - Shadow enhancement
 
 **Glow Effect**:
+
 ```css
 .glow:hover {
-  box-shadow: 0 0 30px rgba(34, 211, 238, 0.5),
-              0 0 60px rgba(34, 211, 238, 0.2);
+    box-shadow:
+        0 0 30px rgba(34, 211, 238, 0.5),
+        0 0 60px rgba(34, 211, 238, 0.2);
 }
 ```
 
@@ -422,9 +492,9 @@ Standard sections use: `py-16 sm:py-24` (4rem - 6rem vertical padding)
 All base styles are mobile-optimized, then enhanced for larger screens:
 
 ```tsx
-className="text-3xl sm:text-4xl md:text-5xl"
-className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
-className="pt-20 sm:pt-28"
+className = 'text-3xl sm:text-4xl md:text-5xl';
+className = 'grid gap-6 sm:grid-cols-2 lg:grid-cols-4';
+className = 'pt-20 sm:pt-28';
 ```
 
 ### Navigation
@@ -441,8 +511,8 @@ Buttons use adequate padding: `px-6 py-3` or larger
 
 ```css
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: var(--nav-height); /* Account for fixed navbar */
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--nav-height); /* Account for fixed navbar */
 }
 ```
 
@@ -453,6 +523,7 @@ html {
 ### Color Contrast
 
 All text meets **WCAG AA** standards:
+
 - White text (`#f1f5f9`) on dark background (`#0a0e1a`)
 - Muted text (`#94a3b8`) used for less critical content
 - Gradient text uses light shades on dark backgrounds
@@ -460,6 +531,7 @@ All text meets **WCAG AA** standards:
 ### Focus States
 
 Buttons and links have visible focus rings:
+
 ```css
 focus:outline-none focus:ring-2 focus:ring-cyan-400/50
 ```
@@ -475,6 +547,7 @@ focus:outline-none focus:ring-2 focus:ring-cyan-400/50
 ### ARIA Labels
 
 Mobile menu toggle:
+
 ```tsx
 <button aria-label="Toggle menu">
 ```
@@ -498,30 +571,32 @@ Mobile menu toggle:
 ### Theme Tokens (theme.ts)
 
 Centralized design tokens:
+
 ```typescript
 export const theme = {
-  colors: {
-    bg: 'var(--color-bg)',
-    surface: 'var(--color-surface)',
-    // ...
-  },
-  radius: {
-    sm: '8px',
-    md: '12px',
-    lg: '16px',
-    xl: '24px',
-    pill: '999px',
-  },
-  shadow: {
-    soft: '0 10px 30px -10px rgba(0,0,0,0.35)',
-    ring: '0 0 0 3px var(--color-ring)',
-  },
+    colors: {
+        bg: 'var(--color-bg)',
+        surface: 'var(--color-surface)',
+        // ...
+    },
+    radius: {
+        sm: '8px',
+        md: '12px',
+        lg: '16px',
+        xl: '24px',
+        pill: '999px',
+    },
+    shadow: {
+        soft: '0 10px 30px -10px rgba(0,0,0,0.35)',
+        ring: '0 0 0 3px var(--color-ring)',
+    },
 };
 ```
 
 ### Component Structure
 
 **Reusable Components**:
+
 - `Button.tsx` - Polymorphic button/link
 - `Section.tsx` - Consistent section wrapper
 - `Container.tsx` - Max-width container
@@ -529,6 +604,7 @@ export const theme = {
 - `Footer.tsx` - Page footer
 
 **Page Components**:
+
 - `ServicesPage.tsx`
 - `ProjectsPage.tsx`
 - `BlogPage.tsx`
@@ -538,29 +614,31 @@ export const theme = {
 ### Scroll Progress Indicator
 
 All pages include a top progress bar:
+
 ```tsx
 const [scrollProgress, setScrollProgress] = useState(0);
 
 useEffect(() => {
-  const handleScroll = () => {
-    const totalHeight = document.documentElement.scrollHeight 
-                      - document.documentElement.clientHeight;
-    const progress = (window.scrollY / totalHeight) * 100;
-    setScrollProgress(progress);
-  };
-  // ...
+    const handleScroll = () => {
+        const totalHeight =
+            document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const progress = (window.scrollY / totalHeight) * 100;
+        setScrollProgress(progress);
+    };
+    // ...
 }, []);
 
-<div 
-  className="fixed top-0 left-0 right-0 z-50 h-1 
+<div
+    className="fixed top-0 left-0 right-0 z-50 h-1 
              bg-gradient-to-r from-cyan-500 via-violet-500 to-emerald-500"
-  style={{ width: `${scrollProgress}%` }}
-/>
+    style={{ width: `${scrollProgress}%` }}
+/>;
 ```
 
 ### Data-Driven Content
 
 Content comes from `data.json`:
+
 ```tsx
 import data from '../data.json';
 
@@ -571,8 +649,9 @@ const intro = data.intro.text;
 ### Staggered Animations
 
 Elements animate in sequence using inline styles:
+
 ```tsx
-<div 
+<div
   className="animate-fade-in-up"
   style={{ animationDelay: `${index * 0.1}s` }}
 >
@@ -581,10 +660,11 @@ Elements animate in sequence using inline styles:
 ### Conditional Styling
 
 Based on state (scroll, active, etc.):
+
 ```tsx
 className={`transition-all ${
-  isScrolled 
-    ? 'backdrop-blur-xl bg-[var(--color-bg)]/90' 
+  isScrolled
+    ? 'backdrop-blur-xl bg-[var(--color-bg)]/90'
     : 'backdrop-blur-md bg-[var(--color-bg)]/60'
 }`}
 ```
@@ -619,29 +699,34 @@ src/
 ## Best Practices
 
 ### 1. Consistency
+
 - Use design tokens from `theme.ts`
 - Follow established component patterns
 - Maintain spacing rhythm (multiples of 4/8)
 
 ### 2. Performance
+
 - Optimize images (use appropriate formats)
 - Lazy load off-screen content
 - Minimize bundle size
 - Use CSS transforms for animations (GPU-accelerated)
 
 ### 3. Maintainability
+
 - Keep components small and focused
 - Extract repeated patterns into utilities
 - Document complex logic
 - Use TypeScript for type safety
 
 ### 4. User Experience
+
 - Provide visual feedback for all interactions
 - Ensure smooth transitions (no janky animations)
 - Make loading states clear
 - Handle errors gracefully
 
 ### 5. Progressive Enhancement
+
 - Start with semantic HTML
 - Add CSS for visual polish
 - Enhance with JavaScript interactions
@@ -735,4 +820,3 @@ Ghost:         [        ] → hover → [░░░░░░░░]
 This design guide serves as the source of truth for maintaining visual and interaction consistency across the portfolio. It balances modern aesthetics with accessibility and performance, creating a professional yet engaging user experience.
 
 For questions or clarifications, refer to the actual component implementations in the `src/` directory.
-

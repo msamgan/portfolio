@@ -85,7 +85,13 @@ const icons: Record<SocialKind, (props: { className?: string }) => ReactElement>
     ),
 };
 
-export default function IconLink({ kind, href, className = '', label, asChild = false }: IconLinkProps) {
+export default function IconLink({
+    kind,
+    href,
+    className = '',
+    label,
+    asChild = false,
+}: IconLinkProps) {
     const Icon = icons[kind];
 
     if (asChild) {

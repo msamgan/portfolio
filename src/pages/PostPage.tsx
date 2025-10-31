@@ -1127,7 +1127,11 @@ export default function PostPage({ slug }: PostPageProps) {
                                 {post && (
                                     <DisqusThread
                                         identifier={post.slug || String(post.id || '')}
-                                        url={typeof window !== 'undefined' ? window.location.href : undefined}
+                                        url={
+                                            typeof window !== 'undefined'
+                                                ? window.location.href
+                                                : undefined
+                                        }
                                     />
                                 )}
 
