@@ -193,6 +193,13 @@
             "img": "src/assets/laravel.png",
             "link": "/docs/env-checker",
             "repo": "https://github.com/msamgan/laravel-env-keys-checker"
+        },
+        {
+            "name": "Laravel API Boilerplate",
+            "description": "A Laravel API Boilerplate with Sanctum Authentication, Role Management, and more.",
+            "img": "src/assets/laravel.png",
+            "link": "/docs/laravel-api-boilerplate",
+            "repo": "https://github.com/msamgan/laravel-api-boilerplate"
         }
     ]
 }
