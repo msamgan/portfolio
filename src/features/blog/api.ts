@@ -10,6 +10,17 @@ export interface BlogArticle {
     author?: string;
     featured_image?: string;
     tags?: string[] | { name?: string }[];
+    status?: string;
+    meta_description?: string;
+    related_posts?: BlogArticle[];
+}
+
+/** Thrown by {@link fetchBlogPost} when the API reports the post doesn't exist. */
+export class PostNotFoundError extends Error {
+    constructor(slug: string) {
+        super(`Post not found: ${slug}`);
+        this.name = 'PostNotFoundError';
+    }
 }
 
 interface BlogApiResponse {
@@ -87,4 +98,34 @@ export async function fetchBlogArticles({
                 (perPage ? Math.max(1, Math.ceil(total / perPage)) : 1),
         },
     };
+}
+
+/** Fetches a single published post by its slug. */
+export async function fetchBlogPost({
+    slug,
+    signal,
+}: {
+    slug: string;
+    signal: AbortSignal;
+}): Promise<BlogArticle> {
+    const response = await fetch(`https://msamgan.dev/api/post/${encodeURIComponent(slug)}`, {
+        signal,
+    });
+
+    if (response.status === 404) {
+        throw new PostNotFoundError(slug);
+    }
+
+    if (!response.ok) {
+        throw new Error(`Failed to load post: ${response.status}`);
+    }
+
+    const payload = await response.json();
+    const post: BlogArticle | undefined = payload?.data ?? payload;
+
+    if (!post || typeof post !== 'object' || (!post.slug && !post.title)) {
+        throw new PostNotFoundError(slug);
+    }
+
+    return post;
 }

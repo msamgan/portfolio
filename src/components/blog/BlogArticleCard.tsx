@@ -1,29 +1,9 @@
 import type { BlogArticle } from '../../features/blog/api';
+import { formatArticleDate, getArticleTags } from '../../features/blog/format';
 import BlogIcon from './BlogIcon';
 import Link from '../Link';
 
 const MAX_VISIBLE_TAGS = 3;
-
-function formatDate(value?: string) {
-    if (!value) return '';
-
-    const date = new Date(value);
-    if (Number.isNaN(date.getTime())) return '';
-
-    return date.toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-    });
-}
-
-function getTags(article: BlogArticle) {
-    if (!Array.isArray(article.tags)) return [];
-
-    return article.tags
-        .map((tag) => (typeof tag === 'string' ? tag : tag.name))
-        .filter((tag): tag is string => Boolean(tag));
-}
 
 export default function BlogArticleCard({
     article,
@@ -32,8 +12,11 @@ export default function BlogArticleCard({
     article: BlogArticle;
     index: number;
 }) {
-    const date = formatDate(article.published_at ?? article.created_at ?? article.updated_at);
-    const tags = getTags(article);
+    const date = formatArticleDate(
+        article.published_at ?? article.created_at ?? article.updated_at,
+        'short'
+    );
+    const tags = getArticleTags(article);
     const href = article.slug ? `/${article.slug}` : undefined;
     const title = article.title ?? article.slug ?? 'Untitled article';
     const cardContent = (
