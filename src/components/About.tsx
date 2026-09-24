@@ -1,293 +1,174 @@
-import { useState, useEffect } from 'react';
 import data from '../data.json';
+import profileImage from '../assets/msamgan.jpeg';
+import Experience from './Experience';
+import OpenSourceIndex from './OpenSourceIndex';
+import Stats from './Stats';
 
-const stats = [
-    { label: 'Years Experience', value: '9+', icon: '💼' },
-    { label: 'Open Source Downloads', value: '31K+', icon: '📦' },
-    { label: 'Projects Delivered', value: '50+', icon: '🚀' },
-    { label: 'Technologies Mastered', value: '15+', icon: '⚡' },
-];
+const skillGroups = data.skillGroups;
+const focusAreas = data.focusAreas;
 
-const highlights = [
-    { icon: '🏆', text: 'Laravel & PHP Expert' },
-    { icon: '☁️', text: 'Cloud Architecture (AWS, Azure, GCP)' },
-    { icon: '🌐', text: 'Full-Stack Development' },
-    { icon: '🔧', text: 'DevOps & CI/CD' },
-];
+const resume = data.navigation.pages.find((p) => p.name === 'Resume');
 
 export default function About() {
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setIsVisible(true);
-                    }
-                });
-            },
-            { threshold: 0.1 }
-        );
-
-        const section = document.getElementById('about');
-        if (section) observer.observe(section);
-
-        return () => observer.disconnect();
-    }, []);
-
     return (
         <section
             id="about"
-            className="relative"
+            className="editorial"
         >
-            {/* Hero section matching Services/Projects style */}
-            <div className="relative min-h-[40vh] flex items-center justify-center pt-24 pb-16 px-6 overflow-hidden">
-                {/* Background effects */}
-                <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" />
-                    <div
-                        className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl animate-pulse"
-                        style={{ animationDelay: '1s' }}
-                    />
-                </div>
+            {/* 01 — Editorial header, portrait & introduction */}
+            <div className="border-b border-[var(--editorial-line)] pt-28 sm:pt-36 pb-16 sm:pb-24">
+                <div className="mx-auto max-w-7xl px-5 sm:px-8">
+                    <div className="eyebrow mb-8 sm:mb-10">01 — About</div>
 
-                {/* Content */}
-                <div className="relative text-center max-w-4xl mx-auto space-y-6 animate-fade-in-up">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-sm text-cyan-300 mb-4">
-                        <svg
-                            className="w-4 h-4"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                            />
-                        </svg>
-                        About Me
-                    </div>
-
-                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-violet-200">
-                        Crafting Scalable Solutions
+                    <h1 className="font-serif-display font-normal leading-[1.02] text-[12vw] sm:text-6xl lg:text-7xl tracking-tight max-w-4xl">
+                        {data.name}
                     </h1>
-
-                    <p className="text-lg md:text-xl text-[var(--color-muted)] max-w-2xl mx-auto leading-relaxed">
-                        Building the future, one line of code at a time. Software Engineer with 9+
-                        years of experience.
+                    <p className="mt-5 font-mono-label text-xs uppercase text-[var(--editorial-muted)]">
+                        {data.title}
                     </p>
 
-                    {/* Stats */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto pt-8">
-                        {stats.map((stat, idx) => (
-                            <div
-                                key={idx}
-                                className="space-y-2 animate-fade-in-up"
-                                style={{ animationDelay: `${(idx + 2) * 0.1}s` }}
-                            >
-                                <div className="text-3xl md:text-4xl font-bold gradient-text">
-                                    {stat.value}
+                    <div className="mt-12 sm:mt-16 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8">
+                        {/* Portrait */}
+                        <div className="lg:col-span-4">
+                            <figure className="border border-[var(--editorial-line)] p-3 sm:p-4">
+                                <div className="aspect-[4/5] overflow-hidden">
+                                    <img
+                                        src={profileImage}
+                                        alt={`Portrait of ${data.name}, ${data.title.split('|')[0].trim()}`}
+                                        className="h-full w-full object-cover grayscale contrast-125 transition-transform duration-500 hover:scale-[1.02]"
+                                    />
                                 </div>
-                                <div className="text-xs md:text-sm text-[var(--color-muted)]">
-                                    {stat.label}
+                                <figcaption className="mt-3 flex items-baseline justify-between font-mono-label text-[11px] uppercase text-[var(--editorial-muted)]">
+                                    <span>Portrait</span>
+                                    <span>{data.contact.address}</span>
+                                </figcaption>
+                            </figure>
+
+                            <dl className="mt-8 space-y-5 font-mono-label text-xs uppercase text-[var(--editorial-muted)]">
+                                <div>
+                                    <dt className="mb-1 text-[var(--editorial-ink)]">Role</dt>
+                                    <dd>{data.title.split('|')[0].trim()}</dd>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-
-            {/* Main content section */}
-            <div className="py-16 px-6">
-                <div className="max-w-7xl mx-auto space-y-12">
-                    {/* Main content grid */}
-                    <div className="grid lg:grid-cols-3 gap-8 items-start">
-                        {/* Left: Profile Card */}
-                        <div
-                            className={`lg:col-span-1 transition-all duration-700 ${
-                                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                            }`}
-                        >
-                            <div className="card sticky top-24 group">
-                                {/* Profile Image */}
-                                <div className="relative mb-6 overflow-hidden rounded-xl">
-                                    <div className="aspect-square relative">
-                                        <img
-                                            src={data.intro.img}
-                                            alt={data.name}
-                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                        />
-                                        {/* Gradient overlay */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                    </div>
-                                    {/* Animated border */}
-                                    <div className="absolute inset-0 rounded-xl ring-2 ring-cyan-500/0 group-hover:ring-cyan-500/50 transition-all duration-300" />
+                                <div>
+                                    <dt className="mb-1 text-[var(--editorial-ink)]">Location</dt>
+                                    <dd>{data.contact.address}</dd>
                                 </div>
-
-                                {/* Quick Info */}
-                                <div className="space-y-4">
-                                    <div>
-                                        <h3 className="text-xl font-bold text-white mb-1">
-                                            {data.name}
-                                        </h3>
-                                        <p className="text-sm text-[var(--color-muted)]">
-                                            {data.title.split('|')[0].trim()}
-                                        </p>
-                                    </div>
-
-                                    {/* Location */}
-                                    <div className="flex items-center gap-2 text-sm text-[var(--color-muted)]">
-                                        <svg
-                                            className="w-4 h-4 text-cyan-400"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth={2}
-                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                                            />
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth={2}
-                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                                            />
-                                        </svg>
-                                        <span>{data.contact.address}</span>
-                                    </div>
-
-                                    {/* Highlights */}
-                                    <div className="pt-4 border-t border-white/10 space-y-2">
-                                        {highlights.map((highlight, idx) => (
-                                            <div
-                                                key={idx}
-                                                className="flex items-center gap-2 text-sm text-white/80 hover:text-white transition-colors group/item"
-                                            >
-                                                <span className="text-lg group-hover/item:scale-125 transition-transform">
-                                                    {highlight.icon}
-                                                </span>
-                                                <span>{highlight.text}</span>
-                                            </div>
-                                        ))}
-                                    </div>
+                                <div>
+                                    <dt className="mb-1 text-[var(--editorial-ink)]">Focus</dt>
+                                    <dd className="normal-case font-sans text-sm text-[var(--editorial-muted)] leading-relaxed">
+                                        Laravel / PHP · Full Stack · Cloud Infrastructure
+                                    </dd>
                                 </div>
-                            </div>
+                            </dl>
                         </div>
 
-                        {/* Right: Content */}
-                        <div
-                            className={`lg:col-span-2 space-y-6 transition-all duration-700 delay-150 ${
-                                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                            }`}
-                        >
-                            {/* Bio paragraphs */}
-                            <div className="space-y-5">
-                                {data.intro.text.map((para, idx) => (
+                        {/* Introduction copy */}
+                        <div className="lg:col-span-8">
+                            <p className="font-serif-display text-2xl sm:text-3xl leading-[1.35] text-[var(--editorial-ink)]">
+                                {data.intro.text[0]}
+                            </p>
+                            <div className="mt-8 space-y-6 max-w-2xl">
+                                {data.intro.text.slice(1).map((para, idx) => (
                                     <p
                                         key={idx}
-                                        style={{ animationDelay: `${(idx + 2) * 100}ms` }}
-                                        className={`text-[var(--color-muted)] leading-relaxed text-lg ${
-                                            isVisible ? 'animate-fade-in-up' : 'opacity-0'
-                                        }`}
+                                        className="text-lg leading-relaxed text-[var(--editorial-muted)]"
                                     >
                                         {para}
                                     </p>
                                 ))}
                             </div>
 
-                            {/* CTA Buttons */}
-                            <div className="flex flex-wrap gap-4 pt-4">
+                            <div className="mt-10 flex flex-wrap items-center gap-6 text-sm">
                                 <a
-                                    href="#contact"
-                                    className="btn btn-primary group"
+                                    href="/contact"
+                                    className="editorial-link text-[var(--editorial-ink)]"
                                 >
-                                    <span>Get in Touch</span>
-                                    <svg
-                                        className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M13 7l5 5m0 0l-5 5m5-5H6"
-                                        />
-                                    </svg>
+                                    Get in touch →
                                 </a>
                                 <a
                                     href="/projects"
-                                    className="btn btn-secondary group"
+                                    className="editorial-link text-[var(--editorial-muted)] hover:text-[var(--editorial-ink)]"
                                 >
-                                    <span>View Projects</span>
-                                    <svg
-                                        className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                                        />
-                                    </svg>
+                                    View projects
                                 </a>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    {/* Call to action banner */}
-                    <div
-                        className={`transition-all duration-700 delay-500 ${
-                            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                        }`}
-                    >
-                        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-cyan-500/10 via-violet-500/10 to-emerald-500/10 ring-1 ring-white/10 p-8 group hover:ring-white/20 transition-all">
-                            {/* Animated gradient background */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-violet-500/20 to-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <Stats />
 
-                            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-                                <div className="text-center md:text-left">
-                                    <h3 className="text-2xl font-bold text-white mb-2">
-                                        Let's Build Something Amazing Together
-                                    </h3>
-                                    <p className="text-[var(--color-muted)]">
-                                        I'm always open to discussing new projects, creative ideas,
-                                        or opportunities to be part of your vision.
-                                    </p>
-                                </div>
+            {/* 02 — Areas of focus & technical stack */}
+            <div className="border-b border-[var(--editorial-line)] py-16 sm:py-24">
+                <div className="mx-auto max-w-7xl px-5 sm:px-8">
+                    <div className="flex items-baseline justify-between gap-6 mb-10 sm:mb-14">
+                        <h2 className="eyebrow">02 — Areas of focus</h2>
+                        <span className="hidden sm:block flex-1 border-t border-[var(--editorial-line)]" />
+                    </div>
+
+                    <div className="mb-16 sm:mb-20">
+                        {focusAreas.map((label, i) => (
+                            <div
+                                key={label}
+                                className="editorial-row grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 py-7 sm:py-8"
+                            >
+                                <span className="sm:col-span-1 font-mono-label text-xs text-[var(--editorial-muted)]">
+                                    {String(i + 1).padStart(2, '0')}
+                                </span>
+                                <span className="sm:col-span-11 font-serif-display text-2xl sm:text-3xl text-[var(--editorial-ink)]">
+                                    {label}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <h3 className="font-mono-label text-[11px] uppercase text-[var(--editorial-accent)] mb-6">
+                        Technical stack
+                    </h3>
+                    <div className="grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
+                        {skillGroups.map((g) => (
+                            <div key={g.label}>
+                                <p className="font-mono-label text-[11px] uppercase text-[var(--editorial-muted)] mb-2">
+                                    {g.label}
+                                </p>
+                                <p className="text-[var(--editorial-ink)] leading-relaxed">
+                                    {g.items.join(' · ')}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            <Experience eyebrow="03 — Engineering impact" />
+
+            <OpenSourceIndex eyebrow="04 — Open source" />
+
+            {/* 05 — Curriculum vitae */}
+            <div className="border-b border-[var(--editorial-line)] py-16 sm:py-24">
+                <div className="mx-auto max-w-7xl px-5 sm:px-8">
+                    <div className="flex items-baseline justify-between gap-6 mb-10 sm:mb-14">
+                        <h2 className="eyebrow">05 — Curriculum vitae</h2>
+                        <span className="hidden sm:block flex-1 border-t border-[var(--editorial-line)]" />
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-baseline">
+                        <p className="lg:col-span-8 font-serif-display text-2xl sm:text-3xl leading-[1.35] text-[var(--editorial-ink)]">
+                            For a detailed look at my experience and technical background.
+                        </p>
+                        {resume && (
+                            <div className="lg:col-span-4 lg:flex lg:justify-end">
                                 <a
-                                    href="https://msamgan.s3.us-east-2.amazonaws.com/mohammed+samgan+khan.pdf"
+                                    href={resume.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white font-medium whitespace-nowrap transition-all hover:scale-105 ring-1 ring-white/20 hover:ring-white/30"
+                                    className="editorial-link text-lg text-[var(--editorial-accent)]"
                                 >
-                                    <svg
-                                        className="w-5 h-5"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                                        />
-                                    </svg>
-                                    Download Resume
+                                    Download résumé →
                                 </a>
                             </div>
-                        </div>
+                        )}
                     </div>
                 </div>
             </div>

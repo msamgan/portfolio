@@ -1,47 +1,50 @@
 import { useMemo, useState } from 'react';
 import data from '../data.json';
-import ServiceCard from './ServiceCard';
+import lactLogo from '../assets/lact-logo.png';
+import laravelLogo from '../assets/laravel.png';
+import ProjectRow from './ProjectRow';
 
-// Import service images
-import webDev from '../assets/services/WebDevelopment.png';
-import mobileDev from '../assets/services/MobileDevelopment.png';
-import apiDev from '../assets/services/APIDevelopment.png';
-import dbDesign from '../assets/services/DatabaseDesign.png';
-import codeReview from '../assets/services/CodeReview.png';
-import techConsulting from '../assets/services/TechnicalConsulting.png';
-import projectMgmt from '../assets/services/ProjectManagement.png';
-import softwareArch from '../assets/services/SoftwareArchitecture.png';
-
-// Map of local image paths (as referenced in data.json) to bundled assets —
-// same convention used by ProjectArchive for project logos.
+// Map of local image paths (as referenced in data.json) to bundled assets.
 const localImages: Record<string, string> = {
-    'src/assets/services/WebDevelopment.png': webDev,
-    'src/assets/services/MobileDevelopment.png': mobileDev,
-    'src/assets/services/APIDevelopment.png': apiDev,
-    'src/assets/services/DatabaseDesign.png': dbDesign,
-    'src/assets/services/CodeReview.png': codeReview,
-    'src/assets/services/TechnicalConsulting.png': techConsulting,
-    'src/assets/services/ProjectManagement.png': projectMgmt,
-    'src/assets/services/SoftwareArchitecture.png': softwareArch,
+    'src/assets/lact-logo.png': lactLogo,
+    'src/assets/laravel.png': laravelLogo,
 };
 
-export default function Services({ eyebrow = '02 — Services' }: { eyebrow?: string }) {
+// Derives a project's category from its name — preserves the existing
+// classification behaviour used for search and the type label.
+const getProjectCategory = (name: string): string => {
+    const nameLower = name.toLowerCase();
+    if (nameLower.includes('framework')) return 'framework';
+    if (nameLower.includes('extension') || nameLower.includes('vscode') || nameLower.includes('pint'))
+        return 'extension';
+    if (nameLower.includes('shortener') || nameLower.includes('ms0')) return 'tool';
+    if (nameLower.includes('laravel') || nameLower.includes('checker') || nameLower.includes('lact'))
+        return 'package';
+    return 'default';
+};
+
+export default function ProjectArchive({
+    eyebrow = '03 — Featured projects',
+}: {
+    eyebrow?: string;
+}) {
     const [query, setQuery] = useState('');
 
-    const filteredServices = useMemo(() => {
+    const filteredProjects = useMemo(() => {
         const q = query.trim().toLowerCase();
-        if (!q) return data.services;
+        if (!q) return data.projects;
 
-        return data.services.filter(
-            (s) =>
-                s.name.toLowerCase().includes(q) ||
-                s.description.toLowerCase().includes(q)
+        return data.projects.filter(
+            (p) =>
+                p.name.toLowerCase().includes(q) ||
+                p.description.toLowerCase().includes(q) ||
+                getProjectCategory(p.name).includes(q)
         );
     }, [query]);
 
     return (
         <section
-            id="services"
+            id="projects"
             className="editorial border-b border-[var(--editorial-line)] py-16 sm:py-24"
         >
             <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -50,17 +53,13 @@ export default function Services({ eyebrow = '02 — Services' }: { eyebrow?: st
                     <span className="hidden sm:block flex-1 border-t border-[var(--editorial-line)]" />
                 </div>
 
-                <p className="max-w-2xl text-lg sm:text-xl leading-relaxed text-[var(--editorial-muted)] mb-12 sm:mb-16">
-                    Ways I can help your team ship faster and smarter.
-                </p>
-
                 {/* Editorial search control */}
-                <div className="mb-4 max-w-md">
+                <div className="mb-12 sm:mb-16 max-w-md">
                     <label
-                        htmlFor="service-search"
+                        htmlFor="project-search"
                         className="font-mono-label text-[11px] uppercase text-[var(--editorial-muted)]"
                     >
-                        Search services
+                        Search projects
                     </label>
                     <div className="mt-3 flex items-center gap-3 border-b border-[var(--editorial-line-strong)] focus-within:border-[var(--editorial-accent)] transition-colors duration-200">
                         <svg
@@ -78,11 +77,11 @@ export default function Services({ eyebrow = '02 — Services' }: { eyebrow?: st
                             />
                         </svg>
                         <input
-                            id="service-search"
+                            id="project-search"
                             type="text"
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
-                            placeholder="Search services…"
+                            placeholder="Search by name, description, or category…"
                             className="w-full bg-transparent py-3 text-sm text-[var(--editorial-ink)] placeholder-[var(--editorial-muted)] focus:outline-none"
                         />
                         {query && (
@@ -110,26 +109,36 @@ export default function Services({ eyebrow = '02 — Services' }: { eyebrow?: st
                     </div>
                     {query && (
                         <p className="mt-3 font-mono-label text-[11px] uppercase text-[var(--editorial-muted)]">
-                            {filteredServices.length} result
-                            {filteredServices.length !== 1 ? 's' : ''}
+                            {filteredProjects.length} result
+                            {filteredProjects.length !== 1 ? 's' : ''}
                         </p>
                     )}
                 </div>
 
-                {filteredServices.length > 0 ? (
+                {filteredProjects.length > 0 ? (
                     <div>
-                        {filteredServices.map((s, i) => (
-                            <ServiceCard
-                                key={s.name}
-                                index={i}
-                                service={s}
-                                image={localImages[s.img]}
-                            />
-                        ))}
+                        {filteredProjects.map((p, i) => {
+                            const links = [
+                                { label: 'Learn more', href: p.link },
+                                ...(p.repo ? [{ label: 'GitHub', href: p.repo }] : []),
+                            ];
+
+                            return (
+                                <ProjectRow
+                                    key={p.name}
+                                    index={i}
+                                    title={p.name}
+                                    description={p.description}
+                                    image={p.img ? (localImages[p.img] ?? p.img) : undefined}
+                                    type={getProjectCategory(p.name)}
+                                    links={links}
+                                />
+                            );
+                        })}
                     </div>
                 ) : (
                     <p className="py-12 text-[var(--editorial-muted)]">
-                        No services match "{query}" —{' '}
+                        No projects match{' '}
                         <button
                             type="button"
                             onClick={() => setQuery('')}
