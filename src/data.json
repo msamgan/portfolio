@@ -5,7 +5,7 @@
     "intro": {
         "img": "src/assets/msamgan.jpeg",
         "text": [
-            "I’m a seasoned Software Engineer with over 9 years of experience delivering scalable, high-performance software across logistics, e-commerce, and cloud infrastructure. I specialize in full-stack development with deep expertise in PHP (Laravel), JavaScript, and modern frameworks like Node.js and React, and have led the design, development, and deployment of complex applications from scratch.",
+            "I’m a seasoned Software Engineer with over 11 years of experience delivering scalable, high-performance software across logistics, e-commerce, and cloud infrastructure. I specialize in full-stack development with deep expertise in PHP (Laravel), JavaScript, and modern frameworks like Node.js and React, and have led the design, development, and deployment of complex applications from scratch.",
             " Throughout my career, I’ve optimized systems for major logistics providers, reduced operational costs, and improved performance through API integrations and ERP implementations. My work has saved companies hundreds of thousands in maintenance and helped streamline warehouse and delivery operations. I also have hands-on experience with cloud platforms (AWS, Azure, GCP), CI/CD pipelines, and both SQL and NoSQL databases.",
             "Beyond the workplace, I’m an active open-source contributor with over 21,000 combined downloads across Laravel packages and VS Code extensions. My contributions include tools like Laravel Env Keys Checker and Laravel Pint VS Code Extension, and I’ve collaborated on projects by industry leaders like Nuno Maduro and Tighten. Learn more about my work and projects at msamgan.com."
         ]
@@ -17,7 +17,7 @@
     },
     "stats": [
         {
-            "value": "09+",
+            "value": "11+",
             "label": "Years engineering"
         },
         {
@@ -55,7 +55,7 @@
     ],
     "experienceHighlights": [
         {
-            "metric": "9+ years",
+            "metric": "11+ years",
             "desc": "Designing and delivering scalable systems across logistics, e-commerce, and cloud infrastructure."
         },
         {
