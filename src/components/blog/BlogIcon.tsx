@@ -5,7 +5,8 @@ type BlogIconName =
     | 'clear'
     | 'document'
     | 'external'
-    | 'search';
+    | 'search'
+    | 'tool';
 
 export default function BlogIcon({
     name,
@@ -33,6 +34,7 @@ export default function BlogIcon({
         document: <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z M14 2v6h6" />,
         external: <path d="M14 3h7v7m0-7L10 14m8 0v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5" />,
         search: <path d="m21 21-4.35-4.35m2.35-5.15a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z" />,
+        tool: <path d="m14.7 6.3 3-3a4.2 4.2 0 0 0 0 5.9l-8.5 8.5a2.1 2.1 0 1 1-3-3l8.5-8.5a4.2 4.2 0 0 0 5.9 0l-3 3" />,
     };
 
     return (
