@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Link from '../components/Link';
 
 interface TagItem {
     id?: string | number;
@@ -467,7 +468,7 @@ export default function TagsPage() {
                                         const label = renderTagLabel(t);
                                         const count = renderTagCount(t);
                                         return (
-                                            <a
+                                            <Link
                                                 key={idx}
                                                 href={`/tag/${typeof t === 'string' ? encodeURIComponent(t.toLowerCase().replace(/\s+/g, '-')) : encodeURIComponent((t.slug || t.name || '').toLowerCase().replace(/\s+/g, '-'))}`}
                                                 className="group relative card px-4 py-3 flex items-center justify-between hover:scale-105 transition-all duration-300 cursor-pointer animate-fade-in-up"
@@ -509,7 +510,7 @@ export default function TagsPage() {
 
                                                 {/* Animated gradient progress bar */}
                                                 <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500 via-violet-500 to-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-b-2xl" />
-                                            </a>
+                                            </Link>
                                         );
                                     })}
                                 </div>
@@ -564,7 +565,7 @@ export default function TagsPage() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                        <a
+                        <Link
                             href="/posts"
                             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-cyan-500 to-violet-500 text-white font-medium hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-105 active:scale-95"
                         >
@@ -582,8 +583,8 @@ export default function TagsPage() {
                                 />
                             </svg>
                             View Blog
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                             href="/projects"
                             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 text-white font-medium transition-all duration-300 hover:scale-105 active:scale-95"
                         >
@@ -601,7 +602,7 @@ export default function TagsPage() {
                                 />
                             </svg>
                             Browse Projects
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </section>

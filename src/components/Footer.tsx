@@ -1,5 +1,6 @@
 import SponsorMe from './SponsorMe';
 import IconLink from './IconLink';
+import Link from './Link';
 import data from '../data.json';
 
 const navLinks = [
@@ -41,13 +42,13 @@ export default function Footer() {
                         </h4>
                         <nav className="flex flex-col gap-2.5">
                             {navLinks.map((l) => (
-                                <a
+                                <Link
                                     key={l.href}
                                     href={l.href}
                                     className="editorial-link w-fit text-[var(--editorial-muted)] hover:text-[var(--editorial-ink)]"
                                 >
                                     {l.label}
-                                </a>
+                                </Link>
                             ))}
                         </nav>
                     </div>
@@ -117,13 +118,13 @@ export default function Footer() {
 
                 {/* Large closing wordmark */}
                 <div className="pb-10 sm:pb-14 select-none">
-                    <a
+                    <Link
                         href="/"
                         aria-label="msamgan — home"
                         className="block font-serif-display leading-none text-[18vw] sm:text-[11vw] lg:text-[9rem] text-[var(--editorial-ink)] hover:text-[var(--editorial-accent)] transition-colors duration-500"
                     >
                         {data.username}
-                    </a>
+                    </Link>
                 </div>
             </div>
         </footer>

@@ -15,11 +15,11 @@ export default function BlogPagination({
     const canGoPrevious = pagination.current > 1;
     const canGoNext = pagination.current < pagination.totalPages;
     const buttonClass =
-        'inline-flex min-w-32 items-center justify-center gap-2 rounded-full border px-6 py-3 text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70 disabled:cursor-not-allowed disabled:border-white/10 disabled:text-white/40 enabled:border-white/20 enabled:text-white enabled:hover:border-white/30 enabled:hover:bg-white/10 enabled:active:scale-[0.98]';
+        'editorial-link inline-flex items-center justify-center gap-2 text-sm transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--editorial-accent)] disabled:cursor-not-allowed disabled:opacity-30 enabled:text-[var(--editorial-ink)] enabled:hover:text-[var(--editorial-accent)] enabled:active:translate-y-px';
 
     return (
         <nav
-            className="mt-12 flex flex-col items-center justify-between gap-6 border-t border-white/10 pt-8 sm:flex-row"
+            className="mt-10 flex flex-col items-center justify-between gap-6 border-t border-[var(--editorial-line)] pt-8 sm:flex-row"
             aria-label="Blog pagination"
         >
             <button
@@ -37,11 +37,11 @@ export default function BlogPagination({
             </button>
 
             <div className="text-center">
-                <p className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-[var(--color-muted)]">
-                    Page <span className="font-semibold text-white">{pagination.current}</span> of{' '}
-                    <span className="font-semibold text-white">{pagination.totalPages}</span>
+                <p className="font-mono-label text-xs uppercase text-[var(--editorial-muted)]">
+                    Page <span className="text-[var(--editorial-ink)]">{pagination.current}</span> of{' '}
+                    <span className="text-[var(--editorial-ink)]">{pagination.totalPages}</span>
                 </p>
-                <p className="mt-2 text-xs text-[var(--color-muted)]">
+                <p className="mt-2 text-xs text-[var(--editorial-muted)]">
                     ({pagination.total} total articles)
                 </p>
             </div>

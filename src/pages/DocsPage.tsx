@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Container from '../components/Container';
+import Link from '../components/Link';
 
 interface DocsPageProps {
     slug: string;
@@ -307,7 +308,7 @@ export default function DocsPage({ slug }: DocsPageProps) {
                 <Container>
                     {/* Breadcrumb Navigation */}
                     <div className="mb-8">
-                        <a
+                        <Link
                             href="/documentation"
                             className="inline-flex items-center gap-2 text-[var(--color-muted)] hover:text-cyan-400 transition-colors group"
                         >
@@ -325,7 +326,7 @@ export default function DocsPage({ slug }: DocsPageProps) {
                                 />
                             </svg>
                             <span>Back to Documentation</span>
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Page Header */}
@@ -376,7 +377,7 @@ export default function DocsPage({ slug }: DocsPageProps) {
                                         {error} Please check the URL or return to the documentation
                                         index.
                                     </p>
-                                    <a
+                                    <Link
                                         href="/documentation"
                                         className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 hover:border-red-500/50 text-red-300 transition-all"
                                     >
@@ -394,7 +395,7 @@ export default function DocsPage({ slug }: DocsPageProps) {
                                                 d="M9 5l7 7-7 7"
                                             />
                                         </svg>
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -438,12 +439,12 @@ export default function DocsPage({ slug }: DocsPageProps) {
                                                 </p>
                                             </div>
                                         </div>
-                                        <a
+                                        <Link
                                             href="/contact"
                                             className="btn btn-primary btn-sm whitespace-nowrap"
                                         >
                                             Contact Support
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

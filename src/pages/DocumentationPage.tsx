@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Link from '../components/Link';
 import data from '../data.json';
 
 export default function DocumentationPage() {
@@ -188,7 +189,7 @@ export default function DocumentationPage() {
                                         {/* Bottom section - Actions */}
                                         <div className="flex flex-wrap items-center gap-3 pt-4 mt-4 border-t border-white/5">
                                             {doc.link && (
-                                                <a
+                                                <Link
                                                     href={doc.link}
                                                     className="btn btn-primary btn-sm group-hover:scale-105 transition-transform duration-300"
                                                     onClick={(e) => e.stopPropagation()}
@@ -207,7 +208,7 @@ export default function DocumentationPage() {
                                                         />
                                                     </svg>
                                                     Read Documentation
-                                                </a>
+                                                </Link>
                                             )}
                                             {doc.repo && (
                                                 <a
@@ -334,7 +335,7 @@ export default function DocumentationPage() {
                                     </svg>
                                     Visit GitHub
                                 </a>
-                                <a
+                                <Link
                                     href="/projects"
                                     className="btn btn-secondary"
                                 >
@@ -352,7 +353,7 @@ export default function DocumentationPage() {
                                         />
                                     </svg>
                                     Explore All Projects
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

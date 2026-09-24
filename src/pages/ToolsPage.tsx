@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Link from '../components/Link';
 import data from '../data.json';
 
 export default function ToolsPage() {
@@ -351,7 +352,7 @@ export default function ToolsPage() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-                        <a
+                        <Link
                             href="/contact"
                             className="btn btn-primary"
                         >
@@ -369,9 +370,9 @@ export default function ToolsPage() {
                                 />
                             </svg>
                             Share Your Idea
-                        </a>
+                        </Link>
 
-                        <a
+                        <Link
                             href="/projects"
                             className="btn btn-secondary"
                         >
@@ -389,7 +390,7 @@ export default function ToolsPage() {
                                 />
                             </svg>
                             View All Projects
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </section>

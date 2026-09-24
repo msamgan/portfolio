@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Link from '../components/Link';
 
 interface ApiPost {
     id?: number | string;
@@ -337,12 +338,12 @@ export default function TagPostsPage({ slug }: { slug: string }) {
                                     <span className="text-cyan-300 font-medium">{prettyTag}</span>{' '}
                                     yet.
                                 </p>
-                                <a
+                                <Link
                                     href="/blog"
                                     className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white text-sm transition-all"
                                 >
                                     Browse all articles
-                                </a>
+                                </Link>
                             </div>
                         )}
 
@@ -620,7 +621,7 @@ export default function TagPostsPage({ slug }: { slug: string }) {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                        <a
+                        <Link
                             href="/blog"
                             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-cyan-500 to-violet-500 text-white font-medium hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 hover:scale-105 active:scale-95"
                         >
@@ -638,8 +639,8 @@ export default function TagPostsPage({ slug }: { slug: string }) {
                                 />
                             </svg>
                             All Blog Posts
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                             href="/tags"
                             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 text-white font-medium transition-all duration-300 hover:scale-105 active:scale-95"
                         >
@@ -657,7 +658,7 @@ export default function TagPostsPage({ slug }: { slug: string }) {
                                 />
                             </svg>
                             Explore All Tags
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </section>

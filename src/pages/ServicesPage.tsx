@@ -1,6 +1,7 @@
 import PageShell from '../components/PageShell';
 import Stats from '../components/Stats';
 import Services from '../components/Services';
+import Link from '../components/Link';
 
 const heroStats = [
     { value: '9+', label: 'Years experience' },
@@ -62,12 +63,12 @@ export default function ServicesPage() {
                             >
                                 Get in Touch →
                             </a>
-                            <a
+                            <Link
                                 href="/#contact"
                                 className="editorial-link text-[var(--editorial-ink)]"
                             >
                                 View Contact Info →
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

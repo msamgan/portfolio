@@ -1,5 +1,6 @@
 import data from '../data.json';
 import profileImage from '../assets/msamgan.jpeg';
+import Link from './Link';
 
 export default function Hero() {
     const github = data.navigation.social.find((s) => s.name === 'GitHub')?.link;
@@ -56,18 +57,18 @@ export default function Hero() {
                         </div>
 
                         <div className="flex flex-wrap items-center gap-6 text-sm">
-                            <a
+                            <Link
                                 href="/contact"
                                 className="editorial-link text-[var(--editorial-ink)]"
                             >
                                 Work with me →
-                            </a>
-                            <a
+                            </Link>
+                            <Link
                                 href="/projects"
                                 className="editorial-link text-[var(--editorial-muted)] hover:text-[var(--editorial-ink)]"
                             >
                                 View projects
-                            </a>
+                            </Link>
                             {github && (
                                 <a
                                     href={github}

@@ -3,6 +3,7 @@ import profileImage from '../assets/msamgan.jpeg';
 import Experience from './Experience';
 import OpenSourceIndex from './OpenSourceIndex';
 import Stats from './Stats';
+import Link from './Link';
 
 const skillGroups = data.skillGroups;
 const focusAreas = data.focusAreas;
@@ -79,18 +80,18 @@ export default function About() {
                             </div>
 
                             <div className="mt-10 flex flex-wrap items-center gap-6 text-sm">
-                                <a
+                                <Link
                                     href="/contact"
                                     className="editorial-link text-[var(--editorial-ink)]"
                                 >
                                     Get in touch →
-                                </a>
-                                <a
+                                </Link>
+                                <Link
                                     href="/projects"
                                     className="editorial-link text-[var(--editorial-muted)] hover:text-[var(--editorial-ink)]"
                                 >
                                     View projects
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

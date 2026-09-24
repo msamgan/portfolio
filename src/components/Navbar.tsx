@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import data from '../data.json';
+import Link from './Link';
 
 // Primary destinations get top billing; the rest remain fully reachable
 // in the mobile/expanded menu so no existing route is ever dropped.
@@ -49,13 +50,13 @@ export default function Navbar() {
             }`}
         >
             <div className="mx-auto flex h-16 sm:h-[4.5rem] max-w-7xl items-center justify-between px-5 sm:px-8">
-                <a
+                <Link
                     href="/"
                     className="font-serif-display text-lg sm:text-xl tracking-tight text-[var(--editorial-ink)]"
                     aria-label="msamgan — home"
                 >
                     {data.username}
-                </a>
+                </Link>
 
                 {/* Desktop navigation */}
                 <nav
@@ -63,7 +64,7 @@ export default function Navbar() {
                     aria-label="Primary"
                 >
                     {primaryLinks.map((l) => (
-                        <a
+                        <Link
                             key={l.href}
                             href={l.href}
                             className={`editorial-link pb-0.5 ${
@@ -74,7 +75,7 @@ export default function Navbar() {
                             aria-current={isActive(l.href) ? 'page' : undefined}
                         >
                             {l.label}
-                        </a>
+                        </Link>
                     ))}
                 </nav>
 
@@ -89,12 +90,12 @@ export default function Navbar() {
                             Résumé ↗
                         </a>
                     )}
-                    <a
+                    <Link
                         href="/contact"
                         className="text-[13px] font-mono-label uppercase border border-[var(--editorial-line-strong)] px-4 py-2 text-[var(--editorial-ink)] hover:border-[var(--editorial-accent)] hover:text-[var(--editorial-accent)] transition-colors duration-200"
                     >
                         Say hello
-                    </a>
+                    </Link>
                 </div>
 
                 {/* Mobile menu toggle */}
@@ -121,7 +122,7 @@ export default function Navbar() {
             >
                 <nav className="flex flex-col px-5 py-4" aria-label="Mobile">
                     {[...primaryLinks, ...secondaryLinks].map((l) => (
-                        <a
+                        <Link
                             key={l.href}
                             href={l.href}
                             onClick={() => setIsOpen(false)}
@@ -132,7 +133,7 @@ export default function Navbar() {
                             }`}
                         >
                             {l.label}
-                        </a>
+                        </Link>
                     ))}
                     {resume && (
                         <a

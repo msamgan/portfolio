@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Link from './Link';
 
 interface ApiPost {
     id?: number | string;
@@ -64,7 +65,7 @@ export default function Writing() {
                 {status === 'ready' && posts.length > 0 && (
                     <div>
                         {posts.map((p) => (
-                            <a
+                            <Link
                                 key={p.slug ?? p.id}
                                 href={`/${p.slug ?? ''}`}
                                 className="editorial-row group grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 items-baseline py-6"
@@ -80,7 +81,7 @@ export default function Writing() {
                                 <span className="sm:col-span-1 flex sm:justify-end font-mono-label text-xs text-[var(--editorial-muted)]">
                                     {formatDate(p.published_at ?? p.created_at)}
                                 </span>
-                            </a>
+                            </Link>
                         ))}
                     </div>
                 )}
@@ -96,12 +97,12 @@ export default function Writing() {
                 )}
 
                 <div className="pt-8">
-                    <a
+                    <Link
                         href="/posts"
                         className="editorial-link text-sm text-[var(--editorial-muted)] hover:text-[var(--editorial-ink)]"
                     >
                         Read the archive →
-                    </a>
+                    </Link>
                 </div>
             </div>
         </section>

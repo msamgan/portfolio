@@ -33,6 +33,22 @@ function App() {
         };
     }, []);
 
+    useEffect(() => {
+        const hash = window.location.hash;
+        if (!hash) {
+            window.scrollTo({ top: 0 });
+            return;
+        }
+
+        // Give the newly rendered page a tick to mount before scrolling to
+        // the target section (pushState-based navigation doesn't trigger
+        // the browser's native hash-scroll behavior).
+        const id = requestAnimationFrame(() => {
+            document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: 'smooth' });
+        });
+        return () => cancelAnimationFrame(id);
+    }, [path]);
+
     if (path === '/services') {
         return <ServicesPage />;
     }

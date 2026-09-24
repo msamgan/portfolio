@@ -3,6 +3,7 @@ import PageShell from '../components/PageShell';
 import Stats from '../components/Stats';
 import OpenSourceIndex from '../components/OpenSourceIndex';
 import ProjectArchive from '../components/ProjectArchive';
+import Link from '../components/Link';
 
 export default function ProjectsPage() {
     return (
@@ -58,18 +59,18 @@ export default function ProjectsPage() {
                             >
                                 View GitHub archive →
                             </a>
-                            <a
+                            <Link
                                 href="/contact"
                                 className="editorial-link text-[var(--editorial-ink)]"
                             >
                                 Get in touch →
-                            </a>
-                            <a
+                            </Link>
+                            <Link
                                 href="/contact"
                                 className="editorial-link text-[var(--editorial-muted)] hover:text-[var(--editorial-ink)]"
                             >
                                 View contact information →
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

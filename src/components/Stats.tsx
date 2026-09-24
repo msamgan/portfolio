@@ -8,7 +8,7 @@ export default function Stats({ items = defaultStats }: { items?: StatItem[] }) 
     return (
         <section className="editorial border-b border-[var(--editorial-line)]">
             <div className="mx-auto max-w-7xl px-5 sm:px-8">
-                <div className="grid grid-cols-1 sm:grid-cols-3">
+                <div className={`grid grid-cols-1 ${items.length === 4 ? 'sm:grid-cols-4' : 'sm:grid-cols-3'}`}>
                     {items.map((s, i) => (
                         <div
                             key={s.label}
