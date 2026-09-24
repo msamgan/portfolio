@@ -1,5 +1,10 @@
 import { useEffect, useRef } from 'react';
-import { detectLanguage, highlightCode, resolveLanguage } from '../../features/blog/highlight';
+import {
+    detectLanguage,
+    highlightCode,
+    inferLanguage,
+    resolveLanguage,
+} from '../../features/blog/highlight';
 
 /**
  * Renders the API-provided article HTML and progressively enhances every
@@ -29,8 +34,8 @@ export default function PostContent({ content }: { content: string }) {
             // what the copy button will use, so it always copies the
             // untouched source rather than highlighted markup.
             const rawCode = codeEl.textContent ?? '';
-            const language = detectLanguage(codeEl.className);
-            const resolved = resolveLanguage(language);
+            const language = detectLanguage(`${pre.className} ${codeEl.className}`);
+            const resolved = resolveLanguage(language) ?? resolveLanguage(inferLanguage(rawCode));
 
             codeEl.innerHTML = highlightCode(rawCode, resolved?.grammar);
             if (resolved) {

@@ -64,6 +64,36 @@ export function resolveLanguage(raw: string | null): { grammar: string; label: s
 }
 
 /**
+ * The blog API currently omits language classes from some code blocks. Use
+ * distinctive syntax as a fallback so those blocks still receive highlighting.
+ */
+export function inferLanguage(code: string): string | null {
+    const phpSignals = [
+        /<\?php\b/,
+        /\$[A-Za-z_]\w*/,
+        /\$this\s*->/,
+        /\b(?:public|protected|private)\s+(?:static\s+)?function\b/,
+        /\b(?:Route|App|File|Config)::[A-Za-z_]\w*/,
+    ];
+    const javascriptSignals = [
+        /\b(?:const|let|var)\s+[A-Za-z_$][\w$]*\s*=/,
+        /(?:=>|console\.(?:log|error|warn)\s*\()/,
+        /\b(?:import|export)\s+(?:[\w{*]|default\b)/,
+    ];
+    const jsonSignals = [/^\s*["'][\w-]+["']\s*:/m, /^\s*[[{]/, /[}\]]\s*$/m];
+
+    const score = (signals: RegExp[]) =>
+        signals.reduce((total, signal) => total + (signal.test(code) ? 1 : 0), 0);
+    const scores = [
+        { language: 'php', value: score(phpSignals) },
+        { language: 'javascript', value: score(javascriptSignals) },
+        { language: 'json', value: score(jsonSignals) },
+    ].sort((a, b) => b.value - a.value);
+
+    return scores[0].value > 0 ? scores[0].language : null;
+}
+
+/**
  * Highlights raw code for the given language. Returns the code untouched
  * (HTML-escaped only) when the language is unknown or unsupported, so
  * article rendering never breaks on an unrecognised language.
@@ -79,8 +109,5 @@ export function highlightCode(code: string, grammarName?: string): string {
         }
     }
 
-    return code
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
+    return code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
