@@ -8,6 +8,9 @@ const navLinks = [
     { href: '/projects', label: 'Projects' },
     { href: '/posts', label: 'Writing' },
     { href: '/contact', label: 'Contact' },
+    { href: '/tools', label: 'Tools' },
+    { href: '/documentation', label: 'Documentation' },
+    { href: '/tags', label: 'Tags' },
 ];
 
 const socialKindByName: Record<string, 'github' | 'linkedin' | 'twitter' | 'youtube'> = {
