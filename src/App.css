@@ -87,25 +87,26 @@ html {
 /* Custom scrollbar */
 ::-webkit-scrollbar {
     width: 10px;
+    height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--color-bg);
+    background: var(--editorial-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+    background: var(--editorial-line-strong);
     border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, var(--color-secondary), var(--color-accent));
+    background: var(--editorial-accent);
 }
 
 /* Selection color */
 ::selection {
-    background-color: rgba(34, 211, 238, 0.3);
-    color: var(--color-text);
+    background-color: color-mix(in oklab, var(--editorial-accent), transparent 70%);
+    color: var(--editorial-ink);
 }
 
 /* Tailwind layers for component polish */
