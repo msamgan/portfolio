@@ -13,6 +13,7 @@ const STATIC_PAGES = [
     { url: '/about', priority: '0.7', changefreq: 'monthly' },
     { url: '/contact', priority: '0.7', changefreq: 'monthly' },
     { url: '/tools', priority: '0.6', changefreq: 'monthly' },
+    { url: '/dev-null-embed', priority: '0.6', changefreq: 'monthly' },
     { url: '/tags', priority: '0.6', changefreq: 'weekly' },
     { url: '/documentation', priority: '0.6', changefreq: 'monthly' },
 ];

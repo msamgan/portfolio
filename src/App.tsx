@@ -9,6 +9,7 @@ import Work from './components/Work';
 import OpenSourceIndex from './components/OpenSourceIndex';
 import Writing from './components/Writing';
 import Contact from './components/Contact';
+import DevNullProfile from './components/DevNullProfile';
 import ServicesPage from './pages/ServicesPage';
 import ProjectsPage from './pages/ProjectsPage';
 import AboutPage from './pages/AboutPage';
@@ -20,6 +21,7 @@ import TagsPage from './pages/TagsPage';
 import TagPostsPage from './pages/TagPostsPage';
 import DocumentationPage from './pages/DocumentationPage';
 import DocsPage from './pages/DocsPage';
+import DevNullEmbedPage from './pages/DevNullEmbedPage';
 
 function App() {
     const [path, setPath] = useState<string>(window.location.pathname);
@@ -73,6 +75,10 @@ function App() {
         return <ToolsPage />;
     }
 
+    if (path === '/dev-null-embed') {
+        return <DevNullEmbedPage />;
+    }
+
     if (path === '/documentation') {
         return <DocumentationPage />;
     }
@@ -113,6 +119,7 @@ function App() {
             <Work />
             <OpenSourceIndex />
             <Writing />
+            <DevNullProfile />
             <Contact />
         </PageShell>
     );

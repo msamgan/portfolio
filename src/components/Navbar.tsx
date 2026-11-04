@@ -14,6 +14,7 @@ const primaryLinks = [
 
 const secondaryLinks = [
     { href: '/tools', label: 'Tools' },
+    { href: '/dev-null-embed', label: '/dev/null Embed' },
     { href: '/documentation', label: 'Documentation' },
     { href: '/tags', label: 'Tags' },
 ];
