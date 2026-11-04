@@ -43,6 +43,31 @@ export default function ToolsPage() {
                     </div>
                 </section>
 
+                <section className="editorial border-b border-[var(--editorial-line)] px-5 py-10 sm:px-8 sm:py-12">
+                    <div className="mx-auto max-w-7xl">
+                        <Link
+                            href="/dev-null-embed"
+                            className="group grid gap-5 border border-[var(--editorial-line-strong)] p-6 transition-colors hover:border-[var(--editorial-accent)] sm:grid-cols-[1fr_auto] sm:items-center sm:p-8"
+                        >
+                            <div>
+                                <span className="font-mono-label text-[10px] uppercase text-[var(--editorial-accent)]">
+                                    New tool / Brand assets
+                                </span>
+                                <h2 className="mt-3 font-serif-display text-3xl text-[var(--editorial-ink)] sm:text-4xl">
+                                    /dev/null Embed Generator
+                                </h2>
+                                <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[var(--editorial-muted)]">
+                                    Configure an official logo, mark, or wordmark and copy the HTML
+                                    needed to embed it on your site.
+                                </p>
+                            </div>
+                            <span className="font-mono-label text-xs uppercase text-[var(--editorial-muted)] transition-colors group-hover:text-[var(--editorial-accent)]">
+                                Open generator →
+                            </span>
+                        </Link>
+                    </div>
+                </section>
+
                 <section className="editorial px-5 py-14 sm:px-8 sm:py-20">
                     <div className="mx-auto max-w-7xl">
                         <div className="mb-8 flex items-end justify-between border-b border-[var(--editorial-line)] pb-4">

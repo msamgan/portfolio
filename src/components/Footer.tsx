@@ -9,6 +9,7 @@ const navLinks = [
     { href: '/posts', label: 'Writing' },
     { href: '/contact', label: 'Contact' },
     { href: '/tools', label: 'Tools' },
+    { href: '/dev-null-embed', label: '/dev/null Embed' },
     { href: '/documentation', label: 'Documentation' },
     { href: '/tags', label: 'Tags' },
 ];
@@ -128,6 +129,26 @@ export default function Footer() {
                     >
                         {data.username}
                     </Link>
+                </div>
+
+                <div className="flex flex-col items-center justify-between gap-4 border-t border-[var(--editorial-line)] py-6 sm:flex-row">
+                    <p className="font-mono-label text-[10px] uppercase tracking-wider text-[var(--editorial-muted)]">
+                        Also find me on
+                    </p>
+                    <a
+                        href="https://dev-null.sh/@msamgan"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="View my profile on /dev/null"
+                        className="opacity-75 transition-opacity hover:opacity-100"
+                    >
+                        <img
+                            src="https://dev-null.sh/images/brand/dev-null-logo-dark.svg"
+                            alt="/dev/null"
+                            width="344"
+                            className="block h-auto w-36 max-w-full"
+                        />
+                    </a>
                 </div>
             </div>
         </footer>

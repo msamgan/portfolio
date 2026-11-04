@@ -20,6 +20,7 @@ import TagsPage from './pages/TagsPage';
 import TagPostsPage from './pages/TagPostsPage';
 import DocumentationPage from './pages/DocumentationPage';
 import DocsPage from './pages/DocsPage';
+import DevNullEmbedPage from './pages/DevNullEmbedPage';
 
 function App() {
     const [path, setPath] = useState<string>(window.location.pathname);
@@ -71,6 +72,10 @@ function App() {
 
     if (path === '/tools') {
         return <ToolsPage />;
+    }
+
+    if (path === '/dev-null-embed') {
+        return <DevNullEmbedPage />;
     }
 
     if (path === '/documentation') {
